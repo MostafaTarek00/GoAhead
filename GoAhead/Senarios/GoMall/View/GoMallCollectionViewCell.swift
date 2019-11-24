@@ -11,11 +11,12 @@ import UIKit
 class GoMallCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var goMallImage: UIImageView!
-    @IBOutlet weak var goMallName: UIButton!
+    
+    @IBOutlet weak var viewCell: UIView!
+    
+    @IBOutlet weak var goMallLbl: UILabel!
     
     
     
-    
-    
-    @IBOutlet weak var goMallBtnPressed: UIButton!
+  
 }
