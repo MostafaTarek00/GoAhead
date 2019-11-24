@@ -1,0 +1,6 @@
+framework module Pods_GoAhead {
+  umbrella header "Pods-GoAhead-umbrella.h"
+
+  export *
+  module * { export * }
+}
