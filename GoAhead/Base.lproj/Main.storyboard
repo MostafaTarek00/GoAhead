@@ -140,24 +140,28 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="united-states-of-america" translatesAutoresizingMaskIntoConstraints="NO" id="UAV-cH-5va">
-                                        <rect key="frame" x="168.5" y="116" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgN-lO-hJg">
+                                        <rect key="frame" x="168.5" y="116" width="40" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="DvS-a8-3n5"/>
-                                            <constraint firstAttribute="height" constant="30" id="lir-hS-rnF"/>
+                                            <constraint firstAttribute="height" constant="32" id="22Q-AB-UKV"/>
+                                            <constraint firstAttribute="width" constant="40" id="mvS-nV-nkS"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" backgroundImage="united-states-of-america"/>
+                                        <connections>
+                                            <action selector="changeLangPressed:" destination="c12-Zs-gew" eventType="touchUpInside" id="HY9-7h-06l"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Background"/>
                                 <constraints>
                                     <constraint firstItem="0rD-qe-3Qm" firstAttribute="leading" secondItem="6RL-KB-Bcv" secondAttribute="trailing" constant="10" id="82W-EU-Myn"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0rD-qe-3Qm" secondAttribute="trailing" constant="20" symbolic="YES" id="A1H-pF-8c2"/>
-                                    <constraint firstAttribute="bottom" secondItem="UAV-cH-5va" secondAttribute="bottom" constant="4" id="IPV-F5-oag"/>
-                                    <constraint firstItem="UAV-cH-5va" firstAttribute="leading" secondItem="hM9-TT-mld" secondAttribute="trailing" constant="4" id="KXa-Sl-kHd"/>
+                                    <constraint firstAttribute="bottom" secondItem="bgN-lO-hJg" secondAttribute="bottom" constant="2" id="M9w-7V-mdV"/>
                                     <constraint firstAttribute="height" constant="150" id="eV6-nx-9eF"/>
                                     <constraint firstItem="hM9-TT-mld" firstAttribute="leading" secondItem="ZCq-m1-FLb" secondAttribute="leading" constant="8" id="gF3-2F-IF9"/>
                                     <constraint firstItem="6RL-KB-Bcv" firstAttribute="leading" secondItem="ZCq-m1-FLb" secondAttribute="leading" constant="8" id="kbu-jF-6R1"/>
                                     <constraint firstItem="6RL-KB-Bcv" firstAttribute="top" secondItem="ZCq-m1-FLb" secondAttribute="top" constant="24" id="lV9-g7-7pQ"/>
+                                    <constraint firstItem="bgN-lO-hJg" firstAttribute="leading" secondItem="hM9-TT-mld" secondAttribute="trailing" constant="4" id="npE-Ux-F0p"/>
                                     <constraint firstItem="0rD-qe-3Qm" firstAttribute="centerY" secondItem="6RL-KB-Bcv" secondAttribute="centerY" id="p7h-Nq-SdI"/>
                                     <constraint firstAttribute="bottom" secondItem="hM9-TT-mld" secondAttribute="bottom" constant="8" id="pdh-EM-1bn"/>
                                 </constraints>
@@ -216,6 +220,9 @@
                                 <state key="normal" title="Logout">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="logOutBtnPressed:" destination="c12-Zs-gew" eventType="touchUpInside" id="JLG-kG-lIv"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Qrf-Ma-udx">
                                 <rect key="frame" x="0.0" y="238" width="414" height="100"/>
@@ -306,7 +313,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Apl-j3-hHo"/>
                     <connections>
+                        <outlet property="changLang" destination="bgN-lO-hJg" id="9iw-fB-odf"/>
+                        <outlet property="headerProfileView" destination="ZCq-m1-FLb" id="ycM-k8-woq"/>
                         <outlet property="menuTableView" destination="QWc-Pn-57h" id="Hbm-yM-FRg"/>
+                        <outlet property="myNameLbl" destination="0rD-qe-3Qm" id="gho-tg-BaM"/>
+                        <outlet property="profileImage" destination="6RL-KB-Bcv" id="gEJ-uT-wtN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="haH-io-zSV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

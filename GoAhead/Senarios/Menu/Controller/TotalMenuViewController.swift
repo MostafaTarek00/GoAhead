@@ -10,6 +10,15 @@ import UIKit
 
 class TotalMenuViewController: UIViewController {
     
+    @IBOutlet weak var headerProfileView: UIView!
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    @IBOutlet weak var myNameLbl: UILabel!
+    
+    @IBOutlet weak var changLang: UIButton!
+    
+    
+    
     var categories: [Category]?
     var user: UserData?
     
@@ -25,7 +34,13 @@ class TotalMenuViewController: UIViewController {
         user = Shared.user
         
     }
-
+    
+    
+    @IBAction func logOutBtnPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func changeLangPressed(_ sender: UIButton) {
+    }
 }
 
 extension TotalMenuViewController : UITableViewDataSource , UITableViewDelegate {
