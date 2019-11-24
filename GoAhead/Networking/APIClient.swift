@@ -53,8 +53,8 @@ class APIClient {
     }
     
     static func getAllProductCategories(completion:@escaping
-        (Result<String,AFError>)->Void){
-        performRequestSimple(route: APIRouter.getAllProductCategories , completion: completion)
+        (Result<ProductCategories,AFError>)->Void){
+        performRequest(route: APIRouter.getAllProductCategories , completion: completion)
     }
     
     static func viewProductDetails(productID : String , completion:@escaping

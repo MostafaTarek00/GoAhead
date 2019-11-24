@@ -35,6 +35,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                         print(response)
                         if response.status == 1 {
                             self?.performSegue(withIdentifier: "LogIn", sender: self)
+                            Shared.user = response.userData
                             print("loged In")
                         }
                     case .failure(let error):
