@@ -12,15 +12,33 @@ import UIKit
 class GoMallViewController: UIViewController {
 
     @IBOutlet weak var goMallCollectionView: UICollectionView!
+    
+    var categories:[ProductCategory]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        getData()
+    }
     
-
+    func getData() {
+        APIClient.getAllProductCategories { (Result) in
+            switch Result {
+            case .success(let response):
+                print(response)
+                self.categories = response.categories
+                self.goMallCollectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
     @IBAction func searchBtnPressed(_ sender: UIBarButtonItem) {
     }
     @IBAction func cartBtnPressed(_ sender: UIBarButtonItem) {
@@ -37,17 +55,22 @@ class GoMallViewController: UIViewController {
 extension GoMallViewController: UICollectionViewDelegate,UICollectionViewDataSource {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return categories?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GoMallCollectionViewCell", for: indexPath) as! GoMallCollectionViewCell
-                      
-                      return cell
+        if let category = categories?[indexPath.row] {
+            cell.goMallImage.sd_setImage(with: URL(string: category.image), placeholderImage: UIImage(named: "") )
+            cell.goMallName.setTitle(category.name, for: .normal)
+        }
+        return cell
         
     }
     
-
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let vc = storyboard?.instantiateViewController(identifier: "") as?
+//    }
     
 
 }

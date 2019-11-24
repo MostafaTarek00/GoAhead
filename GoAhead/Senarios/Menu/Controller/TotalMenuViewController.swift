@@ -9,31 +9,37 @@
 import UIKit
 
 class TotalMenuViewController: UIViewController {
-       var dataMenu = ["Log in" , "Home" , "Chat" , "FootBall" ]
-
+    
+    var categories: [Category]?
+    var user: UserData?
+    
     @IBOutlet weak var menuTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        updateViewFromData()
     }
     
-
+    func updateViewFromData(){
+        
+        categories = Shared.categories
+        user = Shared.user
+        
+    }
 
 }
 
 extension TotalMenuViewController : UITableViewDataSource , UITableViewDelegate {
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return dataMenu.count
+        return categories?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "menuBtnTableViewCell", for: indexPath) as! menuBtnTableViewCell
              
-        cell.categoryLbl.text = dataMenu[indexPath.row]
+        cell.categoryLbl.text = categories?[indexPath.row].name
+        
 
-             
              return cell
     }
     

@@ -12,10 +12,13 @@ class TotalItemsViewController: UIViewController {
 
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var itemOfCatogoryCollectionView: UICollectionView!
+    
+    var categoies: [Category]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
 
@@ -25,7 +28,7 @@ class TotalItemsViewController: UIViewController {
 extension TotalItemsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-            return 0
+            return categoies?.count ?? 0
         } else {
             return 0
         }
@@ -34,15 +37,13 @@ extension TotalItemsViewController : UICollectionViewDelegate , UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView.tag == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCollectionViewCell", for: indexPath) as! MenuCollectionViewCell
-            
+            cell.menuItemName.text = categoies?[indexPath.row].name
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TotalItemCollectionViewCell", for: indexPath) as! TotalItemCollectionViewCell
             
             return cell
         }
-        
-        
     }
     
     
