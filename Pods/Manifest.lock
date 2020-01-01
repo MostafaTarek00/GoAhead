@@ -1,17 +1,32 @@
 PODS:
   - Alamofire (5.0.0-rc.3)
+  - Auk (11.0.0):
+    - moa
+  - ImageSlideshow (1.8.1):
+    - ImageSlideshow/Core (= 1.8.1)
+  - ImageSlideshow/Core (1.8.1)
+  - ImageSlideshow/Kingfisher (1.8.1):
+    - ImageSlideshow/Core
+    - Kingfisher (> 3.0)
   - IQKeyboardManagerSwift (6.0.4)
+  - Kingfisher (5.12.0):
+    - Kingfisher/Core (= 5.12.0)
+  - Kingfisher/Core (5.12.0)
+  - moa (12.0.0)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
-  - SDWebImage (5.3.1):
-    - SDWebImage/Core (= 5.3.1)
-  - SDWebImage/Core (5.3.1)
-  - SideMenu (5.0.1)
+  - SDWebImage (5.4.1):
+    - SDWebImage/Core (= 5.4.1)
+  - SDWebImage/Core (5.4.1)
+  - SideMenu (6.4.7)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.5)
+  - Auk
+  - ImageSlideshow
+  - ImageSlideshow/Kingfisher
   - IQKeyboardManagerSwift (= 6.0.4)
   - NVActivityIndicatorView
   - SDWebImage
@@ -21,7 +36,11 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Auk
+    - ImageSlideshow
     - IQKeyboardManagerSwift
+    - Kingfisher
+    - moa
     - NVActivityIndicatorView
     - SDWebImage
     - SideMenu
@@ -29,12 +48,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
+  Auk: 7cc533252e2caaaa36b2be19c0b799f6057c365a
+  ImageSlideshow: 634865d7d4e96f21e3830a31b51bde768cc94cea
   IQKeyboardManagerSwift: 36dbe324b4f9793f5f41ba5227f3e7c76dfefd50
+  Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
+  moa: e2346f12de6c65bbca4d103950d45db9e46785ef
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  SDWebImage: 7137d57385fb632129838c1e6ab9528a22c666cc
-  SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
+  SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
+  SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: e116eb4f12bf1ec8b48a40fe03295cc3126cbfde
+PODFILE CHECKSUM: 6cd5a31d29bf72f2619af4218dd8e0bbcf963d8a
 
 COCOAPODS: 1.8.4

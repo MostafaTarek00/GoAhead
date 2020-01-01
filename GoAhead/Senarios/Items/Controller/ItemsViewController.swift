@@ -9,17 +9,17 @@
 import UIKit
 
 class ItemsViewController: UIViewController {
-
+    
     @IBOutlet weak var items3CollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
-
     
-
+    
+    
 }
 
 
@@ -29,9 +29,9 @@ extension ItemsViewController : UICollectionViewDelegate , UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCollectionViewCell", for: indexPath) as! ItemsCollectionViewCell
-             
-             return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemsCollectionViewCell", for: indexPath) as! ItemsCollectionViewCell
+        
+        return cell
     }
     
     

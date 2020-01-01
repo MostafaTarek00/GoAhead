@@ -10,6 +10,8 @@ import UIKit
 
 class TotalMenuViewController: UIViewController {
     
+    var menuArray = ["Travel and Tourism","Restaurants","General Services","Online Shopping","Electronic","Food Stuffs","Pharmacies","Courses and Education","Cars","News andSports","Government","Banks$Installment Companies","Athekry","Jewelery","Fashion","Furnituer And Home","Saudi Clubs"]
+    
     @IBOutlet weak var headerProfileView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -19,21 +21,15 @@ class TotalMenuViewController: UIViewController {
     
     
     
-    var categories: [Category]?
-    var user: UserData?
     
     @IBOutlet weak var menuTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViewFromData()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-    func updateViewFromData(){
-        
-        categories = Shared.categories
-        user = Shared.user
-        
-    }
+  
     
     
     @IBAction func logOutBtnPressed(_ sender: UIButton) {
@@ -46,15 +42,11 @@ class TotalMenuViewController: UIViewController {
 extension TotalMenuViewController : UITableViewDataSource , UITableViewDelegate {
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories?.count ?? 0
+        return  menuArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let  cell = tableView.dequeueReusableCell(withIdentifier: "menuBtnTableViewCell", for: indexPath) as! menuBtnTableViewCell
-             
-        cell.categoryLbl.text = categories?[indexPath.row].name
-        
-
              return cell
     }
     

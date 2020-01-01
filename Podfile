@@ -12,5 +12,8 @@ target 'GoAhead' do
   pod 'SDWebImage'
   pod 'NVActivityIndicatorView'
   pod 'SwiftyJSON'
+  pod 'ImageSlideshow'
+  pod "ImageSlideshow/Kingfisher"
+  pod 'Auk'
 
 end
