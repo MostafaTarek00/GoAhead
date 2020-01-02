@@ -41,10 +41,17 @@
 		3B15F2E423BCCDE1003FD1C1 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B15F2E323BCCDE1003FD1C1 /* DetailsTableViewCell.swift */; };
 		3B16CDF623B8B5CC00FCFBEF /* ConstantMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B16CDF523B8B5CC00FCFBEF /* ConstantMenu.swift */; };
 		3B16CDF823B8C32100FCFBEF /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B16CDF723B8C32100FCFBEF /* MainNavigationController.swift */; };
+		3B17639523BDF1D900871CE9 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B17639423BDF1D900871CE9 /* CardViewController.swift */; };
+		3B17639723BDF1F000871CE9 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B17639623BDF1F000871CE9 /* CardCollectionViewCell.swift */; };
+		3B17639923BDFDA500871CE9 /* Navigation.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B17639823BDFDA500871CE9 /* Navigation.xcassets */; };
 		3B18F8EE238A930C00105663 /* DetailsOfItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18F8ED238A930C00105663 /* DetailsOfItemsViewController.swift */; };
 		3B18F8F0238A977300105663 /* ItemShowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18F8EF238A977300105663 /* ItemShowCollectionViewCell.swift */; };
 		3B18F8FA238AB66200105663 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18F8F9238AB66200105663 /* ItemsViewController.swift */; };
 		3B18F8FC238AB67C00105663 /* ItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18F8FB238AB67C00105663 /* ItemsCollectionViewCell.swift */; };
+		3BD4224E23BE213000FF7437 /* SellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4224D23BE213000FF7437 /* SellerViewController.swift */; };
+		3BD4225023BE221D00FF7437 /* OtherProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4224F23BE221D00FF7437 /* OtherProductCollectionViewCell.swift */; };
+		3BD4225523BE369A00FF7437 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4225423BE369A00FF7437 /* SearchViewController.swift */; };
+		3BD4225723BE437B00FF7437 /* CustemDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4225623BE437B00FF7437 /* CustemDesign.swift */; };
 		3BD607A0238ACF5A00AB41DB /* DetailsItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6079F238ACF5A00AB41DB /* DetailsItemsViewController.swift */; };
 		3BD607A2238ADA5F00AB41DB /* StoresOfMallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD607A1238ADA5F00AB41DB /* StoresOfMallViewController.swift */; };
 		3BD607A4238ADAC100AB41DB /* StoresOfMallCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD607A3238ADAC100AB41DB /* StoresOfMallCollectionViewCell.swift */; };
@@ -104,10 +111,17 @@
 		3B15F2E323BCCDE1003FD1C1 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		3B16CDF523B8B5CC00FCFBEF /* ConstantMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantMenu.swift; sourceTree = "<group>"; };
 		3B16CDF723B8C32100FCFBEF /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		3B17639423BDF1D900871CE9 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		3B17639623BDF1F000871CE9 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B17639823BDFDA500871CE9 /* Navigation.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Navigation.xcassets; sourceTree = "<group>"; };
 		3B18F8ED238A930C00105663 /* DetailsOfItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsOfItemsViewController.swift; sourceTree = "<group>"; };
 		3B18F8EF238A977300105663 /* ItemShowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemShowCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B18F8F9238AB66200105663 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		3B18F8FB238AB67C00105663 /* ItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewCell.swift; sourceTree = "<group>"; };
+		3BD4224D23BE213000FF7437 /* SellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViewController.swift; sourceTree = "<group>"; };
+		3BD4224F23BE221D00FF7437 /* OtherProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		3BD4225423BE369A00FF7437 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		3BD4225623BE437B00FF7437 /* CustemDesign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustemDesign.swift; sourceTree = "<group>"; };
 		3BD6079F238ACF5A00AB41DB /* DetailsItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsItemsViewController.swift; sourceTree = "<group>"; };
 		3BD607A1238ADA5F00AB41DB /* StoresOfMallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresOfMallViewController.swift; sourceTree = "<group>"; };
 		3BD607A3238ADAC100AB41DB /* StoresOfMallCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresOfMallCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -164,6 +178,7 @@
 				262E5B2021AFE578009363E7 /* Main.storyboard */,
 				8139D4A2238A905E001CE986 /* TabBar.swift */,
 				262E5B2621AFE57D009363E7 /* Assets.xcassets */,
+				3B17639823BDFDA500871CE9 /* Navigation.xcassets */,
 				3B0E590B23BD2D5F00A564D7 /* Color.xcassets */,
 				3B0EE89A23BAABDC00D67389 /* Media.xcassets */,
 				262E5B2821AFE57D009363E7 /* LaunchScreen.storyboard */,
@@ -183,7 +198,6 @@
 		3B0E80822385FA6A00ACB085 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				3B16CDF923B8C3BF00FCFBEF /* Main */,
 				3B122EED2386A9FA0056E7BF /* Controller */,
 				3B122EEA2386A8B10056E7BF /* View */,
 			);
@@ -218,6 +232,7 @@
 				3B0F729A2385958100BBEA8C /* CardView.swift */,
 				3B0F729B2385958100BBEA8C /* DesignableUITextField.swift */,
 				3B0F729C2385958100BBEA8C /* Maps.swift */,
+				3BD4225623BE437B00FF7437 /* CustemDesign.swift */,
 				3BE5BF2823BA622E006E4AB9 /* CollectionCell.swift */,
 			);
 			path = Utitlites;
@@ -259,10 +274,10 @@
 		3B122EE92386866C0056E7BF /* Senarios */ = {
 			isa = PBXGroup;
 			children = (
+				3B17639023BDF16F00871CE9 /* NavigationViews */,
 				3B0EE89923BAAB8500D67389 /* TapViews */,
 				3B122F0D2386E5F80056E7BF /* Catagory */,
 				3B18F8F5238AB60500105663 /* Items */,
-				3B0E80822385FA6A00ACB085 /* Menu */,
 				3B122EDF238680AD0056E7BF /* Login */,
 				3B122EE2238680D90056E7BF /* Register */,
 			);
@@ -497,6 +512,43 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		3B17639023BDF16F00871CE9 /* NavigationViews */ = {
+			isa = PBXGroup;
+			children = (
+				3BD4225123BE364D00FF7437 /* Search */,
+				3B17639123BDF1A100871CE9 /* Card */,
+				3B0E80822385FA6A00ACB085 /* Menu */,
+				3B16CDF923B8C3BF00FCFBEF /* Main */,
+			);
+			path = NavigationViews;
+			sourceTree = "<group>";
+		};
+		3B17639123BDF1A100871CE9 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				3B17639323BDF1B500871CE9 /* View */,
+				3B17639223BDF1AA00871CE9 /* Controller */,
+				3BD4224A23BE20E300FF7437 /* Seller */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		3B17639223BDF1AA00871CE9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B17639423BDF1D900871CE9 /* CardViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B17639323BDF1B500871CE9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B17639623BDF1F000871CE9 /* CardCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3B18F8F1238A981100105663 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +590,47 @@
 			children = (
 				3B18F8F9238AB66200105663 /* ItemsViewController.swift */,
 				3BD6079F238ACF5A00AB41DB /* DetailsItemsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3BD4224A23BE20E300FF7437 /* Seller */ = {
+			isa = PBXGroup;
+			children = (
+				3BD4224C23BE20F600FF7437 /* View */,
+				3BD4224B23BE20ED00FF7437 /* Controller */,
+			);
+			path = Seller;
+			sourceTree = "<group>";
+		};
+		3BD4224B23BE20ED00FF7437 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3BD4224D23BE213000FF7437 /* SellerViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3BD4224C23BE20F600FF7437 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3BD4224F23BE221D00FF7437 /* OtherProductCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3BD4225123BE364D00FF7437 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				3BD4225223BE365500FF7437 /* Controller */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		3BD4225223BE365500FF7437 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3BD4225423BE369A00FF7437 /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -645,6 +738,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				262E5B2A21AFE57D009363E7 /* LaunchScreen.storyboard in Resources */,
+				3B17639923BDFDA500871CE9 /* Navigation.xcassets in Resources */,
 				262E5B2721AFE57D009363E7 /* Assets.xcassets in Resources */,
 				3B0E590C23BD2D5F00A564D7 /* Color.xcassets in Resources */,
 				3B0EE89B23BAABDD00D67389 /* Media.xcassets in Resources */,
@@ -711,16 +805,19 @@
 				3B122EE6238681230056E7BF /* ForgetPasswordViewController.swift in Sources */,
 				3B15F2E223BCBEC9003FD1C1 /* DetailsViewController.swift in Sources */,
 				3B0E80872385FF8200ACB085 /* HomeViewController.swift in Sources */,
+				3BD4224E23BE213000FF7437 /* SellerViewController.swift in Sources */,
 				3B122EDE23867A1E0056E7BF /* OfferViewController.swift in Sources */,
 				3B15F2DB23BCA0BE003FD1C1 /* ProductsViewController.swift in Sources */,
 				8192DCDF238A77C00043053A /* APIClient.swift in Sources */,
 				3B15F2E423BCCDE1003FD1C1 /* DetailsTableViewCell.swift in Sources */,
+				3BD4225523BE369A00FF7437 /* SearchViewController.swift in Sources */,
 				3B122F0A2386D3ED0056E7BF /* GoMallViewController.swift in Sources */,
 				3B18F8FA238AB66200105663 /* ItemsViewController.swift in Sources */,
 				3B18F8FC238AB67C00105663 /* ItemsCollectionViewCell.swift in Sources */,
 				3B122EE8238681710056E7BF /* RegisterViewController.swift in Sources */,
 				3B122F032386D3860056E7BF /* MyWishListCollectionViewCell.swift in Sources */,
 				3B0E80842385FAA900ACB085 /* TotalMenuViewController.swift in Sources */,
+				3B17639523BDF1D900871CE9 /* CardViewController.swift in Sources */,
 				3B122F112386E6560056E7BF /* MenuCollectionViewCell.swift in Sources */,
 				3B122EF62386B7BF0056E7BF /* OffersCollectionViewCell.swift in Sources */,
 				3B122F052386D3A00056E7BF /* MyWishListViewController.swift in Sources */,
@@ -737,12 +834,15 @@
 				3BE5BF2923BA622E006E4AB9 /* CollectionCell.swift in Sources */,
 				3B122EEC2386A8ED0056E7BF /* menuBtnTableViewCell.swift in Sources */,
 				3B0F729F2385958100BBEA8C /* CardView.swift in Sources */,
+				3BD4225023BE221D00FF7437 /* OtherProductCollectionViewCell.swift in Sources */,
 				8139D4A5238AB82A001CE986 /* Shared.swift in Sources */,
 				3B122F0F2386E6300056E7BF /* CatagogryViewController.swift in Sources */,
 				8192DCE0238A77C00043053A /* APIRouter.swift in Sources */,
 				3BD607A0238ACF5A00AB41DB /* DetailsItemsViewController.swift in Sources */,
 				3B122F132386E67D0056E7BF /* CatagoryCollectionViewCell.swift in Sources */,
 				3B122EFC2386D3070056E7BF /* MostAddedViewController.swift in Sources */,
+				3B17639723BDF1F000871CE9 /* CardCollectionViewCell.swift in Sources */,
+				3BD4225723BE437B00FF7437 /* CustemDesign.swift in Sources */,
 				3BD607A4238ADAC100AB41DB /* StoresOfMallCollectionViewCell.swift in Sources */,
 				3B16CDF823B8C32100FCFBEF /* MainNavigationController.swift in Sources */,
 				3B16CDF623B8B5CC00FCFBEF /* ConstantMenu.swift in Sources */,
