@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class ProductsViewController: UIViewController {
     
     var imageTest = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
@@ -19,6 +20,8 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        showAndBacNavigation()
+        
         
         // Do any additional setup after loading the view.
     }
@@ -28,6 +31,7 @@ class ProductsViewController: UIViewController {
 }
 
 
+@available(iOS 13.0, *)
 extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  100
@@ -44,13 +48,10 @@ extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
 
-       if #available(iOS 13.0, *) {
            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
            vc.modalPresentationStyle = .fullScreen
                        navigationController?.pushViewController(vc, animated: true)
-       } else {
-           // Fallback on earlier versions
-       }
+      
         
     }
     
@@ -70,6 +71,7 @@ extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDa
     
 }
 
+@available(iOS 13.0, *)
 extension ProductsViewController : UICollectionViewDelegateFlowLayout {
     
     

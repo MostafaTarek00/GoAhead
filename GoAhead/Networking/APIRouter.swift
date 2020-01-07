@@ -10,10 +10,10 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     
-    case getAllCategories
-    case viewCategoryWebsites(categoryID:String)
+    
     case login(mail:String , password : String)
-    case register
+    case getAllCategories
+    case viewCategoryWebsites(categoryID:String, userId : String)
     case addOfferToFavorite(userID:String ,OfferID:String)
     case deleteOfferFromFavorites(userID:String ,OfferID:String)
     case getUserFavoriteOffers(userID:String)
@@ -43,8 +43,6 @@ enum APIRouter: URLRequestConvertible {
         case .viewCategoryWebsites:
             return .get
         case .addOfferToFavorite:
-            return .get
-        case .register:
             return .get
         case .deleteOfferFromFavorites:
             return .get
@@ -90,10 +88,8 @@ enum APIRouter: URLRequestConvertible {
             return "/\(K.ProductionServer.userType)/login/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(mail)/\(password)"
         case .getAllCategories:
             return "/\(K.ProductionServer.categotyType)/getAll/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)"
-        case .viewCategoryWebsites:
-            return "/\(K.ProductionServer.categotyType)/getAll/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)"
-        case .register:
-            return "/\(K.ProductionServer.userType)/register/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/"
+        case .viewCategoryWebsites(let categoryID, let userId):
+            return "/\(K.ProductionServer.categotyType)/view/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(categoryID)/\(userId)"
         case .addOfferToFavorite(let userID, let OfferID):
             return "/\(K.ProductionServer.userType)/addFavoriteOffer/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)/\(OfferID)"
         case .deleteOfferFromFavorites(let userID, let OfferID):
@@ -134,15 +130,12 @@ enum APIRouter: URLRequestConvertible {
     }
     private var parameters: Parameters? {
         switch self {
-        
-     
+            
+        case .login(_):
+            return nil
         case .getAllCategories:
             return nil
         case .viewCategoryWebsites(_):
-            return nil
-        case .login(_):
-            return nil
-        case .register:
             return nil
         case .addOfferToFavorite(_):
             return nil
@@ -186,7 +179,7 @@ enum APIRouter: URLRequestConvertible {
     
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try K.ProductionServer.baseURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!.asURL()
+        let url = try K.ProductionServer.baseURLEn.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!.asURL()
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         // HTTP Method
         urlRequest.httpMethod = method.rawValue
@@ -194,7 +187,7 @@ enum APIRouter: URLRequestConvertible {
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-
+        
         print("*****************\(urlRequest)")
         // Parameters
         if let parameters = parameters {

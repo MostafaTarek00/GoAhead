@@ -23,7 +23,7 @@ class OfferViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        showMenu()
+        showNavigation()
         
         // Do any additional setup after loading the view.
     }

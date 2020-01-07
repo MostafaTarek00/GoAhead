@@ -9,6 +9,7 @@
 import UIKit
 import Auk
 
+@available(iOS 13.0, *)
 class DetailsViewController: UIViewController {
     
     @IBOutlet weak var imageSlider: UIScrollView!
@@ -22,6 +23,8 @@ class DetailsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        showAndBacNavigation()
+
      imageSlider.auk.settings.contentMode = .scaleAspectFill
         imageSlider.auk.settings.pageControl.currentPageIndicatorTintColor = UIColor.yellow
         if let image = UIImage(named: "30") {
@@ -37,6 +40,7 @@ class DetailsViewController: UIViewController {
 }
 
 
+@available(iOS 13.0, *)
 extension DetailsViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

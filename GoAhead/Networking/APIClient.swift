@@ -28,8 +28,31 @@ class APIClient {
     }
     
     
-    
     //---------------------------------------------------
+    
+    static func login(mail : String , password : String , completion:@escaping
+        (Result<Login,AFError>)->Void){
+        performRequest(route: APIRouter.login(mail: mail, password: password), completion: completion)
+        
+    }
+    
+    static func loginfailure(mail : String , password : String , completion:@escaping
+        (Result<Failure,AFError>)->Void){
+        performRequest(route: APIRouter.login(mail: mail, password: password), completion: completion)
+        
+    }
+    
+    static func getAllCategories( completion:@escaping
+           (Result<Categories,AFError>)->Void){
+        performRequest(route: APIRouter.getAllCategories, completion: completion)
+           
+       }
+    
+    static func viewCategoryWebsites(categoryID : String , userId : String , completion:@escaping
+           (Result<OffersOfCategory,AFError>)->Void){
+        performRequest(route: APIRouter.viewCategoryWebsites(categoryID: categoryID, userId: userId), completion: completion)
+       }
+    
     
     
     

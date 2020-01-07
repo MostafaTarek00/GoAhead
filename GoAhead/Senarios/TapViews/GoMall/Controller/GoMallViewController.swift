@@ -21,6 +21,7 @@ class GoMallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showNavigation()
     }
     
   

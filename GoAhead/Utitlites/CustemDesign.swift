@@ -28,7 +28,6 @@ class CustomDesign {
     }
     static func customCircleImage(image : UIImageView) {
         image.layer.cornerRadius = image.frame.size.height/2
-        image.layer.borderWidth = 0.3
         image.clipsToBounds = true
     }
     

@@ -5,6 +5,7 @@ PODS:
   - BEMCheckBox (1.4.1)
   - IQKeyboardManagerSwift (6.0.4)
   - moa (12.0.0)
+  - MOLH (1.1.2)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
@@ -12,6 +13,7 @@ PODS:
     - SDWebImage/Core (= 5.4.1)
   - SDWebImage/Core (5.4.1)
   - SideMenu (6.4.7)
+  - SOTabBar (1.1.2)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -19,9 +21,11 @@ DEPENDENCIES:
   - Auk
   - BEMCheckBox
   - IQKeyboardManagerSwift (= 6.0.4)
+  - MOLH
   - NVActivityIndicatorView
   - SDWebImage
   - SideMenu
+  - SOTabBar
   - SwiftyJSON
 
 SPEC REPOS:
@@ -31,9 +35,11 @@ SPEC REPOS:
     - BEMCheckBox
     - IQKeyboardManagerSwift
     - moa
+    - MOLH
     - NVActivityIndicatorView
     - SDWebImage
     - SideMenu
+    - SOTabBar
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -42,11 +48,13 @@ SPEC CHECKSUMS:
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   IQKeyboardManagerSwift: 36dbe324b4f9793f5f41ba5227f3e7c76dfefd50
   moa: e2346f12de6c65bbca4d103950d45db9e46785ef
+  MOLH: 79723d6938aff0ac02aebe4d89cc96b73f46fa32
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
   SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
+  SOTabBar: e77bb09492e9919953f65ce2b5238f835c639dc1
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: ff21b5152f9028917f656fc093ec991884f4a843
+PODFILE CHECKSUM: ed6128ee62383acffdbf57c28dbe10fb47d41555
 
 COCOAPODS: 1.8.4

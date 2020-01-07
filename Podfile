@@ -6,14 +6,18 @@ target 'GoAhead' do
   use_frameworks!
 
   # Pods for GoAhead
-  pod 'SideMenu'
-  pod 'Alamofire', '~> 5.0.0-beta.5'
+  pod 'Alamofire' , '~> 5.0.0-beta.5'
   pod 'IQKeyboardManagerSwift', '6.0.4'
   pod 'SDWebImage'
   pod 'NVActivityIndicatorView'
   pod 'SwiftyJSON'
   pod 'Auk'
   pod 'BEMCheckBox'
+  pod 'SOTabBar'
+  pod 'MOLH'
+  pod 'SideMenu'
+
+
 
 
 end

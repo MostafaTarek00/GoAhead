@@ -20,7 +20,7 @@ class MyWishListViewController: UIViewController {
     @IBOutlet weak var myWishListCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        showMenu()
+        showNavigation()
         
         // Do any additional setup after loading the view.
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class StoresOfMallViewController: UIViewController {
     var imageTest = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
 "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40",
@@ -17,21 +18,17 @@ class StoresOfMallViewController: UIViewController {
     @IBOutlet weak var storCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        showAndBacNavigation()
+        
         // Do any additional setup after loading the view.
     }
     
-
-    @IBAction func menuBarbtnPressed(_ sender: UIBarButtonItem) {
-    }
     
-    @IBAction func catBarBtnPressed(_ sender: UIBarButtonItem) {
-    }
-    @IBAction func searchBarBtnPressed(_ sender: UIBarButtonItem) {
-    }
+    
     
 }
 
+@available(iOS 13.0, *)
 extension StoresOfMallViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,41 +38,39 @@ extension StoresOfMallViewController: UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoresOfMallCollectionViewCell", for: indexPath) as! StoresOfMallCollectionViewCell
         cell.storeImage.image = UIImage(named: imageTest[indexPath.item])
-
+        
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-              
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "ProductsViewController") as! ProductsViewController
-            vc.modalPresentationStyle = .fullScreen
-                        navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
-            
-          }
+        
+        
+        let vc = storyboard?.instantiateViewController(identifier: "ProductsViewController") as! ProductsViewController
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-           if self.storCollectionView.isDragging{
-               cell.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
-               UIView.animate(withDuration: 0.3, animations: {
-                   cell.transform = CGAffineTransform.identity
-               })
-           }
-       }
-     
+        if self.storCollectionView.isDragging{
+            cell.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+            UIView.animate(withDuration: 0.3, animations: {
+                cell.transform = CGAffineTransform.identity
+            })
+        }
+    }
+    
     
     
     
 }
 
 
+@available(iOS 13.0, *)
 extension StoresOfMallViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        let cellSize = CGSize(width: self.view.frame.width / 2 - 15 , height: 180)
+        let cellSize = CGSize(width: self.view.frame.width / 2 - 15 , height: 150)
         return cellSize
     }
     

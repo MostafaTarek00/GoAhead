@@ -18,7 +18,7 @@ class MainNavigationController: UINavigationController {
 
 @available(iOS 13.0, *)
 extension UIViewController {
-    func showMenu() {
+    func showNavigation() {
         navigationItem.hidesBackButton = true
         let menu = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(menuBtn))
         menu.image = UIImage(named: "menu")
@@ -31,11 +31,30 @@ extension UIViewController {
         search.tintColor = UIColor.white
         navigationItem.rightBarButtonItems = [menu, cart, search]
         
-        
-        
-        
-        
     }
+    
+    func showAndBacNavigation() {
+           navigationItem.hidesBackButton = true
+           let menu = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(menuBtn))
+           menu.image = UIImage(named: "menu")
+           menu.tintColor = UIColor.white
+           let cart = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(cartBtn))
+           cart.image = UIImage(named: "cart")
+           cart.tintColor = UIColor.white
+           let search = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(searchBtn))
+           search.image = UIImage(named: "search")
+           search.tintColor = UIColor.white
+           navigationItem.rightBarButtonItems = [menu, cart, search]
+           
+           
+           let back = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(backBtn))
+           back.image = UIImage(named: "back")
+           back.tintColor = UIColor.white
+           navigationItem.leftBarButtonItem = back
+           
+           
+       }
+    
     
     
     @objc func menuBtn(){
@@ -58,5 +77,10 @@ extension UIViewController {
         let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as! SearchViewController
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
+    }
+
+    @objc func backBtn(){
+        navigationController?.popViewController(animated: true)
+
     }
 }

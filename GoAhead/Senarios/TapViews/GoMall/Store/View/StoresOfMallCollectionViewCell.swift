@@ -10,6 +10,12 @@ import UIKit
 
 class StoresOfMallCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var cellView: UIView!{
+        didSet{
+           cellView.layer.cornerRadius = 10
+           cellView.clipsToBounds = true
+        }
+    }
     @IBOutlet weak var storeImage: UIImageView!
     @IBOutlet weak var storeName: UILabel!
 }

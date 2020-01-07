@@ -19,7 +19,7 @@ class MostAddedViewController: UIViewController {
     @IBOutlet weak var mostAddCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        showMenu()
+        showNavigation()
         
         // Do any additional setup after loading the view.
     }
