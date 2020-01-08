@@ -1,21 +1,20 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let offersOfCategory = try? newJSONDecoder().decode(OffersOfCategory.self, from: jsonData)
+//   let offers = try? newJSONDecoder().decode(Offers.self, from: jsonData)
 
 import Foundation
 
-// MARK: - OffersOfCategory
-struct OffersOfCategory: Codable {
+// MARK: - Offers
+struct Offers: Codable {
     let status: Int
-    let offers: [OffersOfOneCategory]
+    let offers: [AllOffers]
 }
 
 // MARK: - Offer
-struct OffersOfOneCategory: Codable {
+struct AllOffers: Codable {
     let id, name: String
     let image: String
-    let icon: String
     let link: String
     let favorite: Int
 }

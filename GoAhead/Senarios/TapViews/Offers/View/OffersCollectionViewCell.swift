@@ -13,7 +13,8 @@ class OffersCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var offersImage: UIImageView!
     @IBOutlet weak var offersName: UILabel!
     
-   
+    @IBOutlet weak var offerFavBtn: UIButton!
+    
     
     
     

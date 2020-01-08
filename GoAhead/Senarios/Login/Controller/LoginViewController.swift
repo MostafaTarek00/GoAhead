@@ -41,7 +41,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                         print(response)
                         self.setData()
                         self.clearText()
-                        if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? TabBar {
+                        if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
                             vc.modalPresentationStyle = .fullScreen
                             self.present(vc, animated: true, completion: nil)
                         }

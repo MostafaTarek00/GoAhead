@@ -7,29 +7,44 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 @available(iOS 13.0, *)
-class OfferViewController: UIViewController {
-    var imageTest = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-"21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40",
-"41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
-"61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80",
-"81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100"]
-        
+class OfferViewController: UIViewController ,NVActivityIndicatorViewable{
+    var offers:Offers?
     
     
     @IBOutlet weak var offerCollectionView: UICollectionView!
     
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showNavigation()
+        getAllOffers()
         
         // Do any additional setup after loading the view.
     }
     
     
-    
+    func getAllOffers(){
+        self.startAnimating()
+        APIClient.getOffers(userId: UserDefault.getId()){ (Result) in
+            switch Result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    self.offers = response
+                    self.offerCollectionView.reloadData()
+                    print(response)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
     
 }
 
@@ -37,14 +52,19 @@ class OfferViewController: UIViewController {
 @available(iOS 13.0, *)
 extension OfferViewController: UICollectionViewDelegate,UICollectionViewDataSource  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return  offers?.offers.count ?? 0
+        
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OffersCollectionViewCell", for: indexPath)
             as! OffersCollectionViewCell
-        cell.offersImage.image = UIImage(named: imageTest[indexPath.item])
-
-        
+        cell.offersImage.sd_setImage(with: URL(string: offers?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+        cell.offersName.text = offers?.offers[indexPath.item].name
+        if offers?.offers[indexPath.item].favorite == 0 {
+            cell.offerFavBtn.setImage(UIImage(named: "favorite2"), for: .normal)
+        }else if offers?.offers[indexPath.item].favorite == 1 {
+            cell.offerFavBtn.setImage(UIImage(named: "favorite1"), for: .normal)
+        }
         
         return cell
         

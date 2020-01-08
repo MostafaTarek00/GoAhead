@@ -13,12 +13,17 @@ import NVActivityIndicatorView
 class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
     var cat:Categories?
     var offersOfCat:OffersOfCategory?
-
+    var failure:Failure?
+    var addFavorite:AddAndDeleteFavoriteOffers?
+    var test : String?
+    
+    
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var itemOfCatogoryCollectionView: UICollectionView!
     
     var index : IndexPath?
     var catId : String?
+    var offersIdOfCat:String?
     
     
     
@@ -30,32 +35,35 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
         
         
     }
+   
+    
+    
     
     
     func getAllCategories(){
-           self.startAnimating()
-           APIClient.getAllCategories() { (Result) in
-               switch Result {
-               case .success(let response):
-                   DispatchQueue.main.async {
-                       self.stopAnimating()
-                       self.cat = response
-                       self.menuCollectionView.reloadData()
-                       print(response)
-                   }
-               case .failure(let error):
-                   DispatchQueue.main.async {
-                       self.stopAnimating()
-                       print(error.localizedDescription)
-                   }
-               }
-           }
-       }
+        self.startAnimating()
+        APIClient.getAllCategories() { (Result) in
+            switch Result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    self.cat = response
+                    self.menuCollectionView.reloadData()
+                    print(response)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
     
     func getViewCategoryWebsites(categoryID : String, userId : String ){
         self.startAnimating()
         APIClient.viewCategoryWebsites(categoryID: categoryID, userId: userId)
-          { (Result) in
+        { (Result) in
             switch Result {
             case .success(let response):
                 DispatchQueue.main.async {
@@ -68,10 +76,30 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
                 DispatchQueue.main.async {
                     self.stopAnimating()
                     print(error.localizedDescription)
+                    APIClient.viewCategoryWebsitesfailure(categoryID: categoryID, userId: userId)
+                    { (Result) in
+                        switch Result {
+                        case .success(let response):
+                            DispatchQueue.main.async {
+                                self.stopAnimating()
+                                self.failure = response
+                                self.itemOfCatogoryCollectionView.reloadData()
+                                Alert.show("خطاء", massege: self.failure!.message, context: self)
+                                print(response)
+                            }
+                        case .failure(let error):
+                            DispatchQueue.main.async {
+                                self.stopAnimating()
+                                print(error.localizedDescription)
+                                
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
- 
+        
     }
     
 }
@@ -80,7 +108,7 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
 extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-             return  cat?.categories.count ?? 0
+            return  cat?.categories.count ?? 0
         } else {
             return  offersOfCat?.offers.count ?? 0
         }
@@ -96,6 +124,14 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatagoryCollectionViewCell", for: indexPath) as! CatagoryCollectionViewCell
             cell.itemImage.sd_setImage(with: URL(string: offersOfCat?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
             cell.itemName.text = offersOfCat?.offers[indexPath.item].name
+            cell.offerId = offersOfCat?.offers[indexPath.item].id
+            cell.offerIdFav = offersOfCat?.offers[indexPath.item].favorite
+            if offersOfCat?.offers[indexPath.item].favorite == 0 {
+                cell.itemFav.setImage(UIImage(named: "favorite2"), for: .normal)
+            }else if offersOfCat?.offers[indexPath.item].favorite == 1 {
+                cell.itemFav.setImage(UIImage(named: "favorite1"), for: .normal)
+            }
+            cell.delegate = self
             return cell
         }
     }
@@ -108,6 +144,7 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
             if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
                 cell.lineView.backgroundColor = .white
                 getViewCategoryWebsites(categoryID: ((cat?.categories[indexPath.item].id)!), userId: UserDefault.getId())
+                catId = ((cat?.categories[indexPath.item].id)!)
             }
         }else {
             
@@ -136,12 +173,6 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
             })
         }
     }
-    
-    
-    
-    
-    
-    
 }
 
 
@@ -170,4 +201,17 @@ extension CatagogryViewController : UICollectionViewDelegateFlowLayout {
         
         return cellSize
     }
+}
+
+
+@available(iOS 13.0, *)
+extension CatagogryViewController: ReloadCollectionDelegate {
+    func realoadFavOffer() {
+        getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
+    }
+    
+ 
+    
+    
+    
 }

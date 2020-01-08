@@ -18,12 +18,17 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
             Rounded.roundedImage(imageView: profileImage)            
         }
     }
-    @IBOutlet weak var langFlag: UIImageView!
+    @IBOutlet weak var langFlag: UIImageView!{
+        didSet{
+            langFlag.image = UIImage(named: "unitedStatesFlag")
+        }
+    }
     @IBOutlet weak var myNameLbl: UILabel!
     @IBOutlet weak var changLang: UIButton!
     @IBOutlet weak var menuTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+         updateDate()
          getAllCategories()
     }
     
@@ -47,6 +52,9 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
         }
     }
     
+    func updateDate()  {
+        myNameLbl.text = UserDefault.getName()
+    }
     
     
     
@@ -57,6 +65,12 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
         }
     }
     @IBAction func changeLangPressed(_ sender: UIButton) {
+        if langFlag.image == UIImage(named: "saudiFlag"){
+            langFlag.image = UIImage(named: "unitedStatesFlag")
+        }
+        else {
+            langFlag.image = UIImage(named: "saudiFlag")
+        }
         
     }
     

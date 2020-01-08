@@ -11,8 +11,8 @@ import UIKit
 class MostAddedCollectionViewCell: UICollectionViewCell {
      @IBOutlet weak var mostAddedImage: UIImageView!
      @IBOutlet weak var mostAddedName: UILabel!
-     
-     
+    @IBOutlet weak var mostAddedBtn: UIButton!
+    
      
      
      

@@ -16,8 +16,9 @@ enum APIRouter: URLRequestConvertible {
     case viewCategoryWebsites(categoryID:String, userId : String)
     case addOfferToFavorite(userID:String ,OfferID:String)
     case deleteOfferFromFavorites(userID:String ,OfferID:String)
+    case getMostOffersAdded(userID:String)
     case getUserFavoriteOffers(userID:String)
-    case getOffers
+    case getOffers(userId : String)
     case getAllProductCategories
     case viewProductCategoryProducts(categoryID:String)
     case viewProductDetails(productID:String)
@@ -45,6 +46,8 @@ enum APIRouter: URLRequestConvertible {
         case .addOfferToFavorite:
             return .get
         case .deleteOfferFromFavorites:
+            return .get
+        case .getMostOffersAdded:
             return .get
         case .getUserFavoriteOffers:
             return .get
@@ -78,6 +81,7 @@ enum APIRouter: URLRequestConvertible {
             return .get
         case .sendOrder:
             return .get
+        
         }
     }
 
@@ -94,10 +98,12 @@ enum APIRouter: URLRequestConvertible {
             return "/\(K.ProductionServer.userType)/addFavoriteOffer/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)/\(OfferID)"
         case .deleteOfferFromFavorites(let userID, let OfferID):
             return "/\(K.ProductionServer.userType)/deleteFavoriteOffer/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)/\(OfferID)"
+        case .getMostOffersAdded(let userID):
+            return "/\(K.ProductionServer.categotyType)/show_most_favorites/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)"
         case .getUserFavoriteOffers(let userID):
             return "/\(K.ProductionServer.userType)/getFavoriteOffers/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)"
-        case .getOffers:
-            return "/\(K.ProductionServer.categotyType)/viewSpecialOffers/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/"
+        case .getOffers(let userId):
+            return "/\(K.ProductionServer.categotyType)/viewSpecialOffers/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userId)"
         case .getAllProductCategories:
             return "/\(K.ProductionServer.productCategotyType)/getAll/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/"
         case .viewProductCategoryProducts(let categoryID):
@@ -126,6 +132,8 @@ enum APIRouter: URLRequestConvertible {
             return "/user/search/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(search)/\(pageNumber)"
         case .sendOrder(let userID, let sellerID):
             return "/\(K.ProductionServer.cartType)/sendOrder/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)/\(sellerID)"
+        
+       
         }
     }
     private var parameters: Parameters? {
@@ -140,6 +148,8 @@ enum APIRouter: URLRequestConvertible {
         case .addOfferToFavorite(_):
             return nil
         case .deleteOfferFromFavorites(_):
+            return nil
+        case .getMostOffersAdded(_):
             return nil
         case .getUserFavoriteOffers(_):
             return nil
@@ -173,6 +183,7 @@ enum APIRouter: URLRequestConvertible {
             return nil
         case .sendOrder(_):
             return nil
+      
         }
         
 }

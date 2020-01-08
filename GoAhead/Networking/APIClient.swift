@@ -53,6 +53,33 @@ class APIClient {
         performRequest(route: APIRouter.viewCategoryWebsites(categoryID: categoryID, userId: userId), completion: completion)
        }
     
+    static func viewCategoryWebsitesfailure(categoryID : String , userId : String , completion:@escaping
+        (Result<Failure,AFError>)->Void){
+     performRequest(route: APIRouter.viewCategoryWebsites(categoryID: categoryID, userId: userId), completion: completion)
+    }
+    
+    static func addOfferToFavorite( userId : String ,OfferID:String, completion:@escaping
+                 (Result<AddAndDeleteFavoriteOffers,AFError>)->Void){
+              performRequest(route: APIRouter.addOfferToFavorite(userID: userId, OfferID: OfferID), completion: completion)
+             }
+    static func deleteOfferFromFavorites( userId : String ,OfferID:String, completion:@escaping
+        (Result<AddAndDeleteFavoriteOffers,AFError>)->Void){
+     performRequest(route: APIRouter.deleteOfferFromFavorites(userID: userId, OfferID: OfferID), completion: completion)
+    }
+    static func getMostOffersAdded( userId : String , completion:@escaping
+                 (Result<MostAdded,AFError>)->Void){
+        performRequest(route: APIRouter.getMostOffersAdded( userID: userId), completion: completion)
+             }
+       
+       
+
+    
+    static func getOffers( userId : String , completion:@escaping
+              (Result<Offers,AFError>)->Void){
+           performRequest(route: APIRouter.getOffers( userId: userId), completion: completion)
+          }
+    
+    
     
     
     

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 @available(iOS 13.0, *)
-class MostAddedViewController: UIViewController {
+class MostAddedViewController: UIViewController ,NVActivityIndicatorViewable{
+    var mostAdded:MostAdded?
     var imageTest = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
 "21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40",
 "41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
@@ -20,10 +22,30 @@ class MostAddedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showNavigation()
-        
+        print("cfghbjnmkxdfcfbhjmdxdfgbn,dcfbn,xcfbhm")
+        getMostOffersAdded()
         // Do any additional setup after loading the view.
     }
     
+    func getMostOffersAdded(){
+           self.startAnimating()
+           APIClient.getMostOffersAdded(userId: UserDefault.getId()){ (Result) in
+               switch Result {
+               case .success(let response):
+                   DispatchQueue.main.async {
+                       self.stopAnimating()
+                       self.mostAdded = response
+                       self.mostAddCollectionView.reloadData()
+                       print(response)
+                   }
+               case .failure(let error):
+                   DispatchQueue.main.async {
+                       self.stopAnimating()
+                       print(error.localizedDescription)
+                   }
+               }
+           }
+       }
     
     
     
@@ -31,13 +53,19 @@ class MostAddedViewController: UIViewController {
 @available(iOS 13.0, *)
 extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return mostAdded?.offers.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MostAddedCollectionViewCell", for: indexPath) as! MostAddedCollectionViewCell
-        cell.mostAddedImage.image = UIImage(named: imageTest[indexPath.item])
-
+        cell.mostAddedImage.sd_setImage(with: URL(string: mostAdded?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+        cell.mostAddedName.text = mostAdded?.offers[indexPath.item].name
+        if mostAdded?.offers[indexPath.item].favorite == 0 {
+            cell.mostAddedBtn.setImage(UIImage(named: "favorite2"), for: .normal)
+        }else if mostAdded?.offers[indexPath.item].favorite == 1 {
+            cell.mostAddedBtn.setImage(UIImage(named: "favorite1"), for: .normal)
+        }
+        
         return cell
         
     }
