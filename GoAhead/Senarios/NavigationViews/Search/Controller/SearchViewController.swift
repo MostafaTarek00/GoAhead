@@ -8,7 +8,13 @@
 
 import UIKit
 import BEMCheckBox
+@available(iOS 13.0, *)
+protocol SearchCategoryDelegate {
+    func transferResultCat( text : String)
+    func transferResultSeller( text : String)
+}
 
+@available(iOS 13.0, *)
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var bigView: UIView!
@@ -21,6 +27,9 @@ class SearchViewController: UIViewController {
     @IBOutlet  var search: [BEMCheckBox]!
     @IBOutlet weak var searchTextF: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
+    var searchType : Int?
+    var d : SearchCategoryDelegate?
+    var mainNavigationController: MainNavigationController?
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tabToClosePopup))
@@ -47,12 +56,15 @@ class SearchViewController: UIViewController {
     
     @IBAction func searchCheck(_ sender: BEMCheckBox) {
         if sender.tag == 1 {
+            searchType = 1
             search[1].on = false
             search[2].on = false
         } else if sender.tag == 2{
+            searchType = 2
             search[0].on = false
             search[2].on = false
         }else {
+            searchType = 3
             search[0].on = false
             search[1].on = false
         }
@@ -60,6 +72,12 @@ class SearchViewController: UIViewController {
     
     
     @IBAction func searchBtnPressed(_ sender: UIButton) {
-    }
-    
+        if searchType == 1  {
+            self.dismiss(animated: true, completion: nil)
+            d?.transferResultCat(text: searchTextF.text ?? "")
+        }else if searchType == 2  {
+            self.dismiss(animated: true, completion: nil)
+            d?.transferResultSeller(text: searchTextF.text ?? "")
+        }
+}
 }

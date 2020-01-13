@@ -7,17 +7,13 @@
 //
 
 import UIKit
-
+import NVActivityIndicatorView
 @available(iOS 13.0, *)
-class SellerViewController: UIViewController {
-    
+class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
+    var sellerDetails:SellerDetails?
     @IBOutlet weak var sellerImage: UIImageView!{
         didSet{
             Rounded.roundedImage(imageView: sellerImage)
-            /*
-            sellerImage.layer.cornerRadius = sellerImage.frame.size.height / 2
-            sellerImage.clipsToBounds = true
- */
         }
     }
     @IBOutlet weak var sellerName: UILabel!
@@ -28,8 +24,42 @@ class SellerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showAndBacNavigation()
+        getDateOfSeller()
         // Do any additional setup after loading the view.
     }
+    
+    func getDateOfSeller(){
+        self.startAnimating()
+        APIClient.getSellerDetails(productID: "1"){ (Result) in
+            switch Result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    self.sellerDetails = response
+                    self.otherProductCollectionView.reloadData()
+                    self.updateDate()
+                    print(response)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func updateDate()  {
+        sellerImage.sd_setImage(with: URL(string: sellerDetails?.photo ?? ""), placeholderImage: UIImage(named: "person1"))
+        sellerName.text = sellerDetails?.name
+        sellerPhone.text = sellerDetails?.phone
+        sellerMail.text = sellerDetails?.mail
+
+
+        
+    }
+    
+    
     
     
     
@@ -40,12 +70,14 @@ class SellerViewController: UIViewController {
 extension SellerViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  100
+        return sellerDetails?.products.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherProductCollectionViewCell", for: indexPath) as! OtherProductCollectionViewCell
-        
+        cell.productImage.sd_setImage(with: URL(string: sellerDetails?.products[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+        cell.productName.text = sellerDetails?.products[indexPath.item].name
+        cell.productDes.text = sellerDetails?.products[indexPath.item].productDescription
         return cell
         
     }

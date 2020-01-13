@@ -8,34 +8,78 @@
 
 import UIKit
 import Auk
+import NVActivityIndicatorView
 
 @available(iOS 13.0, *)
-class DetailsViewController: UIViewController {
-    
+class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
+    var ProId : String?
+    var productDetails:ProductDetails?
+    var flagBtn : Bool?
     @IBOutlet weak var imageSlider: UIScrollView!
-    
-  
     @IBOutlet weak var detailsTableView: UITableView!{
         didSet{
             detailsTableView.rowHeight = UITableView.automaticDimension
-            
         }
     }
+    @IBOutlet weak var productTitle: UILabel!
+    @IBOutlet weak var addToCartBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showAndBacNavigation()
+        getDetailsOfProduct()
 
-     imageSlider.auk.settings.contentMode = .scaleAspectFill
-        imageSlider.auk.settings.pageControl.currentPageIndicatorTintColor = UIColor.yellow
-        if let image = UIImage(named: "30") {
-            imageSlider.auk.show(image: image)
+    }
+    
+    
+    
+    func getDetailsOfProduct(){
+        self.startAnimating()
+        if let ProId = ProId {
+            APIClient.getProductDetails(productID: ProId){ (Result) in
+                switch Result {
+                case .success(let response):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        self.productDetails = response
+                        self.detailsTableView.reloadData()
+                        self.updateDate() 
+                        print(response)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        print(error.localizedDescription)
+                    }
+                }
+            }
         }
-        if let image = UIImage(named: "40") {
-            imageSlider.auk.show(image: image)
+    }
+    
+    
+    
+    func updateDate()  {
+        productTitle.text = productDetails?.product.name
+        imageSlider.auk.settings.contentMode = .scaleAspectFill
+        imageSlider.auk.settings.pageControl.currentPageIndicatorTintColor = UIColor.init(named: "Background")
+        let  number : Int = (productDetails?.productImages.count)!
+        print(number)
+        for i in 0..<number{
+            print(i)
+            if let image = productDetails?.productImages[i] {
+                imageSlider.auk.show(url: image)
+            }
         }
-        if let image = UIImage(named: "50") {
-            imageSlider.auk.show(image: image)
+        if flagBtn == true {
+            addToCartBtn.isHidden = true
+        }else {
+            addToCartBtn.isHidden = false
+            
         }
+        
+    }
+    
+    @IBAction func addToCartBtnPressed(_ sender: UIButton) {
     }
 }
 
@@ -48,7 +92,9 @@ extension DetailsViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailsTableViewCell" , for: indexPath) as! DetailsTableViewCell
-        
+        cell.proName.text = productDetails?.product.name
+        cell.proPrice.text = productDetails?.product.price
+        cell.proDis.text = productDetails?.product.productDescription
         return cell
     }
     

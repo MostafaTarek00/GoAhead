@@ -17,8 +17,8 @@ struct K {
         static let webservicePass = "951735"
         static let userType = "User"
         static let categotyType = "Category"
-        static let productCategotyType = "User"
-        static let productType = "User"
+        static let productCategotyType = "Product_category"
+        static let productType = "Product"
         static let cartType = "User"
 
 

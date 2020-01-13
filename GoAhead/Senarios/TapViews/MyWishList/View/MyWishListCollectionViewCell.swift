@@ -12,8 +12,8 @@ class MyWishListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var wishListImage: UIImageView!
        @IBOutlet weak var wishListName: UILabel!
-       
-       
+    @IBOutlet weak var wishListFavBtn: UIButton!
+    
        
        
        

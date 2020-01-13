@@ -57,10 +57,12 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-       
-            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
-            vc.modalPresentationStyle = .fullScreen
-            navigationController?.pushViewController(vc, animated: true)
+        
+        let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.ProId = "12"
+        vc.flagBtn = true
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     

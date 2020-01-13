@@ -8,7 +8,7 @@
 
 import UIKit
 import SideMenu
-class MainNavigationController: UINavigationController {
+class MainNavigationController: UINavigationController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +76,7 @@ extension UIViewController {
     @objc func searchBtn(){
         let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as! SearchViewController
         vc.modalPresentationStyle = .overFullScreen
+        vc.d = self
         self.present(vc, animated: true, completion: nil)
     }
 
@@ -83,4 +84,23 @@ extension UIViewController {
         navigationController?.popViewController(animated: true)
 
     }
+}
+
+
+@available(iOS 13.0, *)
+extension UIViewController : SearchCategoryDelegate {
+    func transferResultSeller(text: String) {
+        let vc = storyboard?.instantiateViewController(identifier: "SearchSellerViewController") as! SearchSellerViewController
+        vc.searchText = text
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+
+func transferResultCat(text: String) {
+    let vc = storyboard?.instantiateViewController(identifier: "SearchCategoryViewController") as! SearchCategoryViewController
+    vc.searchText = text
+    self.navigationController?.pushViewController(vc, animated: true)
+}
+
+
 }

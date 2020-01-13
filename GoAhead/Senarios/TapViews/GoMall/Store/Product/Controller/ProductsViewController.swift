@@ -7,25 +7,94 @@
 //
 
 import UIKit
-
+import NVActivityIndicatorView
 @available(iOS 13.0, *)
-class ProductsViewController: UIViewController {
-    
-    var imageTest = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-"21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40",
-"41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
-"61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80",
-"81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100"]
+class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
+    var catIdOfMall : Int?
+    var productStoreOfCategory:ProductStoreOfCategory?
+    var sellerId : String?
+    var allProduct : AllProduct?
+    var failure:Failure?
+    var type : Int = 1
     
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         showAndBacNavigation()
+        if type == 1 {
+            getAllProductByCategory()
+        }else {
+            getAllProduct()
+        }
+        
         
         
         // Do any additional setup after loading the view.
     }
+    func getAllProductByCategory(){
+        self.startAnimating()
+        if let catStoreId = catIdOfMall {
+            APIClient.getAllProductInStoreByCategory(categoryID: catStoreId){ (Result) in
+                switch Result {
+                case .success(let response):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        self.productStoreOfCategory = response
+                        self.productCollectionView.reloadData()
+                        print(response)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
     
+    func getAllProduct(){
+        self.startAnimating()
+        if let sellerId = sellerId {
+            APIClient.getAllProductInStore(sellerId: sellerId){ (Result) in
+                switch Result {
+                case .success(let response):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        self.allProduct = response
+                        if self.allProduct?.products != nil {
+                            self.productCollectionView.reloadData()
+                        }else {
+                            Alert.show("خطاء", massege: "There Are No Products", context: self)
+                        }
+                        
+                        print(response)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        print(error.localizedDescription)
+                        APIClient.getAllProductInStoreFailure(sellerId: sellerId){ (Result) in
+                            switch Result {
+                            case .success(let response):
+                                DispatchQueue.main.async {
+                                    self.stopAnimating()
+                                    self.failure = response
+                                    Alert.show("خطاء", massege: self.failure!.message, context: self)
+                                    print(response)
+                                }
+                            case .failure(let error):
+                                DispatchQueue.main.async {
+                                    self.stopAnimating()
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     
 }
@@ -34,24 +103,48 @@ class ProductsViewController: UIViewController {
 @available(iOS 13.0, *)
 extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  100
+        if type == 1 {
+            return productStoreOfCategory?.offers.count ?? 0
+        }else {
+            return allProduct?.products?.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath) as! ProductsCollectionViewCell
-       // cell.categoryHomeImage.image = UIImage(named: imageTest[indexPath.item])
+        if type == 1{
+            cell.productImage.sd_setImage(with: URL(string: productStoreOfCategory?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+            cell.productTitle.text = productStoreOfCategory?.offers[indexPath.item].name
+            cell.productDes.text = productStoreOfCategory?.offers[indexPath.item].offerDescription
+            cell.productPrice.text = productStoreOfCategory?.offers[indexPath.item].price
+            
+            return cell
+        }else {
+            cell.productImage.sd_setImage(with: URL(string: allProduct?.products?[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+            cell.productTitle.text = allProduct?.products?[indexPath.item].name
+            cell.productDes.text = allProduct?.products?[indexPath.item].productDescription
+            cell.productPrice.text = allProduct?.products?[indexPath.item].price
+            
+            return cell
+        }
         
-        return cell
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-
-           let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
-           vc.modalPresentationStyle = .fullScreen
-                       navigationController?.pushViewController(vc, animated: true)
-      
+        
+        let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+        if type == 1 {
+            vc.modalPresentationStyle = .fullScreen
+            vc.ProId = productStoreOfCategory?.offers[indexPath.item].id
+            navigationController?.pushViewController(vc, animated: true)
+        }else {
+            vc.modalPresentationStyle = .fullScreen
+            vc.ProId = allProduct?.products?[indexPath.item].id
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
         
     }
     
@@ -66,15 +159,10 @@ extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDa
     
     
     
-    
-    
-    
 }
 
 @available(iOS 13.0, *)
 extension ProductsViewController : UICollectionViewDelegateFlowLayout {
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let cellSize = CGSize(width: self.view.frame.width/1-20 , height: 250)

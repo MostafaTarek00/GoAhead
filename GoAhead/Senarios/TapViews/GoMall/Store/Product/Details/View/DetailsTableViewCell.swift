@@ -19,6 +19,10 @@ class DetailsTableViewCell: UITableViewCell {
             
         }
     }
+    @IBOutlet weak var proName: UILabel!
+    @IBOutlet weak var proPrice: UILabel!
+    @IBOutlet weak var proDis: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
