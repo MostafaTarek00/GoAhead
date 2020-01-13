@@ -108,6 +108,10 @@ class APIClient {
         (Result<ProductDetails,AFError>)->Void){
         performRequest(route: APIRouter.viewProductDetails(productID: productID), completion: completion)
     }
+    static func getProductDetailsFailure( productID : String , completion:@escaping
+           (Result<Failure,AFError>)->Void){
+           performRequest(route: APIRouter.viewProductDetails(productID: productID), completion: completion)
+       }
     
     static func getSellerDetails( productID : String , completion:@escaping
           (Result<SellerDetails,AFError>)->Void){
@@ -135,13 +139,13 @@ class APIClient {
        }
        
     static func searchForProduct( searchText : String , completion:@escaping
-             (Result<SearchCategories,AFError>)->Void){
-           performRequest(route: APIRouter.searchForCategory(search: searchText), completion: completion)
+             (Result<SearchProduct,AFError>)->Void){
+           performRequest(route: APIRouter.searchForProduct(search: searchText), completion: completion)
          }
        
        static func searchForProductFailure( searchText : String , completion:@escaping
            (Result<Failure,AFError>)->Void){
-         performRequest(route: APIRouter.searchForCategory(search: searchText), completion: completion)
+         performRequest(route: APIRouter.searchForProduct(search: searchText), completion: completion)
        }
     
     

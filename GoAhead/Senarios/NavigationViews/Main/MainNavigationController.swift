@@ -89,6 +89,12 @@ extension UIViewController {
 
 @available(iOS 13.0, *)
 extension UIViewController : SearchCategoryDelegate {
+    func transferResultProduct(text: String) {
+        let vc = storyboard?.instantiateViewController(identifier: "SearchProductViewController") as! SearchProductViewController
+        vc.searchText = text
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func transferResultSeller(text: String) {
         let vc = storyboard?.instantiateViewController(identifier: "SearchSellerViewController") as! SearchSellerViewController
         vc.searchText = text

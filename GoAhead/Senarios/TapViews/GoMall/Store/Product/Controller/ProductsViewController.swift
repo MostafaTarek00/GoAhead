@@ -67,7 +67,6 @@ class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
                         }else {
                             Alert.show("خطاء", massege: "There Are No Products", context: self)
                         }
-                        
                         print(response)
                     }
                 case .failure(let error):
@@ -168,9 +167,4 @@ extension ProductsViewController : UICollectionViewDelegateFlowLayout {
         let cellSize = CGSize(width: self.view.frame.width/1-20 , height: 250)
         return cellSize
     }
-    
-    
-    
-    
-    
 }

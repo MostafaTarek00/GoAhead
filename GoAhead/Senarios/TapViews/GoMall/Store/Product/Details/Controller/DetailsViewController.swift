@@ -14,6 +14,7 @@ import NVActivityIndicatorView
 class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     var ProId : String?
     var productDetails:ProductDetails?
+    var failure:Failure?
     var flagBtn : Bool?
     @IBOutlet weak var imageSlider: UIScrollView!
     @IBOutlet weak var detailsTableView: UITableView!{
@@ -28,7 +29,7 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
         super.viewDidLoad()
         showAndBacNavigation()
         getDetailsOfProduct()
-
+        
     }
     
     
@@ -50,6 +51,22 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                     DispatchQueue.main.async {
                         self.stopAnimating()
                         print(error.localizedDescription)
+                        APIClient.getProductDetailsFailure(productID: ProId){ (Result) in
+                            switch Result {
+                            case .success(let response):
+                                DispatchQueue.main.async {
+                                    self.stopAnimating()
+                                    self.failure = response
+                                    Alert.show("خطاء", massege: self.failure!.message, context: self)
+                                    print(response)
+                                }
+                            case .failure(let error):
+                                DispatchQueue.main.async {
+                                    self.stopAnimating()
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        }
                     }
                 }
             }

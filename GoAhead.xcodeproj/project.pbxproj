@@ -30,6 +30,9 @@
 		3B11467F23CC6F5000D91C53 /* SearchSellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11467E23CC6F5000D91C53 /* SearchSellerViewController.swift */; };
 		3B11468123CC6F6E00D91C53 /* SearchSellerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11468023CC6F6E00D91C53 /* SearchSellerCollectionViewCell.swift */; };
 		3B11468323CC9A1500D91C53 /* AllProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11468223CC9A1500D91C53 /* AllProduct.swift */; };
+		3B11468B23CCAA8100D91C53 /* SearchProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11468A23CCAA8100D91C53 /* SearchProductViewController.swift */; };
+		3B11468D23CCAAAA00D91C53 /* SearchProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11468C23CCAAAA00D91C53 /* SearchProductCollectionViewCell.swift */; };
+		3B11468F23CCB0BA00D91C53 /* SearchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11468E23CCB0BA00D91C53 /* SearchProduct.swift */; };
 		3B1176A823C5D257002F297D /* AddAndDeleteFavoriteOffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1176A723C5D257002F297D /* AddAndDeleteFavoriteOffers.swift */; };
 		3B122EDE23867A1E0056E7BF /* OfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B122EDD23867A1E0056E7BF /* OfferViewController.swift */; };
 		3B122EE6238681230056E7BF /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B122EE5238681230056E7BF /* ForgetPasswordViewController.swift */; };
@@ -119,6 +122,9 @@
 		3B11467E23CC6F5000D91C53 /* SearchSellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSellerViewController.swift; sourceTree = "<group>"; };
 		3B11468023CC6F6E00D91C53 /* SearchSellerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSellerCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B11468223CC9A1500D91C53 /* AllProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProduct.swift; sourceTree = "<group>"; };
+		3B11468A23CCAA8100D91C53 /* SearchProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductViewController.swift; sourceTree = "<group>"; };
+		3B11468C23CCAAAA00D91C53 /* SearchProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B11468E23CCB0BA00D91C53 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
 		3B1176A723C5D257002F297D /* AddAndDeleteFavoriteOffers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAndDeleteFavoriteOffers.swift; sourceTree = "<group>"; };
 		3B122EDD23867A1E0056E7BF /* OfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferViewController.swift; sourceTree = "<group>"; };
 		3B122EE5238681230056E7BF /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -301,11 +307,14 @@
 			path = "Search Sellers";
 			sourceTree = "<group>";
 		};
-		3B0F167F23CB1DE5000F803D /* New Group2 */ = {
+		3B0F167F23CB1DE5000F803D /* Search Product */ = {
 			isa = PBXGroup;
 			children = (
+				3B11468923CCAA5B00D91C53 /* Model */,
+				3B11468823CCAA5400D91C53 /* View */,
+				3B11468723CCAA4C00D91C53 /* Controller */,
 			);
-			path = "New Group2";
+			path = "Search Product";
 			sourceTree = "<group>";
 		};
 		3B0F168023CB1E5E000F803D /* Controller */ = {
@@ -367,6 +376,30 @@
 				3B11467E23CC6F5000D91C53 /* SearchSellerViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B11468723CCAA4C00D91C53 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B11468A23CCAA8100D91C53 /* SearchProductViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B11468823CCAA5400D91C53 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B11468C23CCAAAA00D91C53 /* SearchProductCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B11468923CCAA5B00D91C53 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B11468E23CCB0BA00D91C53 /* SearchProduct.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		3B122EDF238680AD0056E7BF /* Login */ = {
@@ -869,7 +902,7 @@
 			isa = PBXGroup;
 			children = (
 				3BD4225223BE365500FF7437 /* Controller */,
-				3B0F167F23CB1DE5000F803D /* New Group2 */,
+				3B0F167F23CB1DE5000F803D /* Search Product */,
 				3B0F167E23CB1DE1000F803D /* Search Sellers */,
 				3B0F167D23CB1DDE000F803D /* Search Category */,
 			);
@@ -1076,9 +1109,11 @@
 				3B122F032386D3860056E7BF /* MyWishListCollectionViewCell.swift in Sources */,
 				3B0E80842385FAA900ACB085 /* SideMenuViewController.swift in Sources */,
 				3B17639523BDF1D900871CE9 /* CardViewController.swift in Sources */,
+				3B11468B23CCAA8100D91C53 /* SearchProductViewController.swift in Sources */,
 				3B122EF62386B7BF0056E7BF /* OffersCollectionViewCell.swift in Sources */,
 				3B1274BA23C38B08007E3FA4 /* Categories.swift in Sources */,
 				3B0F168D23CB6561000F803D /* SearchSellers.swift in Sources */,
+				3B11468F23CCB0BA00D91C53 /* SearchProduct.swift in Sources */,
 				3B122F052386D3A00056E7BF /* MyWishListViewController.swift in Sources */,
 				3B0F72A02385958100BBEA8C /* DesignableUITextField.swift in Sources */,
 				3B17460723C8841500899ADE /* CategoryOfMall.swift in Sources */,
@@ -1101,6 +1136,7 @@
 				3B122F0F2386E6300056E7BF /* CatagogryViewController.swift in Sources */,
 				3B11467F23CC6F5000D91C53 /* SearchSellerViewController.swift in Sources */,
 				3B18F77223C21539003A4060 /* Login.swift in Sources */,
+				3B11468D23CCAAAA00D91C53 /* SearchProductCollectionViewCell.swift in Sources */,
 				8192DCE0238A77C00043053A /* APIRouter.swift in Sources */,
 				3B18F77923C224F0003A4060 /* Register.swift in Sources */,
 				3B1176A823C5D257002F297D /* AddAndDeleteFavoriteOffers.swift in Sources */,

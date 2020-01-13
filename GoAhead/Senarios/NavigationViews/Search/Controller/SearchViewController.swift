@@ -12,6 +12,7 @@ import BEMCheckBox
 protocol SearchCategoryDelegate {
     func transferResultCat( text : String)
     func transferResultSeller( text : String)
+    func transferResultProduct( text : String)
 }
 
 @available(iOS 13.0, *)
@@ -78,6 +79,9 @@ class SearchViewController: UIViewController {
         }else if searchType == 2  {
             self.dismiss(animated: true, completion: nil)
             d?.transferResultSeller(text: searchTextF.text ?? "")
+        }else if searchType == 3  {
+            self.dismiss(animated: true, completion: nil)
+            d?.transferResultProduct(text: searchTextF.text ?? "")
         }
 }
 }
