@@ -58,6 +58,7 @@ extension OfferViewController: UICollectionViewDelegate,UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OffersCollectionViewCell", for: indexPath)
             as! OffersCollectionViewCell
+        cell.offerID = offers?.offers[indexPath.item].id
         cell.offersImage.sd_setImage(with: URL(string: offers?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
         cell.offersName.text = offers?.offers[indexPath.item].name
         if offers?.offers[indexPath.item].favorite == 0 {

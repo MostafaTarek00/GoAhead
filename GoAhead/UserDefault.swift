@@ -14,6 +14,7 @@ struct UserDefault {
     static let email = "email"
     static let phone = "phone"
     static let photo = "photo"
+    static var checkSeller = "checkSeller"
     
     
     
@@ -49,5 +50,12 @@ struct UserDefault {
     }
     static func getPhoto () ->String{
         return UserDefaults.standard.string(forKey: self.photo) ??  ""
+    }
+    
+    static func setCheckSeller ( _ checkSeller : String){
+        UserDefaults.standard.set(checkSeller, forKey: self.checkSeller)
+    }
+    static func getCheckSeller() ->String{
+        return UserDefaults.standard.string(forKey: self.checkSeller) ??  ""
     }
 }

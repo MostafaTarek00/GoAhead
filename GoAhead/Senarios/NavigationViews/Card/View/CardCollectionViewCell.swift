@@ -9,7 +9,9 @@
 import UIKit
 
 class CardCollectionViewCell: UICollectionViewCell {
-    
+     var count : Int = 1
+     var price : Int?
+     var totalPrice : Int = 1
     
     @IBOutlet weak var cellView: UIView!{
         didSet{
@@ -54,9 +56,27 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     
     @IBAction func plusBtnPressed(_ sender: UIButton) {
+        count = count + 1
+        totalPrice = price! * count
+        countLbl.text = String(count)
+        productPrice.text = String(totalPrice)
+        
     }
     
     @IBAction func minusBtnPressed(_ sender: UIButton) {
+        if count == 1 {
+             totalPrice = price! * count
+             countLbl.text = String(count)
+             productPrice.text = String(totalPrice)
+            print(count)
+            print(totalPrice)
+        }else {
+            count = count - 1
+            totalPrice = price! * count
+            countLbl.text = String(count)
+            productPrice.text = String(totalPrice)
+        }
+        
     }
     @IBAction func deleteBtnPressde(_ sender: UIButton) {
     }

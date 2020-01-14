@@ -9,13 +9,16 @@
 import UIKit
 import Auk
 import NVActivityIndicatorView
+import CoreData
 
 @available(iOS 13.0, *)
 class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var ProId : String?
     var productDetails:ProductDetails?
     var failure:Failure?
     var flagBtn : Bool?
+    var cartArray = [Cart]()
     @IBOutlet weak var imageSlider: UIScrollView!
     @IBOutlet weak var detailsTableView: UITableView!{
         didSet{
@@ -27,11 +30,12 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         showAndBacNavigation()
         getDetailsOfProduct()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
     }
-    
     
     
     func getDetailsOfProduct(){
@@ -97,9 +101,53 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     }
     
     @IBAction func addToCartBtnPressed(_ sender: UIButton) {
+        if let proName = productDetails?.product.name , let proDes = productDetails?.product.productDescription , let proPrice = productDetails?.product.price , let proImg = productDetails?.productImages[0] , let sellId = productDetails?.product.idSeller{
+            print("first\(UserDefault.getCheckSeller())")
+            if UserDefault.getCheckSeller() == "" {
+                
+                let newCart = Cart(context: context)
+                newCart.productName = proName
+                newCart.productDes = proDes
+                newCart.productPrice = proPrice
+                newCart.productImg = proImg
+                newCart.productCount = "1"
+                newCart.sellerId = sellId
+                cartArray.append(newCart)
+                saveInCart()
+                UserDefault.setCheckSeller(sellId)
+                print("second\( UserDefault.getCheckSeller())")
+            }else if UserDefault.getCheckSeller() == sellId{
+                let newCart = Cart(context: context)
+                newCart.productName = proName
+                newCart.productDes = proDes
+                newCart.productPrice = proPrice
+                newCart.productImg = proImg
+                newCart.productCount = "1"
+                newCart.sellerId = sellId
+                cartArray.append(newCart)
+                saveInCart()
+                print("Third\( UserDefault.getCheckSeller())")
+            }else {
+                Alert.show("خطاء", massege: "Products cannot be added from a different store", context: self)
+            }
+           
+           
+
+        }
+    
+      
+    }
+    
+    
+    func saveInCart()  {
+        do {
+            try context.save()
+        }catch {
+            Alert.show("Error", massege: "Error Saving  Context \(error)" , context: self)
+            
+        }
     }
 }
-
 
 @available(iOS 13.0, *)
 extension DetailsViewController : UITableViewDelegate , UITableViewDataSource {

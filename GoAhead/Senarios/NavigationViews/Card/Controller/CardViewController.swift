@@ -50,7 +50,7 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath) as! CardCollectionViewCell
         // cell.categoryHomeImage.image = UIImage(named: imageTest[indexPath.item])
-        
+        cell.price = 20
         return cell
         
     }
@@ -84,9 +84,6 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
 
 @available(iOS 13.0, *)
 extension CardViewController : UICollectionViewDelegateFlowLayout {
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let cellSize = CGSize(width: self.view.frame.width/1-20 , height: 250)
         return cellSize

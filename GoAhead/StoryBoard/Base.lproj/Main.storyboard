@@ -1354,7 +1354,7 @@
                                                                 <action selector="minusBtnPressed:" destination="WEn-lB-b15" eventType="touchUpInside" id="nsq-he-SJI"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqs-bP-eg5">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqs-bP-eg5">
                                                             <rect key="frame" x="40" y="0.0" width="50" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="8fv-L1-2CJ"/>
