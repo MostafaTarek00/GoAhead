@@ -24,25 +24,25 @@ class MyWishListViewController: UIViewController , NVActivityIndicatorViewable {
     
     
     func getUserFavoriteOffers(){
-              self.startAnimating()
-              APIClient.getUserFavoriteOffers(userId: UserDefault.getId()){ (Result) in
-                  switch Result {
-                  case .success(let response):
-                      DispatchQueue.main.async {
-                          self.stopAnimating()
-                          self.myWishList = response
-                          self.myWishListCollectionView.reloadData()
-                          print(response)
-                      }
-                  case .failure(let error):
-                      DispatchQueue.main.async {
-                          self.stopAnimating()
-                          print(error.localizedDescription)
-                      }
-                  }
-              }
-          }
-       
+        self.startAnimating()
+        APIClient.getUserFavoriteOffers(userId: UserDefault.getId()){ (Result) in
+            switch Result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    self.myWishList = response
+                    self.myWishListCollectionView.reloadData()
+                    print(response)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     
     
 }
@@ -57,12 +57,13 @@ extension MyWishListViewController : UICollectionViewDelegate , UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyWishListCollectionViewCell", for: indexPath) as! MyWishListCollectionViewCell
         cell.wishListImage.sd_setImage(with: URL(string: myWishList?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
         cell.wishListName.text = myWishList?.offers[indexPath.item].name
+        cell.offerID = myWishList?.offers[indexPath.item].id
         if myWishList?.offers[indexPath.item].favorite == 0 {
             cell.wishListFavBtn.setImage(UIImage(named: "favorite2"), for: .normal)
         }else if myWishList?.offers[indexPath.item].favorite == 1 {
             cell.wishListFavBtn.setImage(UIImage(named: "favorite1"), for: .normal)
         }
-        
+        cell.delegate = self
         return cell
         
     }
@@ -99,3 +100,11 @@ extension MyWishListViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 
+@available(iOS 13.0, *)
+extension MyWishListViewController : ReloadData {
+    func reload() {
+        getUserFavoriteOffers()
+    }
+    
+    
+}

@@ -125,13 +125,11 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
             cell.itemImage.sd_setImage(with: URL(string: offersOfCat?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
             cell.itemName.text = offersOfCat?.offers[indexPath.item].name
             cell.offerId = offersOfCat?.offers[indexPath.item].id
-            cell.offerIdFav = offersOfCat?.offers[indexPath.item].favorite
             if offersOfCat?.offers[indexPath.item].favorite == 0 {
                 cell.itemFav.setImage(UIImage(named: "favorite2"), for: .normal)
             }else if offersOfCat?.offers[indexPath.item].favorite == 1 {
                 cell.itemFav.setImage(UIImage(named: "favorite1"), for: .normal)
             }
-            cell.delegate = self
             return cell
         }
     }
@@ -204,14 +202,3 @@ extension CatagogryViewController : UICollectionViewDelegateFlowLayout {
 }
 
 
-@available(iOS 13.0, *)
-extension CatagogryViewController: ReloadCollectionDelegate {
-    func realoadFavOffer() {
-        getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
-    }
-    
- 
-    
-    
-    
-}

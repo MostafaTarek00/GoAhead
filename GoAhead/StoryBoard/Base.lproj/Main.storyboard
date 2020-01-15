@@ -141,8 +141,9 @@
                         <viewLayoutGuide key="safeArea" id="o9b-BW-rMe"/>
                     </view>
                     <connections>
+                        <outlet property="forgetPassBtn" destination="qjC-AM-u4K" id="9tM-TZ-j10"/>
                         <outlet property="passwordTf" destination="wDc-Us-OtJ" id="gDm-2P-LfH"/>
-                        <outlet property="signInBtn" destination="4v2-Hg-OV0" id="oVX-12-79C"/>
+                        <outlet property="signInBtn" destination="qjC-AM-u4K" id="NFs-up-CWJ"/>
                         <outlet property="userNameTf" destination="q0P-jx-zbz" id="Lld-yS-E1j"/>
                     </connections>
                 </viewController>
@@ -335,28 +336,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-Y7-dv2">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="3xe-dw-mO9">
-                                        <rect key="frame" x="120" y="125" width="174" height="100"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo GoAhead" translatesAutoresizingMaskIntoConstraints="NO" id="3xe-dw-mO9">
+                                        <rect key="frame" x="115" y="118.5" width="184" height="113"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="RcN-53-bxk"/>
-                                            <constraint firstAttribute="width" constant="174" id="Ver-G8-KQu"/>
+                                            <constraint firstAttribute="height" constant="113" id="RcN-53-bxk"/>
+                                            <constraint firstAttribute="width" constant="184" id="Ver-G8-KQu"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZb-fq-lUc">
-                                        <rect key="frame" x="120" y="125" width="174" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="63g-T5-684"/>
-                                            <constraint firstAttribute="width" constant="174" id="kY4-17-Lo8"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="tackImageBtnPressed:" destination="ADe-NG-RaO" eventType="touchUpInside" id="qm2-Fa-x4E"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="iZb-fq-lUc" firstAttribute="centerX" secondItem="FYH-Y7-dv2" secondAttribute="centerX" id="Am5-fe-W3m"/>
                                     <constraint firstItem="3xe-dw-mO9" firstAttribute="centerX" secondItem="FYH-Y7-dv2" secondAttribute="centerX" id="VI7-R1-9Yq"/>
-                                    <constraint firstItem="iZb-fq-lUc" firstAttribute="centerY" secondItem="FYH-Y7-dv2" secondAttribute="centerY" id="Xaa-md-Efd"/>
                                     <constraint firstItem="3xe-dw-mO9" firstAttribute="centerY" secondItem="FYH-Y7-dv2" secondAttribute="centerY" id="qGU-gg-MC3"/>
                                 </constraints>
                             </view>
@@ -2629,7 +2618,6 @@
         <image name="25" width="1200" height="800"/>
         <image name="3" width="1200" height="1200"/>
         <image name="57" width="200" height="100"/>
-        <image name="camera" width="42.5" height="42.5"/>
         <image name="cancel" width="10.5" height="10.5"/>
         <image name="email" width="21" height="21"/>
         <image name="eye" width="21" height="21"/>

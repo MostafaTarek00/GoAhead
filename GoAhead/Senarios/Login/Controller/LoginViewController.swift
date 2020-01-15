@@ -21,10 +21,12 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
             signInBtn.layer.borderColor = UIColor.white.cgColor
             signInBtn.clipsToBounds = true
         }
+        
     }
+    @IBOutlet weak var forgetPassBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        forgetPassBtn.isHidden = true
     }
     
     
@@ -92,10 +94,10 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     
     
     @IBAction func forgetPasswordBtnPressed(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(identifier: "ForgetPasswordViewController") as? ForgetPasswordViewController {
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
-        }
+//        if let vc = storyboard?.instantiateViewController(identifier: "ForgetPasswordViewController") as? ForgetPasswordViewController {
+//            vc.modalPresentationStyle = .fullScreen
+//            present(vc, animated: true, completion: nil)
+//        }
         
     }
     

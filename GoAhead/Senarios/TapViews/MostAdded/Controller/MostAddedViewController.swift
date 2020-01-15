@@ -12,7 +12,7 @@ import NVActivityIndicatorView
 @available(iOS 13.0, *)
 class MostAddedViewController: UIViewController ,NVActivityIndicatorViewable{
     var mostAdded:MostAdded?
-    
+    var offerID : String?
     @IBOutlet weak var mostAddCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +54,13 @@ extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MostAddedCollectionViewCell", for: indexPath) as! MostAddedCollectionViewCell
         cell.mostAddedImage.sd_setImage(with: URL(string: mostAdded?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
         cell.mostAddedName.text = mostAdded?.offers[indexPath.item].name
+        cell.offerID = mostAdded?.offers[indexPath.item].id
         if mostAdded?.offers[indexPath.item].favorite == 0 {
             cell.mostAddedBtn.setImage(UIImage(named: "favorite2"), for: .normal)
         }else if mostAdded?.offers[indexPath.item].favorite == 1 {
             cell.mostAddedBtn.setImage(UIImage(named: "favorite1"), for: .normal)
         }
+        
         
         return cell
         

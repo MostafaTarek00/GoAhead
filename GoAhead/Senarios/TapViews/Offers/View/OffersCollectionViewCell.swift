@@ -20,35 +20,38 @@ class OffersCollectionViewCell: UICollectionViewCell {
     
     var offerID : String?
     
+    func deleteOfferFromFavorites(){
+        APIClient.deleteOfferFromFavorites(userId: UserDefault.getId(), OfferID: offerID ?? "") { (Result) in
+            switch Result {
+            case .success(let response):
+                print(response)
+                self.offerFavBtn.setImage(UIImage(named: "favorite2"), for: .normal)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func addOfferToFavorite(){
+        APIClient.addOfferToFavorite(userId: UserDefault.getId(), OfferID: offerID ?? "") { (Result) in
+            switch Result {
+            case .success(let response):
+                print(response)
+                self.offerFavBtn.setImage(UIImage(named: "favorite1"), for: .normal)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    
+    
     @IBAction func offerFavBtnBressed(_ sender: UIButton) {
         if offerFavBtn.image(for: .normal) == UIImage(named: "favorite1") {
-            APIClient.deleteOfferFromFavorites(userId: UserDefault.getId(), OfferID: offerID ?? "") { (Result) in
-                switch Result {
-                case .success(let response):
-                    print(response)
-                 
-                        self.offerFavBtn.setImage(UIImage(named: "favorite2"), for: .normal)
-                    
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            deleteOfferFromFavorites()
         } else if offerFavBtn.image(for: .normal) == UIImage(named: "favorite2") {
-            
-            APIClient.addOfferToFavorite(userId: UserDefault.getId(), OfferID: offerID ?? "") { (Result) in
-                switch Result {
-                    case .success(let response):
-                        print(response)
-                        self.offerFavBtn.setImage(UIImage(named: "favorite1"), for: .normal)
-                    case .failure(let error):
-                        print(error)
-                }
-            }
-            
-            
-            
+            addOfferToFavorite()
         }
-        
     }
     
 }
