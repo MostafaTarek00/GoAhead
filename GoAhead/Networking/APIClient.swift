@@ -113,9 +113,9 @@ class APIClient {
            performRequest(route: APIRouter.viewProductDetails(productID: productID), completion: completion)
        }
     
-    static func getSellerDetails( productID : String , completion:@escaping
+    static func getSellerDetails( sellerId : String , completion:@escaping
           (Result<SellerDetails,AFError>)->Void){
-        performRequest(route: APIRouter.viewSellerDetails(productId: productID), completion: completion)
+        performRequest(route: APIRouter.viewSellerDetails(sellerId: sellerId), completion: completion)
       }
     
     static func searchForCategory( searchText : String , completion:@escaping
@@ -147,6 +147,7 @@ class APIClient {
            (Result<Failure,AFError>)->Void){
          performRequest(route: APIRouter.searchForProduct(search: searchText), completion: completion)
        }
+    
     
     
        

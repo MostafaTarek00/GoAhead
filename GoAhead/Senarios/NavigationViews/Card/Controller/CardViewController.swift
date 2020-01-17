@@ -7,35 +7,140 @@
 //
 
 import UIKit
+import CoreData
+import NVActivityIndicatorView
+import Alamofire
+import SwiftyJSON
 
 @available(iOS 13.0, *)
-class CardViewController: UIViewController {
-    
-    var imageTest = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-"21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40",
-"41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60",
-"61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80",
-"81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100"]
-    
+class CardViewController: UIViewController ,NVActivityIndicatorViewable {
+    var count : Int = 1
+    var price : String?
+    var totalPrice : Double = 1
+    var orders:Orders?
+    let basedUrl = "http://www.goaheadho.com/goahead_en/cart/sendOrder/82984218/951735"
+    var data = [[String]]()
+
+
     @IBOutlet weak var CardCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         showAndBacNavigation()
-        
-        
+        loadItems()
+
         // Do any additional setup after loading the view.
     }
     
     
-    @IBAction func proceedBtnPressed(_ sender: UIButton) {
-       
-            if let vc = storyboard?.instantiateViewController(identifier: "SellerViewController") as? SellerViewController {
-                vc.modalPresentationStyle = .fullScreen
-                navigationController?.pushViewController(vc, animated: true)
+    func getRegister(url : String , parameters :[String :String])  {
+        self.startAnimating()
+        AF.request(url, method:.post, parameters: parameters).responseJSON {
+            response  in
+            switch response.result {
+            case .success(let value):
+                DispatchQueue.main.async {
+                    self.stopAnimating()
+                    if let JSON = value as? [String: Any] {
+                        print(JSON)
+                        let status = JSON["status"] as! Int
+                        let msg = JSON["message"] as! String
+                        if status == 1 {
+                            self.orders?.status = JSON["status"] as! Int
+                            self.orders?.message = JSON ["message"] as! String
+                            self.orders?.id_order = JSON ["id_order"] as! String
+                              Alert.show("Success", massege: msg, context: self)
+
+                        }else if status == 2 {
+                            self.orders?.status = JSON["status"] as! Int
+                            self.orders?.message = JSON ["message"] as! String
+                            Alert.show("Error", massege: msg, context: self)
+                        }
+                        print(status)
+                    }
+                }
+            case .failure(let error):
+                self.stopAnimating()
+                print(error.localizedDescription)
             }
-      
+        }
     }
     
+    func completeUrl() -> String {
+        let userId = UserDefault.getId()
+        let sellerId = UserDefault.getCheckSeller()
+        let finalUrl = "\(basedUrl)/\(userId)/\(sellerId)"
+        print(finalUrl)
+        return finalUrl        
+    }
+    
+    
+    @IBAction func proceedBtnPressed(_ sender: UIButton) {
+        let parameters = ["products": "\(data)"]
+        for i in Shared.cartArray {
+            data.append([i.productId!,i.productCount!,i.productPrice!] )
+        }
+        print(data)
+        getRegister(url: completeUrl(), parameters: parameters)
+        if let vc = storyboard?.instantiateViewController(identifier: "SellerViewController") as? SellerViewController {
+            vc.modalPresentationStyle = .fullScreen
+            vc.sellerId = UserDefault.getCheckSeller()
+            deleteAll()
+            Shared.cartArray.removeAll()
+            UserDefault.setCheckSeller("")
+            deleteInCart()
+            
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        
+        
+        
+    }
+    
+    func deleteAll()  {
+        let request : NSFetchRequest<Cart> = Cart.fetchRequest()
+        request.includesPropertyValues = false
+        do {
+            let items = try Shared.context.fetch(request as! NSFetchRequest<NSFetchRequestResult>) as! [NSManagedObject]
+            
+            for item in items {
+                Shared.context.delete(item)
+            }
+            try Shared.context.save()
+            
+        } catch {
+            print("Error Delete Data From Context\(error)")
+        }
+    }
+    func loadItems() {
+        do{
+            let request : NSFetchRequest<Cart> = Cart.fetchRequest()
+            Shared.cartArray = try Shared.context.fetch(request)
+            
+        }catch{
+            print("Error Fetching Data From Context\(error)")
+            
+        }
+    }
+    
+    func saveInCart()  {
+        do {
+            try Shared.context.save()
+        }catch {
+            print("Error Saving  Context \(error)")
+            
+        }
+    }
+    
+    func deleteInCart()  {
+        do {
+            try Shared.context.save()
+        }catch {
+            print("Error Saving  Context \(error)")
+            
+        }
+        CardCollectionView.reloadData()
+    }
     
 }
 
@@ -43,24 +148,27 @@ class CardViewController: UIViewController {
 @available(iOS 13.0, *)
 extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  100
+        return  Shared.cartArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath) as! CardCollectionViewCell
-        // cell.categoryHomeImage.image = UIImage(named: imageTest[indexPath.item])
-        cell.price = 20
+        cell.productImage.sd_setImage(with: URL(string: Shared.cartArray[indexPath.item].productImg ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+        cell.productTitle.text = Shared.cartArray[indexPath.item].productName
+        cell.productDes.text = Shared.cartArray[indexPath.item].productDes
+        cell.productPrice.text = Shared.cartArray[indexPath.item].productPrice
+        cell.countLbl.text = Shared.cartArray[indexPath.item].productCount
+        cell.price = Shared.cartArray[indexPath.item].productPrice
+        cell.index = indexPath
+        cell.delegate = self
         return cell
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
-        
         let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
         vc.modalPresentationStyle = .fullScreen
-        vc.ProId = "12"
+        vc.ProId = Shared.cartArray[indexPath.item].productId
         vc.flagBtn = true
         navigationController?.pushViewController(vc, animated: true)
         
@@ -89,6 +197,26 @@ extension CardViewController : UICollectionViewDelegateFlowLayout {
         return cellSize
     }
     
+    
+    
+    
+    
+}
+
+
+@available(iOS 13.0, *)
+extension CardViewController : UpdateCart {
+    func delete(index: Int) {
+        Shared.context.delete(Shared.cartArray[index])
+        Shared.cartArray.remove(at: index)
+        deleteInCart()
+    }
+    
+    func update(countText: String, index: Int) {
+        Shared.cartArray[index].productCount =  countText
+        saveInCart()
+        
+    }
     
     
     

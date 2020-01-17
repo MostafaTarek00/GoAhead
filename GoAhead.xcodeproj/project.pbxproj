@@ -70,6 +70,7 @@
 		3B18F77623C21731003A4060 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18F77523C21731003A4060 /* UserDefault.swift */; };
 		3B18F77923C224F0003A4060 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B18F77823C224F0003A4060 /* Register.swift */; };
 		3B196D1023C0BE2C001F2628 /* Tab.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B196D0F23C0BE2C001F2628 /* Tab.xcassets */; };
+		3B20068623D0997500952EAD /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B20068523D0997500952EAD /* Orders.swift */; };
 		3B741BA623C6409500C2E764 /* MostAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B741BA523C6409500C2E764 /* MostAdded.swift */; };
 		3BCE47E423C115C9007D1550 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCE47E323C115C9007D1550 /* MenuCollectionViewCell.swift */; };
 		3BD4224E23BE213000FF7437 /* SellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD4224D23BE213000FF7437 /* SellerViewController.swift */; };
@@ -163,6 +164,7 @@
 		3B18F77523C21731003A4060 /* UserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		3B18F77823C224F0003A4060 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		3B196D0F23C0BE2C001F2628 /* Tab.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tab.xcassets; sourceTree = "<group>"; };
+		3B20068523D0997500952EAD /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		3B741BA523C6409500C2E764 /* MostAdded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostAdded.swift; sourceTree = "<group>"; };
 		3BCE47E323C115C9007D1550 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BD4224D23BE213000FF7437 /* SellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				3B0F560D23CDC20D00C2429F /* CartDataModel.xcdatamodeld */,
+				3B20068523D0997500952EAD /* Orders.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1121,6 +1124,7 @@
 				3B122F032386D3860056E7BF /* MyWishListCollectionViewCell.swift in Sources */,
 				3B0E80842385FAA900ACB085 /* SideMenuViewController.swift in Sources */,
 				3B17639523BDF1D900871CE9 /* CardViewController.swift in Sources */,
+				3B20068623D0997500952EAD /* Orders.swift in Sources */,
 				3B11468B23CCAA8100D91C53 /* SearchProductViewController.swift in Sources */,
 				3B122EF62386B7BF0056E7BF /* OffersCollectionViewCell.swift in Sources */,
 				3B1274BA23C38B08007E3FA4 /* Categories.swift in Sources */,

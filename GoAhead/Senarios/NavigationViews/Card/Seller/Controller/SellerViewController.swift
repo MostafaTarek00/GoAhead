@@ -11,6 +11,8 @@ import NVActivityIndicatorView
 @available(iOS 13.0, *)
 class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
     var sellerDetails:SellerDetails?
+    var sellerId : String?
+    
     @IBOutlet weak var sellerImage: UIImageView!{
         didSet{
             Rounded.roundedImage(imageView: sellerImage)
@@ -29,8 +31,9 @@ class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
     }
     
     func getDateOfSeller(){
+        if let sellerId = sellerId {
         self.startAnimating()
-        APIClient.getSellerDetails(productID: "1"){ (Result) in
+        APIClient.getSellerDetails(sellerId: sellerId){ (Result) in
             switch Result {
             case .success(let response):
                 DispatchQueue.main.async {
@@ -47,6 +50,7 @@ class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
                 }
             }
         }
+    }
     }
     
     func updateDate()  {

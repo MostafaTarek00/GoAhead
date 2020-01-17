@@ -7,11 +7,17 @@
 //
 
 import UIKit
-
+protocol UpdateCart {
+    func update(countText : String , index : Int)
+     func delete( index : Int)
+    
+}
 class CardCollectionViewCell: UICollectionViewCell {
-     var count : Int = 1
-     var price : Int?
-     var totalPrice : Int = 1
+    var count : Int = 1
+    var price : String?
+    var totalPrice : Double = 1
+    var delegate :  UpdateCart?
+    var index : IndexPath?
     
     @IBOutlet weak var cellView: UIView!{
         didSet{
@@ -57,27 +63,31 @@ class CardCollectionViewCell: UICollectionViewCell {
     
     @IBAction func plusBtnPressed(_ sender: UIButton) {
         count = count + 1
-        totalPrice = price! * count
+        totalPrice = Double(price!)! * Double(count)
         countLbl.text = String(count)
         productPrice.text = String(totalPrice)
+        delegate?.update(countText:  countLbl.text!, index: index!.item)
         
     }
     
     @IBAction func minusBtnPressed(_ sender: UIButton) {
         if count == 1 {
-             totalPrice = price! * count
-             countLbl.text = String(count)
-             productPrice.text = String(totalPrice)
-            print(count)
-            print(totalPrice)
-        }else {
-            count = count - 1
-            totalPrice = price! * count
+            totalPrice = Double(price!)! * Double(count)
             countLbl.text = String(count)
             productPrice.text = String(totalPrice)
+            delegate?.update(countText:  countLbl.text!, index: index!.item)
+            
+        }else {
+            count = count - 1
+            totalPrice = Double(price!)! * Double(count)
+            countLbl.text = String(count)
+            productPrice.text = String(totalPrice)
+            delegate?.update(countText:  countLbl.text!, index: index!.item)
+            
         }
         
     }
     @IBAction func deleteBtnPressde(_ sender: UIButton) {
+        delegate?.delete(index: index!.item)
     }
 }

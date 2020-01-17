@@ -3,12 +3,13 @@
     <entity name="Cart" representedClassName=".Cart" syncable="YES" codeGenerationType="class">
         <attribute name="productCount" attributeType="String"/>
         <attribute name="productDes" attributeType="String"/>
+        <attribute name="productId" attributeType="String"/>
         <attribute name="productImg" attributeType="String"/>
         <attribute name="productName" attributeType="String"/>
         <attribute name="productPrice" attributeType="String"/>
         <attribute name="sellerId" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Cart" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Cart" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

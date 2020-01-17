@@ -13,12 +13,12 @@ import CoreData
 
 @available(iOS 13.0, *)
 class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+   // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var ProId : String?
     var productDetails:ProductDetails?
     var failure:Failure?
     var flagBtn : Bool?
-    var cartArray = [Cart]()
+   // var cartArray = [Cart]()
     @IBOutlet weak var imageSlider: UIScrollView!
     @IBOutlet weak var detailsTableView: UITableView!{
         didSet{
@@ -101,31 +101,39 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     }
     
     @IBAction func addToCartBtnPressed(_ sender: UIButton) {
-        if let proName = productDetails?.product.name , let proDes = productDetails?.product.productDescription , let proPrice = productDetails?.product.price , let proImg = productDetails?.productImages[0] , let sellId = productDetails?.product.idSeller{
+        if let proName = productDetails?.product.name , let proDes = productDetails?.product.productDescription , let proPrice = productDetails?.product.price , let proImg = productDetails?.productImages[0] , let sellId = productDetails?.product.idSeller , let proId = productDetails?.product.id{
             print("first\(UserDefault.getCheckSeller())")
             if UserDefault.getCheckSeller() == "" {
                 
-                let newCart = Cart(context: context)
+                let newCart = Cart(context: Shared.context)
                 newCart.productName = proName
                 newCart.productDes = proDes
                 newCart.productPrice = proPrice
                 newCart.productImg = proImg
                 newCart.productCount = "1"
+                newCart.productId = proId
                 newCart.sellerId = sellId
-                cartArray.append(newCart)
+                Shared.cartArray.append(newCart)
                 saveInCart()
+                let vc = storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                navigationController?.pushViewController(vc, animated: true)
+                
                 UserDefault.setCheckSeller(sellId)
                 print("second\( UserDefault.getCheckSeller())")
             }else if UserDefault.getCheckSeller() == sellId{
-                let newCart = Cart(context: context)
+                let newCart = Cart(context: Shared.context)
                 newCart.productName = proName
                 newCart.productDes = proDes
                 newCart.productPrice = proPrice
                 newCart.productImg = proImg
                 newCart.productCount = "1"
+                newCart.productId = proId
                 newCart.sellerId = sellId
-                cartArray.append(newCart)
+                Shared.cartArray.append(newCart)
                 saveInCart()
+                let vc = storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                navigationController?.pushViewController(vc, animated: true)
+                
                 print("Third\( UserDefault.getCheckSeller())")
             }else {
                 Alert.show("خطاء", massege: "Products cannot be added from a different store", context: self)
@@ -141,7 +149,7 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     
     func saveInCart()  {
         do {
-            try context.save()
+            try Shared.context.save()
         }catch {
             Alert.show("Error", massege: "Error Saving  Context \(error)" , context: self)
             

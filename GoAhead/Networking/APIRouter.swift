@@ -24,7 +24,7 @@ enum APIRouter: URLRequestConvertible {
     case viewProductCategoryProducts(categoryID:Int)
     case viewProductDetails(productID:String)
     case viewUserProducts(sellerId:String)
-    case viewSellerDetails(productId:String)
+    case viewSellerDetails(sellerId:String)
     case addProduct(userID:String ,categoryID:String ,title:String ,description:String ,price:String)
     case viewSellersProductsByCategoryIdAndSellerId(categoryID:String ,sellerID:String)
     case getUserDetalisById(userID:String)
@@ -32,7 +32,7 @@ enum APIRouter: URLRequestConvertible {
     case searchForCategory(search:String)
     case searchForProduct(search:String)
     case searchForSeller(search:String)
-    case sendOrder(userID:String ,sellerID:String)
+    case sendOrder(userID:String ,sellerID:String , products : [[String]])
     
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
@@ -130,7 +130,7 @@ enum APIRouter: URLRequestConvertible {
             return "/\(K.ProductionServer.productType)/search/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(search)"
         case .searchForSeller(let search):
             return "/user/search/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(search)"
-        case .sendOrder(let userID, let sellerID):
+        case .sendOrder(let userID, let sellerID , _):
             return "/\(K.ProductionServer.cartType)/sendOrder/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)/\(sellerID)"
         
        
@@ -181,9 +181,9 @@ enum APIRouter: URLRequestConvertible {
             return nil
         case .searchForSeller(_):
             return nil
-        case .sendOrder(_):
-            return nil
-      
+        case .sendOrder(let products):
+            return [K.order.products : products]
+
         }
         
 }
