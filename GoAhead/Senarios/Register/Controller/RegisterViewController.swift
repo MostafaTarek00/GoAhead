@@ -52,7 +52,7 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
                             self.register?.userID = JSON ["user_id"] as! Int
                             self.register?.name =  JSON ["name"] as! String
                             self.clearText()
-                            if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? TabBar {
+                            if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
                                 vc.modalPresentationStyle = .fullScreen
                                 self.present(vc, animated: true, completion: nil)
                             }
@@ -60,7 +60,7 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
                         }else if status == 2 {
                             self.register?.status = JSON["status"] as! Int
                             self.register?.message = JSON ["message"] as! String
-                            Alert.show("خطاء", massege: msg, context: self)
+                            Alert.show("Error", massege: msg, context: self)
                         }
                         print(status)
                     }

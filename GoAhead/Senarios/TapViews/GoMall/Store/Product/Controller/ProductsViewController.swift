@@ -65,7 +65,7 @@ class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
                         if self.allProduct?.products != nil {
                             self.productCollectionView.reloadData()
                         }else {
-                            Alert.show("خطاء", massege: "There Are No Products", context: self)
+                            Alert.show("Error", massege: "There Are No Products", context: self)
                         }
                         print(response)
                     }
@@ -79,7 +79,7 @@ class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
                                 DispatchQueue.main.async {
                                     self.stopAnimating()
                                     self.failure = response
-                                    Alert.show("خطاء", massege: self.failure!.message, context: self)
+                                    Alert.show("Error", massege: self.failure!.message, context: self)
                                     print(response)
                                 }
                             case .failure(let error):

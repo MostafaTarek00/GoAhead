@@ -20,19 +20,19 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
     var orders:Orders?
     let basedUrl = "http://www.goaheadho.com/goahead_en/cart/sendOrder/82984218/951735"
     var data = [[String]]()
-
-
+    
+    
     @IBOutlet weak var CardCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         showAndBacNavigation()
         loadItems()
-
+        
         // Do any additional setup after loading the view.
     }
     
     
-    func getRegister(url : String , parameters :[String :String])  {
+    func sendOrdes(url : String , parameters :[String :String])  {
         self.startAnimating()
         AF.request(url, method:.post, parameters: parameters).responseJSON {
             response  in
@@ -48,8 +48,8 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
                             self.orders?.status = JSON["status"] as! Int
                             self.orders?.message = JSON ["message"] as! String
                             self.orders?.id_order = JSON ["id_order"] as! String
-                              Alert.show("Success", massege: msg, context: self)
-
+                            Alert.show("Success", massege: msg, context: self)
+                            
                         }else if status == 2 {
                             self.orders?.status = JSON["status"] as! Int
                             self.orders?.message = JSON ["message"] as! String
@@ -80,7 +80,7 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
             data.append([i.productId!,i.productCount!,i.productPrice!] )
         }
         print(data)
-        getRegister(url: completeUrl(), parameters: parameters)
+        sendOrdes(url: completeUrl(), parameters: parameters)
         if let vc = storyboard?.instantiateViewController(identifier: "SellerViewController") as? SellerViewController {
             vc.modalPresentationStyle = .fullScreen
             vc.sellerId = UserDefault.getCheckSeller()
@@ -92,9 +92,6 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
             navigationController?.pushViewController(vc, animated: true)
             
         }
-        
-        
-        
     }
     
     func deleteAll()  {
@@ -144,7 +141,6 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
     
 }
 
-
 @available(iOS 13.0, *)
 extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -171,7 +167,6 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
         vc.ProId = Shared.cartArray[indexPath.item].productId
         vc.flagBtn = true
         navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -183,11 +178,6 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
         }
     }
     
-    
-    
-    
-    
-    
 }
 
 @available(iOS 13.0, *)
@@ -196,11 +186,6 @@ extension CardViewController : UICollectionViewDelegateFlowLayout {
         let cellSize = CGSize(width: self.view.frame.width/1-20 , height: 250)
         return cellSize
     }
-    
-    
-    
-    
-    
 }
 
 
@@ -217,8 +202,5 @@ extension CardViewController : UpdateCart {
         saveInCart()
         
     }
-    
-    
-    
-    
+   
 }

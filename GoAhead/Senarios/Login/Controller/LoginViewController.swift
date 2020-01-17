@@ -58,7 +58,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                                 DispatchQueue.main.async {
                                     self.failure = response
                                     self.stopAnimating()
-                                    Alert.show("خطاء", massege: self.failure!.message, context: self)
+                                    Alert.show("Error", massege: self.failure!.message, context: self)
                                 }
                             case .failure(let error):
                                 DispatchQueue.main.async {
