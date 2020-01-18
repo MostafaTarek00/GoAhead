@@ -47,7 +47,7 @@ class SearchCategoryViewController: UIViewController ,NVActivityIndicatorViewabl
                                     self.failure = response
                                     print(response)
                                     self.stopAnimating()
-                                    Alert.show("خطاء", massege: self.failure!.message, context: self)
+                                    Alert.show("Error", massege: self.failure!.message, context: self)
                                 }
                             case .failure(let error):
                                 DispatchQueue.main.async {

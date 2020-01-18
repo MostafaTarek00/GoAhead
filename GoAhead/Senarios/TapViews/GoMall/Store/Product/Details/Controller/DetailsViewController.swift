@@ -61,7 +61,7 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                                 DispatchQueue.main.async {
                                     self.stopAnimating()
                                     self.failure = response
-                                    Alert.show("خطاء", massege: self.failure!.message, context: self)
+                                    Alert.show("Error", massege: self.failure!.message, context: self)
                                     print(response)
                                 }
                             case .failure(let error):
@@ -136,7 +136,7 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                 
                 print("Third\( UserDefault.getCheckSeller())")
             }else {
-                Alert.show("خطاء", massege: "Products cannot be added from a different store", context: self)
+                Alert.show("Error", massege: "Products cannot be added from a different store", context: self)
             }
            
            

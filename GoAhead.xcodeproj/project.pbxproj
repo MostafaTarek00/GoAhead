@@ -28,6 +28,9 @@
 		3B0F729F2385958100BBEA8C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F729A2385958100BBEA8C /* CardView.swift */; };
 		3B0F72A02385958100BBEA8C /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F729B2385958100BBEA8C /* DesignableUITextField.swift */; };
 		3B0F72A12385958100BBEA8C /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F729C2385958100BBEA8C /* Maps.swift */; };
+		3B0F784D23D35F2900374F6F /* StartAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F784C23D35F2900374F6F /* StartAnimationView.swift */; };
+		3B0F784F23D3609B00374F6F /* success.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B0F784E23D3609B00374F6F /* success.json */; };
+		3B0F785523D37AC400374F6F /* SSBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F785423D37AC400374F6F /* SSBadgeButton.swift */; };
 		3B11467F23CC6F5000D91C53 /* SearchSellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11467E23CC6F5000D91C53 /* SearchSellerViewController.swift */; };
 		3B11468123CC6F6E00D91C53 /* SearchSellerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11468023CC6F6E00D91C53 /* SearchSellerCollectionViewCell.swift */; };
 		3B11468323CC9A1500D91C53 /* AllProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B11468223CC9A1500D91C53 /* AllProduct.swift */; };
@@ -122,6 +125,9 @@
 		3B0F729A2385958100BBEA8C /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3B0F729B2385958100BBEA8C /* DesignableUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
 		3B0F729C2385958100BBEA8C /* Maps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
+		3B0F784C23D35F2900374F6F /* StartAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAnimationView.swift; sourceTree = "<group>"; };
+		3B0F784E23D3609B00374F6F /* success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success.json; sourceTree = "<group>"; };
+		3B0F785423D37AC400374F6F /* SSBadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSBadgeButton.swift; sourceTree = "<group>"; };
 		3B11467E23CC6F5000D91C53 /* SearchSellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSellerViewController.swift; sourceTree = "<group>"; };
 		3B11468023CC6F6E00D91C53 /* SearchSellerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSellerCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B11468223CC9A1500D91C53 /* AllProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProduct.swift; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 				3B196D0D23C0BC81001F2628 /* StoryBoard */,
 				3B196D0B23C0BC1C001F2628 /* Resources */,
 				8139D4A4238AB82A001CE986 /* Shared.swift */,
+				3B0F784E23D3609B00374F6F /* success.json */,
 				3B18F77523C21731003A4060 /* UserDefault.swift */,
 				8139D4A2238A905E001CE986 /* TabBar.swift */,
 				3B18F77323C215DF003A4060 /* Failure.swift */,
@@ -379,6 +386,7 @@
 				3B0F729C2385958100BBEA8C /* Maps.swift */,
 				3BD4225623BE437B00FF7437 /* CustemDesign.swift */,
 				3BE5BF2823BA622E006E4AB9 /* CollectionCell.swift */,
+				3B0F784C23D35F2900374F6F /* StartAnimationView.swift */,
 			);
 			path = Utitlites;
 			sourceTree = "<group>";
@@ -699,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				3B16CDF723B8C32100FCFBEF /* MainNavigationController.swift */,
+				3B0F785423D37AC400374F6F /* SSBadgeButton.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1038,6 +1047,7 @@
 				3B17639923BDFDA500871CE9 /* Navigation.xcassets in Resources */,
 				262E5B2721AFE57D009363E7 /* Assets.xcassets in Resources */,
 				3B0E590C23BD2D5F00A564D7 /* Color.xcassets in Resources */,
+				3B0F784F23D3609B00374F6F /* success.json in Resources */,
 				3B0EE89B23BAABDD00D67389 /* Media.xcassets in Resources */,
 				262E5B2221AFE578009363E7 /* Main.storyboard in Resources */,
 			);
@@ -1108,6 +1118,7 @@
 				3B0C98CC23C4AE1B008C1C66 /* OffersOfCategory.swift in Sources */,
 				3B0F560F23CDC20D00C2429F /* CartDataModel.xcdatamodeld in Sources */,
 				3BD4224E23BE213000FF7437 /* SellerViewController.swift in Sources */,
+				3B0F785523D37AC400374F6F /* SSBadgeButton.swift in Sources */,
 				3B122EDE23867A1E0056E7BF /* OfferViewController.swift in Sources */,
 				3B0F168623CB200A000F803D /* SearchCategoryCollectionViewCell.swift in Sources */,
 				3B17460A23C8950B00899ADE /* StoreSeller.swift in Sources */,
@@ -1132,6 +1143,7 @@
 				3B11468F23CCB0BA00D91C53 /* SearchProduct.swift in Sources */,
 				3B122F052386D3A00056E7BF /* MyWishListViewController.swift in Sources */,
 				3B0F72A02385958100BBEA8C /* DesignableUITextField.swift in Sources */,
+				3B0F784D23D35F2900374F6F /* StartAnimationView.swift in Sources */,
 				3B17460723C8841500899ADE /* CategoryOfMall.swift in Sources */,
 				8139D4A3238A905E001CE986 /* TabBar.swift in Sources */,
 				3B122EF12386AE480056E7BF /* CategoryHomeCollectionViewCell.swift in Sources */,

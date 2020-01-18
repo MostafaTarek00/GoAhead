@@ -8,11 +8,16 @@
 
 import UIKit
 import SideMenu
+import CoreData
+
+@available(iOS 13.0, *)
 class MainNavigationController: UINavigationController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
+    
     
 }
 
@@ -23,38 +28,65 @@ extension UIViewController {
         let menu = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(menuBtn))
         menu.image = UIImage(named: "menu")
         menu.tintColor = UIColor.white
-        let cart = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(cartBtn))
-        cart.image = UIImage(named: "cart")
-        cart.tintColor = UIColor.white
+        //        let cart = UIBarButtonItem(title: "20", style: .done,target: self, action: #selector(cartBtn))
+        //        cart.image = UIImage(named: "cart")
+        //        cart.tintColor = UIColor.white
+        loadCardCount()
+        let cartButton = SSBadgeButton()
+        cartButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        cartButton.setImage(UIImage(named: "cart")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        cartButton.badgeEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 15)
+        cartButton.addTarget(self, action: #selector(cartBtn), for: .touchUpInside)
+        var number : String = String(Shared.cartArray.count)
+        cartButton.badge = number
         let search = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(searchBtn))
         search.image = UIImage(named: "search")
         search.tintColor = UIColor.white
-        navigationItem.rightBarButtonItems = [menu, cart, search]
+        
+        self.navigationItem.rightBarButtonItems = [menu,UIBarButtonItem(customView: cartButton),search]
+        
         
     }
     
     func showAndBacNavigation() {
-           navigationItem.hidesBackButton = true
-           let menu = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(menuBtn))
-           menu.image = UIImage(named: "menu")
-           menu.tintColor = UIColor.white
-           let cart = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(cartBtn))
-           cart.image = UIImage(named: "cart")
-           cart.tintColor = UIColor.white
-           let search = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(searchBtn))
-           search.image = UIImage(named: "search")
-           search.tintColor = UIColor.white
-           navigationItem.rightBarButtonItems = [menu, cart, search]
-           
-           
-           let back = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(backBtn))
-           back.image = UIImage(named: "back")
-           back.tintColor = UIColor.white
-           navigationItem.leftBarButtonItem = back
-           
-           
-       }
-    
+        navigationItem.hidesBackButton = true
+        let menu = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(menuBtn))
+        menu.image = UIImage(named: "menu")
+        menu.tintColor = UIColor.white
+        //           let cart = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(cartBtn))
+        //           cart.image = UIImage(named: "cart")
+        //           cart.tintColor = UIColor.white
+        loadCardCount()
+        let cartButton = SSBadgeButton()
+        cartButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        cartButton.setImage(UIImage(named: "cart")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        cartButton.badgeEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 15)
+        cartButton.addTarget(self, action: #selector(cartBtn), for: .touchUpInside)
+        var number : String = String(Shared.cartArray.count)
+        cartButton.badge = number
+        let search = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(searchBtn))
+        search.image = UIImage(named: "search")
+        search.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItems = [menu,UIBarButtonItem(customView: cartButton),search]
+        
+        
+        let back = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(backBtn))
+        back.image = UIImage(named: "back")
+        back.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem = back
+        
+        
+    }
+    func loadCardCount() {
+        do{
+            let request : NSFetchRequest<Cart> = Cart.fetchRequest()
+            Shared.cartArray = try Shared.context.fetch(request)
+            
+        }catch{
+            print("Error Fetching Data From Context\(error)")
+            
+        }
+    }
     
     
     @objc func menuBtn(){

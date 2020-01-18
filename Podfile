@@ -16,6 +16,8 @@ target 'GoAhead' do
   pod 'SOTabBar'
   pod 'MOLH'
   pod 'SideMenu'
+  pod 'lottie-ios'
+
 
 
 

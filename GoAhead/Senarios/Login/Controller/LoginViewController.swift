@@ -24,6 +24,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
         
     }
     @IBOutlet weak var forgetPassBtn: UIButton!
+    @IBOutlet weak var animationView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         forgetPassBtn.isHidden = true
@@ -43,6 +44,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                         print(response)
                         self.setData()
                         self.clearText()
+                        StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
                         if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
                             vc.modalPresentationStyle = .fullScreen
                             self.present(vc, animated: true, completion: nil)

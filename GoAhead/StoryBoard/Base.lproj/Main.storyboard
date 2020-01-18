@@ -119,12 +119,22 @@
                                     <action selector="registerBtnPressed:" destination="QBw-Oi-uKf" eventType="touchUpInside" id="ZVh-og-oam"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4RX-pJ-C7m">
+                                <rect key="frame" x="132" y="373" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Rcl-H1-ID2"/>
+                                    <constraint firstAttribute="height" constant="150" id="ybM-te-s6Q"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="qjC-AM-u4K" firstAttribute="centerY" secondItem="OqV-Ox-Gzc" secondAttribute="centerY" id="8Mf-ca-UvX"/>
+                            <constraint firstItem="4RX-pJ-C7m" firstAttribute="centerX" secondItem="OqV-Ox-Gzc" secondAttribute="centerX" id="Bly-Se-JMF"/>
                             <constraint firstItem="4v2-Hg-OV0" firstAttribute="top" secondItem="qjC-AM-u4K" secondAttribute="bottom" constant="19.5" id="Cmg-kE-m6e"/>
                             <constraint firstItem="i18-qh-KDg" firstAttribute="trailing" secondItem="o9b-BW-rMe" secondAttribute="trailing" id="DTc-If-uhS"/>
+                            <constraint firstItem="4RX-pJ-C7m" firstAttribute="centerY" secondItem="OqV-Ox-Gzc" secondAttribute="centerY" id="Fhc-I4-y02"/>
                             <constraint firstItem="o9b-BW-rMe" firstAttribute="trailing" secondItem="vLo-bg-efa" secondAttribute="trailing" constant="15" id="IvQ-bb-Bhd"/>
                             <constraint firstItem="o9b-BW-rMe" firstAttribute="trailing" secondItem="qjC-AM-u4K" secondAttribute="trailing" constant="15" id="KfP-32-iTI"/>
                             <constraint firstItem="i18-qh-KDg" firstAttribute="top" secondItem="OqV-Ox-Gzc" secondAttribute="top" id="Ni7-gU-Flq"/>
@@ -141,6 +151,7 @@
                         <viewLayoutGuide key="safeArea" id="o9b-BW-rMe"/>
                     </view>
                     <connections>
+                        <outlet property="animationView" destination="4RX-pJ-C7m" id="2WM-Il-9Lt"/>
                         <outlet property="forgetPassBtn" destination="qjC-AM-u4K" id="9tM-TZ-j10"/>
                         <outlet property="passwordTf" destination="wDc-Us-OtJ" id="gDm-2P-LfH"/>
                         <outlet property="signInBtn" destination="4v2-Hg-OV0" id="xlv-tC-BqC"/>

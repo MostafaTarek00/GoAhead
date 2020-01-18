@@ -136,6 +136,7 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
             print("Error Saving  Context \(error)")
             
         }
+        showAndBacNavigation()
         CardCollectionView.reloadData()
     }
     
