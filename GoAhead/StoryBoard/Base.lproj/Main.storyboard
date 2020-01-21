@@ -414,22 +414,28 @@
                                             <constraint firstAttribute="height" constant="40" id="Wz3-iO-u7I"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="email"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                <real key="value" value="-6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wDc-Us-OtJ" customClass="DesignableUITextField" customModule="GoAhead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="58" width="384" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="eye"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                <real key="value" value="-6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -469,22 +475,14 @@
                                     <action selector="forgetPasswordBtnPressed:" destination="QBw-Oi-uKf" eventType="touchUpInside" id="RAS-ok-cVy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y43-5j-rcx">
-                                <rect key="frame" x="121.5" y="559.5" width="171" height="33.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y43-5j-rcx">
+                                <rect key="frame" x="121.5" y="559.5" width="171" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="Y9d-Co-iCu"/>
                                 </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Don't Have  Account">
-                                            <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <font key="NSFont" size="18" name=".AppleSystemUIFontEmphasized"/>
-                                                <font key="NSOriginalFont" size="18" name=".AppleSystemUIFontEmphasized"/>
-                                                <integer key="NSUnderline" value="1"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFontEmphasized" family=".AppleSystemUIFont" pointSize="18"/>
+                                <state key="normal" title="Don't Have  Account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="registerBtnPressed:" destination="QBw-Oi-uKf" eventType="touchUpInside" id="ZVh-og-oam"/>
@@ -523,6 +521,7 @@
                     </view>
                     <connections>
                         <outlet property="animationView" destination="4RX-pJ-C7m" id="2WM-Il-9Lt"/>
+                        <outlet property="dontHaveAccount" destination="Y43-5j-rcx" id="pjG-IC-Lkz"/>
                         <outlet property="forgetPassBtn" destination="qjC-AM-u4K" id="9tM-TZ-j10"/>
                         <outlet property="passwordTf" destination="wDc-Us-OtJ" id="gDm-2P-LfH"/>
                         <outlet property="signInBtn" destination="4v2-Hg-OV0" id="xlv-tC-BqC"/>
@@ -569,7 +568,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saudiFlag" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-OA-NTH">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-OA-NTH">
                                                         <rect key="frame" x="217.5" y="145.5" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="40" id="7YP-0l-MBg"/>
@@ -740,44 +739,56 @@
                                             <constraint firstAttribute="height" constant="40" id="AkU-DB-h4b"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="user"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                <real key="value" value="-6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0p3-dq-Amm" customClass="DesignableUITextField" customModule="GoAhead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="52" width="384" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="email"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                <real key="value" value="-6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bXk-mP-0a7" customClass="DesignableUITextField" customModule="GoAhead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="104" width="384" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="phone"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                <real key="value" value="-6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NHP-qk-9ZB" customClass="DesignableUITextField" customModule="GoAhead" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="156" width="384" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="lock"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
                                                 <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                                <real key="value" value="-6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -797,19 +808,11 @@
                                     <action selector="signUpBtnPressed:" destination="ADe-NG-RaO" eventType="touchUpInside" id="bRg-9C-psl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c31-U4-Tkg">
-                                <rect key="frame" x="157.5" y="646" width="99" height="33.5"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Go To Login">
-                                            <attributes>
-                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <font key="NSFont" size="18" name=".AppleSystemUIFontEmphasized"/>
-                                                <font key="NSOriginalFont" size="19" name=".AppleSystemUIFontEmphasized"/>
-                                                <integer key="NSUnderline" value="1"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c31-U4-Tkg">
+                                <rect key="frame" x="157.5" y="646" width="99" height="34"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFontEmphasized" family=".AppleSystemUIFont" pointSize="18"/>
+                                <state key="normal" title="Go To Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="goToLoginBtnPressed:" destination="ADe-NG-RaO" eventType="touchUpInside" id="hXz-v8-FoQ"/>
@@ -847,6 +850,7 @@
                     <connections>
                         <outlet property="animationView" destination="f6J-5e-BkS" id="Wpm-KF-zPJ"/>
                         <outlet property="emailRegTf" destination="0p3-dq-Amm" id="Hmm-xN-qCC"/>
+                        <outlet property="goToLogin" destination="c31-U4-Tkg" id="WmR-GK-nAm"/>
                         <outlet property="passwordRegTf" destination="NHP-qk-9ZB" id="h9c-K1-dtI"/>
                         <outlet property="phoneRegTf" destination="bXk-mP-0a7" id="6pX-Wa-nPf"/>
                         <outlet property="singUpBtn" destination="Uln-V3-OHw" id="f6W-ys-nv3"/>
@@ -930,7 +934,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="HLE-pS-1iA" firstAttribute="trailing" secondItem="SHC-zS-ut5" secondAttribute="trailing" id="1al-zF-lC2"/>
                             <constraint firstItem="HLE-pS-1iA" firstAttribute="leading" secondItem="SHC-zS-ut5" secondAttribute="leading" id="FZR-0a-NSC"/>
@@ -1075,7 +1079,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="BWv-IY-QHG" firstAttribute="trailing" secondItem="kJQ-rM-lIM" secondAttribute="trailing" id="0oV-lj-rgg"/>
                             <constraint firstItem="BWv-IY-QHG" firstAttribute="leading" secondItem="kJQ-rM-lIM" secondAttribute="leading" id="8Cq-JJ-B5u"/>
@@ -1170,7 +1174,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="7wT-dD-gYd"/>
                     </view>
                     <navigationItem key="navigationItem" title="Offers" id="uR6-qC-sNw"/>
@@ -1254,7 +1258,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="dgR-mV-zQr" firstAttribute="leading" secondItem="Biq-eg-bVL" secondAttribute="leading" id="HLr-uR-Ys1"/>
                             <constraint firstItem="Biq-eg-bVL" firstAttribute="bottom" secondItem="dgR-mV-zQr" secondAttribute="bottom" id="KrD-9l-41w"/>
@@ -1344,7 +1348,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="juD-nE-IcC" firstAttribute="leading" secondItem="sdn-eV-P8T" secondAttribute="leading" id="69a-h4-kHu"/>
                             <constraint firstItem="juD-nE-IcC" firstAttribute="top" secondItem="sdn-eV-P8T" secondAttribute="top" id="Gry-fk-FvX"/>
@@ -1433,7 +1437,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="egY-mF-s8G" firstAttribute="bottom" secondItem="I9k-yU-un5" secondAttribute="bottom" id="8kD-iy-qx5"/>
                             <constraint firstItem="egY-mF-s8G" firstAttribute="top" secondItem="I9k-yU-un5" secondAttribute="top" id="EQ4-ph-cfH"/>
@@ -1533,7 +1537,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="VP8-Q4-nxj" firstAttribute="top" secondItem="yLQ-rr-bYR" secondAttribute="top" id="2s4-hN-sQS"/>
                             <constraint firstItem="VP8-Q4-nxj" firstAttribute="trailing" secondItem="yLQ-rr-bYR" secondAttribute="trailing" id="X1R-kl-aAT"/>
@@ -1648,7 +1652,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Y5x-4l-IfX" firstAttribute="trailing" secondItem="wtG-HH-agy" secondAttribute="trailing" id="24l-MQ-ljR"/>
                             <constraint firstItem="wtG-HH-agy" firstAttribute="leading" secondItem="Y5x-4l-IfX" secondAttribute="leading" id="Mo4-FE-ngM"/>
@@ -1831,7 +1835,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Tf0-uc-3XY" firstAttribute="trailing" secondItem="gfY-nQ-TOn" secondAttribute="trailing" id="SOQ-f3-MOz"/>
                             <constraint firstItem="gfY-nQ-TOn" firstAttribute="top" secondItem="Tf0-uc-3XY" secondAttribute="top" id="U0f-dv-3R2"/>
@@ -2036,7 +2040,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="EhS-AG-2do" firstAttribute="top" secondItem="BVT-pH-K5x" secondAttribute="top" id="5r5-Mz-l3A"/>
                             <constraint firstItem="EhS-AG-2do" firstAttribute="trailing" secondItem="BVT-pH-K5x" secondAttribute="trailing" id="5vU-fF-Cbl"/>
@@ -2186,7 +2190,6 @@
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3X-cx-TCc">
                                 <rect key="frame" x="0.0" y="649" width="414" height="247"/>
-                                <color key="backgroundColor" name="Background"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -2235,16 +2238,16 @@
             </objects>
             <point key="canvasLocation" x="2127.536231884058" y="3870.5357142857142"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--New Tab-->
         <scene sceneID="xC4-dm-LWa">
             <objects>
-                <tabBarController storyboardIdentifier="TabBar" id="mkc-SQ-aTe" customClass="JBTabBarController" customModule="JBTabBarAnimation" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" id="mkc-SQ-aTe" customClass="NewTab" customModule="GoAhead" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="n86-5W-4S2"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rc4-hD-euA" customClass="JBTabBar" customModule="JBTabBarAnimation">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rc4-hD-euA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="Ox1-My-92D" kind="relationship" relationship="viewControllers" id="2bB-9r-p7M"/>
@@ -2576,7 +2579,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="BtM-tf-ksL" firstAttribute="leading" secondItem="E0o-3D-2Lb" secondAttribute="leading" id="Dpz-JW-6ep"/>
                             <constraint firstItem="BtM-tf-ksL" firstAttribute="trailing" secondItem="E0o-3D-2Lb" secondAttribute="trailing" id="HvE-AN-rFh"/>
@@ -2676,7 +2679,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Now-Eq-m0e" firstAttribute="trailing" secondItem="kqP-Lt-ONf" secondAttribute="trailing" id="3AW-1c-NM3"/>
                             <constraint firstItem="Now-Eq-m0e" firstAttribute="leading" secondItem="kqP-Lt-ONf" secondAttribute="leading" id="hDj-Kg-Rhb"/>
@@ -2790,7 +2793,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" name="Background"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="uEm-du-kpM" firstAttribute="leading" secondItem="zv6-WP-OWF" secondAttribute="leading" id="HdB-x1-QJZ"/>
                             <constraint firstItem="uEm-du-kpM" firstAttribute="trailing" secondItem="zv6-WP-OWF" secondAttribute="trailing" id="NZb-dQ-YPH"/>
@@ -2816,11 +2819,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNB-42-tnw">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="738"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpZ-mi-nyU">
-                                <rect key="frame" x="20" y="54" width="75" height="22"/>
+                                <rect key="frame" x="20" y="54" width="96" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="yuH-9S-rW2"/>
                                 </constraints>
@@ -3092,7 +3095,6 @@
         <image name="person1" width="91" height="91"/>
         <image name="phone" width="21" height="21"/>
         <image name="plus" width="10.5" height="10.5"/>
-        <image name="saudiFlag" width="42.5" height="42.5"/>
         <image name="user" width="21" height="21"/>
         <image name="wishList" width="21" height="21"/>
         <namedColor name="Background">

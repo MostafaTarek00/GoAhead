@@ -24,12 +24,16 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
         }
         
     }
+    @IBOutlet weak var dontHaveAccount: UIButton!
     @IBOutlet weak var forgetPassBtn: UIButton!
     @IBOutlet weak var animationView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        dontHaveAccount.setTitle(NSLocalizedString("Don't Have  Account", comment: ""), for: .normal)
         forgetPassBtn.isHidden = true
         animationView.isHidden = true
+        userNameTf.isSecureTextEntry = false
+        print(NSLocalizedString("baseURL", comment: ""))
     }
     
     
@@ -73,8 +77,9 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                                     view.animationSpeed = 2
                                     view.play { (finished) in
                                         if finished {
+                                            view.isHidden = true
                                              self.animationView.isHidden = true
-                                            Alert.show("Error", massege: self.failure!.message, context: self)
+                                            Alert.show(NSLocalizedString("Error", comment: ""), massege: self.failure!.message, context: self)
                                         }
                                     }
                                     

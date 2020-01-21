@@ -38,76 +38,77 @@ class SecondViewController: UIViewController {
     
 func fristAnm() {
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "travel", contentMode: .scaleAspectFill)
-self.animationLable.text = "Travel and Tourism"
+    self.animationLable.text = "Travel and Tourism".localized
+
 view.animationSpeed = 8
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "restaurants", contentMode: .scaleAspectFill)
-self.animationLable.text = "Restaurants"
+self.animationLable.text = "Restaurants".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "services", contentMode: .scaleAspectFill)
-self.animationLable.text = "General Services"
+self.animationLable.text = "General Services".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "shopping2", contentMode: .scaleAspectFill)
-self.animationLable.text = "Online Shopping"
+self.animationLable.text = "Online Shopping".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "electronic", contentMode: .scaleAspectFill)
-self.animationLable.text = "Electronic"
+self.animationLable.text = "Electronic".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "food", contentMode: .scaleAspectFill)
-self.animationLable.text = "Food Stuffs"
+self.animationLable.text = "Food Stuffs".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "pharmacies", contentMode: .scaleAspectFill)
-self.animationLable.text = "Pharmacies"
+self.animationLable.text = "Pharmacies".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "education", contentMode: .scaleAspectFill)
-self.animationLable.text = "Courses and Education"
+self.animationLable.text = "Courses and Education".localized
 view.animationSpeed = 3
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "cars", contentMode: .scaleAspectFill)
-self.animationLable.text = "Cars"
+self.animationLable.text = "Cars".localized
 view.animationSpeed = 2
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "news", contentMode: .scaleAspectFill)
-self.animationLable.text = "News"
+self.animationLable.text = "News".localized
 view.animationSpeed = 2
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "government", contentMode: .scaleAspectFill)
-self.animationLable.text = "Government"
+self.animationLable.text = "Government".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "banks", contentMode: .scaleAspectFill)
-self.animationLable.text = "Banks"
+self.animationLable.text = "Banks".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "fashion", contentMode: .scaleAspectFill)
-self.animationLable.text = "Fashion"
+self.animationLable.text = "Fashion".localized
 view.play { (finished) in
 if finished {
 view.isHidden = true
 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "saudiclubs", contentMode: .scaleAspectFill)
-self.animationLable.text = "Saudi Clubs"
+self.animationLable.text = "Saudi Clubs".localized
 view.play { (finished) in
 if finished {
    if let vc = self.storyboard?.instantiateViewController(identifier: "ThirdViewController") as? ThirdViewController {
@@ -182,3 +183,8 @@ if finished {
    
         
 
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
+}

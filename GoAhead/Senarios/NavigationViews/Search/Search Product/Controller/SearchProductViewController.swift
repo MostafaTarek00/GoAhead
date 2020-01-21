@@ -46,7 +46,7 @@ class SearchProductViewController: UIViewController ,NVActivityIndicatorViewable
                                     self.failure = response
                                     print(response)
                                     self.stopAnimating()
-                                    Alert.show("Error", massege: self.failure!.message, context: self)
+                                    Alert.show(NSLocalizedString("Error", comment: ""), massege: self.failure!.message, context: self)
                                 }
                             case .failure(let error):
                                 DispatchQueue.main.async {

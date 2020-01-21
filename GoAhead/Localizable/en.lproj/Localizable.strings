@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  GoAhead
+
+  Created by Mustafa on 1/21/20.
+  Copyright © 2020 Maged. All rights reserved.
+*/
+"lang" = "en";
+"Don't Have  Account" = "Don't Have  Account?";
+"Go To Login" = "Go To Login";
+"Error" = "Error";
+"Success" = "Success";
+"baseURL" = "http://www.goaheadho.com/goahead_en";
+"baseRigesterUrl" = "http://www.goaheadho.com/goahead_en/User/register/82984218/951735";
+"Travel and Tourism" = "Travel and Tourism";
+"Restaurants" = "Restaurants";
+"General Services" = "General Services";
+"Online Shopping" = "Online Shopping";
+"Electronic" = "Electronic";
+"Food Stuffs" = "Food Stuffs";
+"Pharmacies" = "Pharmacies";
+"Courses and Education" = "Courses and Education";
+"Cars" = "Cars";
+"News" = "News";
+"Government" = "Government";
+"Banks" = "Banks";
+"Fashion" = "Fashion";
+"Saudi Clubs" = "Saudi Clubs";

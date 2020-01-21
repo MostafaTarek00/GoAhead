@@ -84,7 +84,7 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
                                 self.stopAnimating()
                                 self.failure = response
                                 self.itemOfCatogoryCollectionView.reloadData()
-                                Alert.show("Error", massege: self.failure!.message, context: self)
+                                Alert.show(NSLocalizedString("Error", comment: ""), massege: self.failure!.message, context: self)
                                 print(response)
                             }
                         case .failure(let error):

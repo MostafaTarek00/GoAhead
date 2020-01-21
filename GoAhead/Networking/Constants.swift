@@ -7,12 +7,15 @@
 //
 
 import Foundation
-
+import MOLH
 struct K {
     struct ProductionServer {
         
-        static let baseURLEn = "http://www.goaheadho.com/goahead_en"
+        static var baseURL = "baseURL".localized
         static let baseURLAr = "http://www.goaheadho.com/goahead_ar"
+        static let baseURLEn = "http://www.goaheadho.com/goahead_en"
+        static let baseRigesterUrl = NSLocalizedString("baseURL", comment: "")
+        static let baseSendOrderUrl = NSLocalizedString("baseURL", comment: "")
         static let webserviceUser = "82984218"
         static let webservicePass = "951735"
         static let userType = "User"
@@ -20,7 +23,6 @@ struct K {
         static let productCategotyType = "Product_category"
         static let productType = "Product"
         static let cartType = "User"
-
 
     }
     

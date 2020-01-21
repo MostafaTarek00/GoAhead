@@ -48,12 +48,12 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
                             self.orders?.status = JSON["status"] as! Int
                             self.orders?.message = JSON ["message"] as! String
                             self.orders?.id_order = JSON ["id_order"] as! String
-                            Alert.show("Success", massege: msg, context: self)
+                            Alert.show(NSLocalizedString("Success", comment: ""), massege: msg, context: self)
                             
                         }else if status == 2 {
                             self.orders?.status = JSON["status"] as! Int
                             self.orders?.message = JSON ["message"] as! String
-                            Alert.show("Error", massege: msg, context: self)
+                            Alert.show(NSLocalizedString("Error", comment: ""), massege: msg, context: self)
                         }
                         print(status)
                     }

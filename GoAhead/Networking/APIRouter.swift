@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import MOLH
 
 enum APIRouter: URLRequestConvertible {
     
@@ -81,10 +82,10 @@ enum APIRouter: URLRequestConvertible {
             return .get
         case .sendOrder:
             return .get
-        
+            
         }
     }
-
+    
     // MARK: - Path
     private var path: String {
         switch self {
@@ -132,8 +133,8 @@ enum APIRouter: URLRequestConvertible {
             return "/user/search/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(search)"
         case .sendOrder(let userID, let sellerID , _):
             return "/\(K.ProductionServer.cartType)/sendOrder/\(K.ProductionServer.webserviceUser)/\(K.ProductionServer.webservicePass)/\(userID)/\(sellerID)"
-        
-       
+            
+            
         }
     }
     private var parameters: Parameters? {
@@ -183,34 +184,58 @@ enum APIRouter: URLRequestConvertible {
             return nil
         case .sendOrder(let products):
             return [K.order.products : products]
-
+            
         }
         
-}
+    }
     
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try K.ProductionServer.baseURLEn.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!.asURL()
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
-        // HTTP Method
-        urlRequest.httpMethod = method.rawValue
-        // Common Headers
-        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
-        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-        urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-        
-        print("*****************\(urlRequest)")
-        // Parameters
-        if let parameters = parameters {
-            do {
-                
-                urlRequest = try URLEncoding.httpBody.encode(urlRequest, with: parameters)
-               
-            } catch {
-                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+        if MOLHLanguage.currentAppleLanguage() == "en" {
+            let url = try K.ProductionServer.baseURLEn.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!.asURL()
+            var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+            // HTTP Method
+            urlRequest.httpMethod = method.rawValue
+            // Common Headers
+            urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
+            urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+            urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
+            
+            print("*****************\(urlRequest)")
+            // Parameters
+            if let parameters = parameters {
+                do {
+                    
+                    urlRequest = try URLEncoding.httpBody.encode(urlRequest, with: parameters)
+                    
+                } catch {
+                    throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+                }
             }
+            return urlRequest
+        }else {
+            let url = try K.ProductionServer.baseURLAr.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!.asURL()
+            var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+            // HTTP Method
+            urlRequest.httpMethod = method.rawValue
+            // Common Headers
+            urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
+            urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+            urlRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
+            
+            print("*****************\(urlRequest)")
+            // Parameters
+            if let parameters = parameters {
+                do {
+                    
+                    urlRequest = try URLEncoding.httpBody.encode(urlRequest, with: parameters)
+                    
+                } catch {
+                    throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
+                }
+            }
+            return urlRequest
         }
-        return urlRequest
     }
 }
 

@@ -8,28 +8,25 @@
 
 import UIKit
 import NVActivityIndicatorView
+import MOLH
 @available(iOS 13.0, *)
 class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     var cat:Categories?
-
+    
     
     @IBOutlet weak var profileImage: UIImageView! {
         didSet{
             Rounded.roundedImage(imageView: profileImage)            
         }
     }
-    @IBOutlet weak var langFlag: UIImageView!{
-        didSet{
-            langFlag.image = UIImage(named: "unitedStatesFlag")
-        }
-    }
+    @IBOutlet weak var langFlag: UIImageView!
     @IBOutlet weak var myNameLbl: UILabel!
     @IBOutlet weak var changLang: UIButton!
     @IBOutlet weak var menuTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-         updateDate()
-         getAllCategories()
+        updateDate()
+        getAllCategories()
     }
     
     func getAllCategories(){
@@ -54,6 +51,12 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     
     func updateDate()  {
         myNameLbl.text = UserDefault.getName()
+        if MOLHLanguage.currentAppleLanguage() == "en"{
+            langFlag.image = UIImage(named: "saudiFlag")
+        }
+        else if  MOLHLanguage.currentAppleLanguage() == "ar"{
+            langFlag.image = UIImage(named: "unitedStatesFlag")
+        }
     }
     
     
@@ -65,12 +68,8 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
         }
     }
     @IBAction func changeLangPressed(_ sender: UIButton) {
-        if langFlag.image == UIImage(named: "saudiFlag"){
-            langFlag.image = UIImage(named: "unitedStatesFlag")
-        }
-        else {
-            langFlag.image = UIImage(named: "saudiFlag")
-        }
+        MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
+        MOLH.reset()
         
     }
     
@@ -92,14 +91,14 @@ extension SideMenuViewController : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    
+        
         let vc = storyboard?.instantiateViewController(identifier: "CatagogryViewController") as! CatagogryViewController
         vc.catId = cat?.categories[indexPath.item].id
         vc.index = indexPath
         self.navigationController?.pushViewController(vc, animated: true)
- 
-
- 
+        
+        
+        
     }
     
     

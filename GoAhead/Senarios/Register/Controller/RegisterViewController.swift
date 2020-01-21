@@ -14,7 +14,7 @@ import SwiftyJSON
 @available(iOS 13.0, *)
 class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     var register:Register?
-    let basedUrl = "http://www.goaheadho.com/goahead_en/User/register/82984218/951735"
+    let baseRigesterUrl = NSLocalizedString("baseRigesterUrl", comment: "")
     let  parms : [String : String] = ["image" : "0" ]
     @IBOutlet weak var userNameRegTf: DesignableUITextField!
     @IBOutlet weak var emailRegTf: DesignableUITextField!
@@ -28,6 +28,7 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
             singUpBtn.clipsToBounds = true
         }
     }
+    @IBOutlet weak var goToLogin: UIButton!
     @IBOutlet weak var animationView: UIView!{
         didSet{
             animationView.isHidden = true
@@ -35,7 +36,11 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        goToLogin.setTitle(NSLocalizedString("Go To Login", comment: ""), for: .normal)
+        userNameRegTf.isSecureTextEntry = false
+        emailRegTf.isSecureTextEntry = false
+        phoneRegTf.isSecureTextEntry = false
+
         // Do any additional setup after loading the view.
     }
     
@@ -75,8 +80,9 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
                             view.animationSpeed = 2
                             view.play { (finished) in
                                 if finished {
+                                    view.isHidden = true
                                     self.animationView.isHidden = true
-                                    Alert.show("Error", massege: msg, context: self)
+                                    Alert.show(NSLocalizedString("Error", comment: ""), massege: msg, context: self)
                                 }
                             }
                         }
@@ -103,7 +109,7 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     
     func completeUrl() -> String {
         if let name = userNameRegTf.text , let email = emailRegTf.text ,let phone = phoneRegTf.text ,let pass = passwordRegTf.text{
-            let finalUrl = "\(basedUrl)/\(name)/\(email)/\(phone)/\(pass)"
+            let finalUrl = "\(baseRigesterUrl)/\(name)/\(email)/\(phone)/\(pass)"
             print(finalUrl)
             return finalUrl
         }
