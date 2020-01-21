@@ -1391,7 +1391,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="198" height="150"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="24" translatesAutoresizingMaskIntoConstraints="NO" id="N7B-gX-233">
-                                                            <rect key="frame" x="5" y="5" width="188" height="140.00000000000006"/>
+                                                            <rect key="frame" x="5" y="5" width="188" height="140"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17O-zP-z2p">
                                                             <rect key="frame" x="5" y="103.5" width="188" height="26.5"/>
@@ -2534,7 +2534,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="198" height="150"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="24" translatesAutoresizingMaskIntoConstraints="NO" id="RjI-rt-tZe">
-                                                            <rect key="frame" x="5" y="5" width="188" height="140.00000000000006"/>
+                                                            <rect key="frame" x="5" y="5" width="188" height="140"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-8b-u7T">
                                                             <rect key="frame" x="5" y="103.5" width="188" height="26.5"/>
@@ -2807,6 +2807,49 @@
             </objects>
             <point key="canvasLocation" x="4564" y="3886"/>
         </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="Fma-8k-fo8">
+            <objects>
+                <viewController storyboardIdentifier="BrowserViewController" id="QLC-s5-8HB" customClass="BrowserViewController" customModule="GoAhead" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4oT-d7-tsK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNB-42-tnw">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpZ-mi-nyU">
+                                <rect key="frame" x="20" y="54" width="75" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="yuH-9S-rW2"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="back"/>
+                                <connections>
+                                    <action selector="backBtbPressed:" destination="QLC-s5-8HB" eventType="touchUpInside" id="1e6-HI-zAT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bpZ-mi-nyU" firstAttribute="top" secondItem="tcz-C9-8DX" secondAttribute="top" constant="10" id="DWd-jV-W9h"/>
+                            <constraint firstItem="tcz-C9-8DX" firstAttribute="bottom" secondItem="iNB-42-tnw" secondAttribute="bottom" id="Fyc-9R-cQH"/>
+                            <constraint firstItem="tcz-C9-8DX" firstAttribute="trailing" secondItem="iNB-42-tnw" secondAttribute="trailing" id="K44-ZF-4XC"/>
+                            <constraint firstItem="iNB-42-tnw" firstAttribute="top" secondItem="bpZ-mi-nyU" secondAttribute="bottom" constant="28" id="TIV-9J-nCl"/>
+                            <constraint firstItem="bpZ-mi-nyU" firstAttribute="leading" secondItem="tcz-C9-8DX" secondAttribute="leading" constant="20" id="WC3-iH-F5R"/>
+                            <constraint firstItem="iNB-42-tnw" firstAttribute="leading" secondItem="tcz-C9-8DX" secondAttribute="leading" id="ZRt-n9-UXO"/>
+                            <constraint firstItem="tcz-C9-8DX" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bpZ-mi-nyU" secondAttribute="trailing" symbolic="YES" id="kKf-am-HyK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tcz-C9-8DX"/>
+                    </view>
+                    <connections>
+                        <outlet property="webViewBrowser" destination="iNB-42-tnw" id="3SI-DU-Lki"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lzx-Yv-zAp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5462" y="3208"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="bue-sO-jle">
             <objects>
@@ -3032,6 +3075,7 @@
         <image name="25" width="1200" height="800"/>
         <image name="3" width="1200" height="1200"/>
         <image name="57" width="200" height="100"/>
+        <image name="back" width="21" height="21"/>
         <image name="cancel" width="10.5" height="10.5"/>
         <image name="email" width="21" height="21"/>
         <image name="eye" width="21" height="21"/>

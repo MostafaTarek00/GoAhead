@@ -65,6 +65,14 @@ extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewD
         return cell
         
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+          if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+              vc.url = mostAdded?.offers[indexPath.item].link
+              vc.modalPresentationStyle = .fullScreen
+              present(vc, animated: true, completion: nil)
+          }
+      }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell
         , forItemAt indexPath: IndexPath) {
         if self.mostAddCollectionView.isDragging{

@@ -157,7 +157,11 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
                 cell.lineView.backgroundColor = .clear
             }
         }else {
-            
+            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+                vc.url = offersOfCat?.offers[indexPath.item].link
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
         }
         
         
