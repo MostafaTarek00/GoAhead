@@ -28,6 +28,11 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
             singUpBtn.clipsToBounds = true
         }
     }
+    @IBOutlet weak var animationView: UIView!{
+        didSet{
+            animationView.isHidden = true
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,15 +57,28 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
                             self.register?.userID = JSON ["user_id"] as! Int
                             self.register?.name =  JSON ["name"] as! String
                             self.clearText()
-                            if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
-                                vc.modalPresentationStyle = .fullScreen
-                                self.present(vc, animated: true, completion: nil)
+                            self.animationView.isHidden = false
+                            let view = StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
+                            view.play { (finished) in
+                                if finished {
+                                    if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
+                                        vc.modalPresentationStyle = .fullScreen
+                                        self.present(vc, animated: true, completion: nil)
+                                    }
+                                }
                             }
-
                         }else if status == 2 {
                             self.register?.status = JSON["status"] as! Int
                             self.register?.message = JSON ["message"] as! String
-                            Alert.show("Error", massege: msg, context: self)
+                            self.animationView.isHidden = false
+                            let view = StartAnimationView.showLottie(view: self.animationView, fileName: "fail", contentMode: .scaleAspectFit)
+                            view.animationSpeed = 2
+                            view.play { (finished) in
+                                if finished {
+                                    self.animationView.isHidden = true
+                                    Alert.show("Error", massege: msg, context: self)
+                                }
+                            }
                         }
                         print(status)
                     }

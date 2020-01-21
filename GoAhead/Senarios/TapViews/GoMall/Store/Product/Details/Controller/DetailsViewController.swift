@@ -19,6 +19,7 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     var failure:Failure?
     var flagBtn : Bool?
    // var cartArray = [Cart]()
+    @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var imageSlider: UIScrollView!
     @IBOutlet weak var detailsTableView: UITableView!{
         didSet{
@@ -30,7 +31,7 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        animationView.isHidden = true
         showAndBacNavigation()
         getDetailsOfProduct()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
@@ -104,7 +105,6 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
         if let proName = productDetails?.product.name , let proDes = productDetails?.product.productDescription , let proPrice = productDetails?.product.price , let proImg = productDetails?.productImages[0] , let sellId = productDetails?.product.idSeller , let proId = productDetails?.product.id{
             print("first\(UserDefault.getCheckSeller())")
             if UserDefault.getCheckSeller() == "" {
-                
                 let newCart = Cart(context: Shared.context)
                 newCart.productName = proName
                 newCart.productDes = proDes
@@ -115,11 +115,17 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                 newCart.sellerId = sellId
                 Shared.cartArray.append(newCart)
                 saveInCart()
-                let vc = storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
-                navigationController?.pushViewController(vc, animated: true)
+                self.animationView.isHidden = false
+                let view = StartAnimationView.showLottie(view: self.animationView, fileName: "addcart", contentMode: .scaleToFill)
+                view.play { (finished) in
+                    if finished {
+                        let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        UserDefault.setCheckSeller(sellId)
+                        print("second\( UserDefault.getCheckSeller())")
+                    }
+                }
                 
-                UserDefault.setCheckSeller(sellId)
-                print("second\( UserDefault.getCheckSeller())")
             }else if UserDefault.getCheckSeller() == sellId{
                 let newCart = Cart(context: Shared.context)
                 newCart.productName = proName
@@ -131,16 +137,21 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                 newCart.sellerId = sellId
                 Shared.cartArray.append(newCart)
                 saveInCart()
-                let vc = storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
-                navigationController?.pushViewController(vc, animated: true)
-                
-                print("Third\( UserDefault.getCheckSeller())")
+                self.animationView.isHidden = false
+                let view = StartAnimationView.showLottie(view: self.animationView, fileName: "addcart", contentMode: .scaleToFill)
+                view.play { (finished) in
+                    if finished {
+                        let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
+                        print("Third\( UserDefault.getCheckSeller())")
+                        
+                    }
+                }
             }else {
                 Alert.show("Error", massege: "Products cannot be added from a different store", context: self)
             }
-           
-           
-
+            
         }
     
       
@@ -170,6 +181,5 @@ extension DetailsViewController : UITableViewDelegate , UITableViewDataSource {
         cell.proDis.text = productDetails?.product.productDescription
         return cell
     }
-    
     
 }

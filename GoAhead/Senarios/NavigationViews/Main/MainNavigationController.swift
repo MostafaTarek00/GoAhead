@@ -116,6 +116,16 @@ extension UIViewController {
         navigationController?.popViewController(animated: true)
 
     }
+    
+    func presentViewControllerWithTransition(viewController: UIViewController ,animated: Bool ,direction: CATransitionSubtype ){
+          let transition = CATransition()
+          transition.duration = 0.5
+          transition.type = CATransitionType.fade
+          transition.subtype = direction
+          transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+          view.window!.layer.add(transition, forKey: kCATransition)
+          present(viewController, animated: animated, completion: nil)
+      }
 }
 
 

@@ -17,6 +17,8 @@ target 'GoAhead' do
   pod 'MOLH'
   pod 'SideMenu'
   pod 'lottie-ios'
+  pod 'JBTabBarAnimation'
+
 
 
 

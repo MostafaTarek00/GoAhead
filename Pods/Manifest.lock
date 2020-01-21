@@ -4,6 +4,7 @@ PODS:
     - moa
   - BEMCheckBox (1.4.1)
   - IQKeyboardManagerSwift (6.0.4)
+  - JBTabBarAnimation (1.0.0)
   - lottie-ios (3.1.5)
   - moa (12.0.0)
   - MOLH (1.1.2)
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - Auk
   - BEMCheckBox
   - IQKeyboardManagerSwift (= 6.0.4)
+  - JBTabBarAnimation
   - lottie-ios
   - MOLH
   - NVActivityIndicatorView
@@ -36,6 +38,7 @@ SPEC REPOS:
     - Auk
     - BEMCheckBox
     - IQKeyboardManagerSwift
+    - JBTabBarAnimation
     - lottie-ios
     - moa
     - MOLH
@@ -50,6 +53,7 @@ SPEC CHECKSUMS:
   Auk: 7cc533252e2caaaa36b2be19c0b799f6057c365a
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   IQKeyboardManagerSwift: 36dbe324b4f9793f5f41ba5227f3e7c76dfefd50
+  JBTabBarAnimation: 34a3d3abc0f53bd3baaa69cb8610be7236aa6d31
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
   moa: e2346f12de6c65bbca4d103950d45db9e46785ef
   MOLH: 79723d6938aff0ac02aebe4d89cc96b73f46fa32
@@ -59,6 +63,6 @@ SPEC CHECKSUMS:
   SOTabBar: e77bb09492e9919953f65ce2b5238f835c639dc1
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 61cdeba04941aa6f3844521555871a38bc758397
+PODFILE CHECKSUM: 3f7a894491136d36d03a38e77836d4a47d753295
 
 COCOAPODS: 1.8.4

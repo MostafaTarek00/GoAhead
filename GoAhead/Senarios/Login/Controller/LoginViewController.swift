@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+
 @available(iOS 13.0, *)
 class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     var login:Login?
@@ -28,6 +29,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         forgetPassBtn.isHidden = true
+        animationView.isHidden = true
     }
     
     
@@ -44,10 +46,16 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                         print(response)
                         self.setData()
                         self.clearText()
-                        StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
-                        if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
-                            vc.modalPresentationStyle = .fullScreen
-                            self.present(vc, animated: true, completion: nil)
+                        self.animationView.isHidden = false
+                        let view = StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
+                        view.play { (finished) in
+                            if finished {
+                                if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar"){
+                                    vc.modalPresentationStyle = .fullScreen
+                                    self.present(vc, animated: true, completion: nil)
+                                }
+                                
+                            }
                         }
                     }
                 case .failure(let error):
@@ -60,7 +68,16 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                                 DispatchQueue.main.async {
                                     self.failure = response
                                     self.stopAnimating()
-                                    Alert.show("Error", massege: self.failure!.message, context: self)
+                                    self.animationView.isHidden = false
+                                    let view = StartAnimationView.showLottie(view: self.animationView, fileName: "fail", contentMode: .scaleAspectFit)
+                                    view.animationSpeed = 2
+                                    view.play { (finished) in
+                                        if finished {
+                                             self.animationView.isHidden = true
+                                            Alert.show("Error", massege: self.failure!.message, context: self)
+                                        }
+                                    }
+                                    
                                 }
                             case .failure(let error):
                                 DispatchQueue.main.async {
@@ -75,7 +92,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
         }
     }
     
-   
+    
     
     
     
@@ -96,15 +113,15 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     
     
     @IBAction func forgetPasswordBtnPressed(_ sender: UIButton) {
-//        if let vc = storyboard?.instantiateViewController(identifier: "ForgetPasswordViewController") as? ForgetPasswordViewController {
-//            vc.modalPresentationStyle = .fullScreen
-//            present(vc, animated: true, completion: nil)
-//        }
+        //        if let vc = storyboard?.instantiateViewController(identifier: "ForgetPasswordViewController") as? ForgetPasswordViewController {
+        //            vc.modalPresentationStyle = .fullScreen
+        //            present(vc, animated: true, completion: nil)
+        //        }
         
     }
     
     @IBAction func signInbtnPressed(_ sender: UIButton) {
-     getLogin()
+        getLogin()
         
     }
     
