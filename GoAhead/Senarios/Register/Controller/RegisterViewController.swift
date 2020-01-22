@@ -37,7 +37,12 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
         }
         
     }
-    @IBOutlet weak var passwordRegTf: DesignableUITextField!
+    @IBOutlet weak var passwordRegTf: DesignableUITextField!{
+        didSet{
+            passwordRegTf.delegate = self
+        }
+        
+    }
     @IBOutlet weak var singUpBtn: UIButton!{
         didSet{
             singUpBtn.layer.cornerRadius = 20

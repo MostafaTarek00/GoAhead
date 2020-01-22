@@ -65,6 +65,7 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
         vc.modalPresentationStyle = .fullScreen
         vc.catId = cat?.categories[indexPath.item].id
         vc.index = indexPath
+        vc.title = cat?.categories[indexPath.item].name
         navigationController?.pushViewController(vc, animated: true)
     }
     

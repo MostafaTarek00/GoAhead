@@ -16,6 +16,8 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
     var failure:Failure?
     var addFavorite:AddAndDeleteFavoriteOffers?
     var test : String?
+    var titlebar : String?
+
     
     
     @IBOutlet weak var menuCollectionView: UICollectionView!
@@ -34,10 +36,10 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
         
         
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
-        
     }
     
     
@@ -147,9 +149,15 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
                 cell.lineView.backgroundColor = .white
                 getViewCategoryWebsites(categoryID: ((cat?.categories[indexPath.item].id)!), userId: UserDefault.getId())
                 catId = ((cat?.categories[indexPath.item].id)!)
+                self.title = cat?.categories[indexPath.item].name
+
             }
         }else {
-            
+            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+                          vc.url = offersOfCat?.offers[indexPath.item].link
+                          vc.modalPresentationStyle = .fullScreen
+                          present(vc, animated: true, completion: nil)
+                      }
             
         }
         
@@ -160,12 +168,9 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
             if let cell = collectionView.cellForItem(at: indexPath) as? MenuCollectionViewCell {
                 cell.lineView.backgroundColor = .clear
             }
+
         }else {
-            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
-                vc.url = offersOfCat?.offers[indexPath.item].link
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true, completion: nil)
-            }
+          
         }
         
         

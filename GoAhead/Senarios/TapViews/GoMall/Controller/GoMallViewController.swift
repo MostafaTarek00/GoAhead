@@ -76,6 +76,7 @@ extension GoMallViewController: UICollectionViewDelegate,UICollectionViewDataSou
         let vc = storyboard?.instantiateViewController(identifier: "StoresOfMallViewController") as! StoresOfMallViewController
         vc.modalPresentationStyle = .fullScreen
         vc.catIdOfMall = categoryOfMall?.categories[indexPath.item].id
+        vc.title = categoryOfMall?.categories[indexPath.item].name
         navigationController?.pushViewController(vc, animated: true)
     }
     
