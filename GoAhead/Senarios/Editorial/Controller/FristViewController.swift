@@ -8,7 +8,6 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
 class FristViewController: UIViewController {
     
     @IBOutlet weak var animationView: UIView!
@@ -41,18 +40,27 @@ class FristViewController: UIViewController {
     }
     
     @objc func swipeSuccessAction(){
-        let vc = storyboard?.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
-        vc.modalPresentationStyle = .fullScreen
-        presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
+            vc.modalPresentationStyle = .fullScreen
+                   presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
+        } else {
+            // Fallback on earlier versions
+        }
+       
     }
     
     func fristAnm()  {
         let view = StartAnimationView.showLottie(view: self.animationView, fileName: "loading", contentMode: .scaleAspectFill)
         view.play { (finished) in
             if finished {
-                if let vc = self.storyboard?.instantiateViewController(identifier: "SecondViewController") as? SecondViewController {
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true, completion: nil)
+                if #available(iOS 13.0, *) {
+                    if let vc = self.storyboard?.instantiateViewController(identifier: "SecondViewController") as? SecondViewController {
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                } else {
+                    // Fallback on earlier versions
                 }
             }
             
@@ -61,9 +69,13 @@ class FristViewController: UIViewController {
     
     
     @IBAction func skipBtnPressed(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

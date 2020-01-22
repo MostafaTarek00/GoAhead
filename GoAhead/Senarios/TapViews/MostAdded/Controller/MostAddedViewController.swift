@@ -9,14 +9,17 @@
 import UIKit
 import NVActivityIndicatorView
 
-@available(iOS 13.0, *)
 class MostAddedViewController: UIViewController ,NVActivityIndicatorViewable{
     var mostAdded:MostAdded?
     var offerID : String?
     @IBOutlet weak var mostAddCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        showNavigation()
+        if #available(iOS 13.0, *) {
+            showNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -49,7 +52,6 @@ class MostAddedViewController: UIViewController ,NVActivityIndicatorViewable{
     
     
 }
-@available(iOS 13.0, *)
 extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mostAdded?.offers.count ?? 0
@@ -71,11 +73,15 @@ extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewD
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-          if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
-              vc.url = mostAdded?.offers[indexPath.item].link
-              vc.modalPresentationStyle = .fullScreen
-              present(vc, animated: true, completion: nil)
-          }
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+                vc.url = mostAdded?.offers[indexPath.item].link
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
+        }
       }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell
@@ -95,7 +101,6 @@ extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewD
 
 //MARK:-UICollectionViewDelegateFlowLayout
 
-@available(iOS 13.0, *)
 extension MostAddedViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         if indexPath.row % 5 == 0 {

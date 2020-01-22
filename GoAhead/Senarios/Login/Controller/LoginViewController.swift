@@ -9,7 +9,6 @@
 import UIKit
 import NVActivityIndicatorView
 
-@available(iOS 13.0, *)
 class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     var login:Login?
     var failure:Failure?
@@ -61,9 +60,13 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                         let view = StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
                         view.play { (finished) in
                             if finished {
-                                if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar"){
-                                    vc.modalPresentationStyle = .fullScreen
-                                    self.present(vc, animated: true, completion: nil)
+                                if #available(iOS 13.0, *) {
+                                    if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar"){
+                                        vc.modalPresentationStyle = .fullScreen
+                                        self.present(vc, animated: true, completion: nil)
+                                    }
+                                } else {
+                                    // Fallback on earlier versions
                                 }
                                 
                             }
@@ -142,9 +145,13 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     }
     
     @IBAction func registerBtnPressed(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(identifier: "RegisterViewController") as? RegisterViewController {
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "RegisterViewController") as? RegisterViewController {
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

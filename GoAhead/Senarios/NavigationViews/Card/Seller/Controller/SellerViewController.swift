@@ -8,7 +8,6 @@
 
 import UIKit
 import NVActivityIndicatorView
-@available(iOS 13.0, *)
 class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
     var sellerDetails:SellerDetails?
     var sellerId : String?
@@ -32,25 +31,25 @@ class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
     
     func getDateOfSeller(){
         if let sellerId = sellerId {
-        self.startAnimating()
-        APIClient.getSellerDetails(sellerId: sellerId){ (Result) in
-            switch Result {
-            case .success(let response):
-                DispatchQueue.main.async {
-                    self.stopAnimating()
-                    self.sellerDetails = response
-                    self.otherProductCollectionView.reloadData()
-                    self.updateDate()
-                    print(response)
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.stopAnimating()
-                    print(error.localizedDescription)
+            self.startAnimating()
+            APIClient.getSellerDetails(sellerId: sellerId){ (Result) in
+                switch Result {
+                case .success(let response):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        self.sellerDetails = response
+                        self.otherProductCollectionView.reloadData()
+                        self.updateDate()
+                        print(response)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.stopAnimating()
+                        print(error.localizedDescription)
+                    }
                 }
             }
         }
-    }
     }
     
     func updateDate()  {
@@ -58,8 +57,8 @@ class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
         sellerName.text = sellerDetails?.name
         sellerPhone.text = sellerDetails?.phone
         sellerMail.text = sellerDetails?.mail
-
-
+        
+        
         
     }
     
@@ -70,7 +69,6 @@ class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
     
 }
 
-@available(iOS 13.0, *)
 extension SellerViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -88,11 +86,16 @@ extension SellerViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if #available(iOS 13.0, *) {
             let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
             vc.modalPresentationStyle = .fullScreen
             vc.ProId = sellerDetails?.products[indexPath.item].id
             navigationController?.pushViewController(vc, animated: true)
-      
+            
+        } else {
+            // Fallback on earlier versions
+        }
+        
         
     }
     
@@ -112,7 +115,6 @@ extension SellerViewController: UICollectionViewDelegate,UICollectionViewDataSou
 
 
 
-@available(iOS 13.0, *)
 extension SellerViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let cellSize = CGSize(width: self.view.frame.width / 2 - 15 , height: 330)

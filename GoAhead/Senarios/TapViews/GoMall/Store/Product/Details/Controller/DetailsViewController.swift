@@ -11,14 +11,13 @@ import Auk
 import NVActivityIndicatorView
 import CoreData
 
-@available(iOS 13.0, *)
 class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
-   // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var ProId : String?
     var productDetails:ProductDetails?
     var failure:Failure?
     var flagBtn : Bool?
-   // var cartArray = [Cart]()
+    // var cartArray = [Cart]()
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var imageSlider: UIScrollView!
     @IBOutlet weak var detailsTableView: UITableView!{
@@ -32,7 +31,11 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationView.isHidden = true
-        showAndBacNavigation()
+        if #available(iOS 13.0, *) {
+            showAndBacNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         getDetailsOfProduct()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
@@ -119,10 +122,15 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "addcart", contentMode: .scaleToFill)
                 view.play { (finished) in
                     if finished {
-                        let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        UserDefault.setCheckSeller(sellId)
-                        print("second\( UserDefault.getCheckSeller())")
+                        if #available(iOS 13.0, *) {
+                            let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            UserDefault.setCheckSeller(sellId)
+                            print("second\( UserDefault.getCheckSeller())")
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                        
                     }
                 }
                 
@@ -141,10 +149,15 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "addcart", contentMode: .scaleToFill)
                 view.play { (finished) in
                     if finished {
-                        let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        if #available(iOS 13.0, *) {
+                            let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                            self.navigationController?.pushViewController(vc, animated: true)
+                            
+                            print("Third\( UserDefault.getCheckSeller())")
+                        } else {
+                            // Fallback on earlier versions
+                        }
                         
-                        print("Third\( UserDefault.getCheckSeller())")
                         
                     }
                 }
@@ -153,8 +166,8 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
             }
             
         }
-    
-      
+        
+        
     }
     
     
@@ -168,7 +181,6 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     }
 }
 
-@available(iOS 13.0, *)
 extension DetailsViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

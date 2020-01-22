@@ -8,7 +8,6 @@
 
 import UIKit
 import NVActivityIndicatorView
-@available(iOS 13.0, *)
 class SearchProductViewController: UIViewController ,NVActivityIndicatorViewable{
     var searchProduct:SearchProduct?
     var failure:Failure?
@@ -16,7 +15,11 @@ class SearchProductViewController: UIViewController ,NVActivityIndicatorViewable
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAndBacNavigation()
+        if #available(iOS 13.0, *) {
+            showAndBacNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         getsearchProduct()
         
         // Do any additional setup after loading the view.
@@ -68,7 +71,6 @@ class SearchProductViewController: UIViewController ,NVActivityIndicatorViewable
 
 
 
-@available(iOS 13.0, *)
 extension SearchProductViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -93,11 +95,16 @@ extension SearchProductViewController : UICollectionViewDelegate , UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+            vc.modalPresentationStyle = .fullScreen
+            vc.ProId = searchProduct?.products[indexPath.item].id
+            navigationController?.pushViewController(vc, animated: true)
+            
+        } else {
+            // Fallback on earlier versions
+        }
         
-        vc.modalPresentationStyle = .fullScreen
-        vc.ProId = searchProduct?.products[indexPath.item].id
-        navigationController?.pushViewController(vc, animated: true)
         
         
         
@@ -116,7 +123,6 @@ extension SearchProductViewController : UICollectionViewDelegate , UICollectionV
     
 }
 
-@available(iOS 13.0, *)
 extension SearchProductViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{

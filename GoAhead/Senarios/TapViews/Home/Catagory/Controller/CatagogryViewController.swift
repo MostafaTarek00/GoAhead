@@ -9,7 +9,6 @@
 import UIKit
 import NVActivityIndicatorView
 
-@available(iOS 13.0, *)
 class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
     var cat:Categories?
     var offersOfCat:OffersOfCategory?
@@ -31,7 +30,11 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAndBacNavigation()
+        if #available(iOS 13.0, *) {
+            showAndBacNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         getAllCategories()
         
         
@@ -110,7 +113,6 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
     
 }
 
-@available(iOS 13.0, *)
 extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
@@ -153,11 +155,15 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
 
             }
         }else {
-            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
-                          vc.url = offersOfCat?.offers[indexPath.item].link
-                          vc.modalPresentationStyle = .fullScreen
-                          present(vc, animated: true, completion: nil)
-                      }
+            if #available(iOS 13.0, *) {
+                if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+                    vc.url = offersOfCat?.offers[indexPath.item].link
+                    vc.modalPresentationStyle = .fullScreen
+                    present(vc, animated: true, completion: nil)
+                }
+            } else {
+                // Fallback on earlier versions
+            }
             
         }
         
@@ -189,7 +195,6 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
 
 //MARK:-UICollectionViewDelegateFlowLayout
 
-@available(iOS 13.0, *)
 extension CatagogryViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         

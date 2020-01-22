@@ -9,13 +9,16 @@
 import UIKit
 import SDWebImage
 import NVActivityIndicatorView
-@available(iOS 13.0, *)
 class HomeViewController: UIViewController ,NVActivityIndicatorViewable{
     var cat:Categories?
     @IBOutlet weak var departmentCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        showNavigation()
+        if #available(iOS 13.0, *) {
+            showNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         getAllCategories()
         
     }
@@ -45,7 +48,6 @@ class HomeViewController: UIViewController ,NVActivityIndicatorViewable{
     
 }
 
-@available(iOS 13.0, *)
 extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  cat?.categories.count ?? 0
@@ -61,12 +63,17 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let vc = storyboard?.instantiateViewController(identifier: "CatagogryViewController") as! CatagogryViewController
-        vc.modalPresentationStyle = .fullScreen
-        vc.catId = cat?.categories[indexPath.item].id
-        vc.index = indexPath
-        vc.title = cat?.categories[indexPath.item].name
-        navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "CatagogryViewController") as! CatagogryViewController
+            vc.modalPresentationStyle = .fullScreen
+                   vc.catId = cat?.categories[indexPath.item].id
+                   vc.index = indexPath
+                   vc.title = cat?.categories[indexPath.item].name
+                   navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -81,7 +88,6 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
 }
 
-@available(iOS 13.0, *)
 extension HomeViewController : UICollectionViewDelegateFlowLayout {
     
     

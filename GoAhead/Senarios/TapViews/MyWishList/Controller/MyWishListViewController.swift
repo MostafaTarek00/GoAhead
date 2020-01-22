@@ -9,14 +9,17 @@
 import UIKit
 import NVActivityIndicatorView
 
-@available(iOS 13.0, *)
 class MyWishListViewController: UIViewController , NVActivityIndicatorViewable {
     var myWishList:MyWishList?
     
     @IBOutlet weak var myWishListCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        showNavigation()
+        if #available(iOS 13.0, *) {
+            showNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -52,7 +55,6 @@ class MyWishListViewController: UIViewController , NVActivityIndicatorViewable {
     
 }
 
-@available(iOS 13.0, *)
 extension MyWishListViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myWishList?.offers.count ?? 0
@@ -73,10 +75,14 @@ extension MyWishListViewController : UICollectionViewDelegate , UICollectionView
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
-            vc.url = myWishList?.offers[indexPath.item].link
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+                vc.url = myWishList?.offers[indexPath.item].link
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     
@@ -97,7 +103,6 @@ extension MyWishListViewController : UICollectionViewDelegate , UICollectionView
 
 //MARK:-UICollectionViewDelegateFlowLayout
 
-@available(iOS 13.0, *)
 extension MyWishListViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         if indexPath.row % 5 == 0 {
@@ -114,7 +119,6 @@ extension MyWishListViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 
-@available(iOS 13.0, *)
 extension MyWishListViewController : ReloadData {
     func reload() {
         getUserFavoriteOffers()

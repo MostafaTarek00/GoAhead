@@ -12,7 +12,6 @@ import NVActivityIndicatorView
 import Alamofire
 import SwiftyJSON
 
-@available(iOS 13.0, *)
 class CardViewController: UIViewController ,NVActivityIndicatorViewable {
     var count : Int = 1
     var price : String?
@@ -81,16 +80,20 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
         }
         print(data)
         sendOrdes(url: completeUrl(), parameters: parameters)
-        if let vc = storyboard?.instantiateViewController(identifier: "SellerViewController") as? SellerViewController {
-            vc.modalPresentationStyle = .fullScreen
-            vc.sellerId = UserDefault.getCheckSeller()
-            deleteAll()
-            Shared.cartArray.removeAll()
-            UserDefault.setCheckSeller("")
-            deleteInCart()
-            
-            navigationController?.pushViewController(vc, animated: true)
-            
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "SellerViewController") as? SellerViewController {
+                vc.modalPresentationStyle = .fullScreen
+                vc.sellerId = UserDefault.getCheckSeller()
+                deleteAll()
+                Shared.cartArray.removeAll()
+                UserDefault.setCheckSeller("")
+                deleteInCart()
+                
+                navigationController?.pushViewController(vc, animated: true)
+                
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     
@@ -142,7 +145,6 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
     
 }
 
-@available(iOS 13.0, *)
 extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  Shared.cartArray.count
@@ -163,11 +165,16 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
-        vc.modalPresentationStyle = .fullScreen
-        vc.ProId = Shared.cartArray[indexPath.item].productId
-        vc.flagBtn = true
-        navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+            vc.modalPresentationStyle = .fullScreen
+                   vc.ProId = Shared.cartArray[indexPath.item].productId
+                   vc.flagBtn = true
+                   navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -181,7 +188,6 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
 }
 
-@available(iOS 13.0, *)
 extension CardViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let cellSize = CGSize(width: self.view.frame.width/1-20 , height: 250)
@@ -190,7 +196,6 @@ extension CardViewController : UICollectionViewDelegateFlowLayout {
 }
 
 
-@available(iOS 13.0, *)
 extension CardViewController : UpdateCart {
     func delete(index: Int) {
         Shared.context.delete(Shared.cartArray[index])

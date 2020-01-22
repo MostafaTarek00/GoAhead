@@ -7,7 +7,6 @@
 //
 
 import UIKit
-@available(iOS 13.0, *)
 class BrowserViewController: UIViewController {
     var url : String?
     @IBOutlet weak var webViewBrowser: UIWebView!

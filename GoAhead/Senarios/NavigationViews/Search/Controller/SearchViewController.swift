@@ -8,14 +8,12 @@
 
 import UIKit
 import BEMCheckBox
-@available(iOS 13.0, *)
 protocol SearchCategoryDelegate {
     func transferResultCat( text : String)
     func transferResultSeller( text : String)
     func transferResultProduct( text : String)
 }
 
-@available(iOS 13.0, *)
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var bigView: UIView!

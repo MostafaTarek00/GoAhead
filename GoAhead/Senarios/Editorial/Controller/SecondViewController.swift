@@ -8,7 +8,6 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
 class SecondViewController: UIViewController {
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var animationLable: UILabel!
@@ -111,10 +110,14 @@ let view = StartAnimationView.showLottie(view: self.animationView, fileName: "sa
 self.animationLable.text = "Saudi Clubs".localized
 view.play { (finished) in
 if finished {
-   if let vc = self.storyboard?.instantiateViewController(identifier: "ThirdViewController") as? ThirdViewController {
-       vc.modalPresentationStyle = .fullScreen
-       self.present(vc, animated: true, completion: nil)
-   }
+    if #available(iOS 13.0, *) {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "ThirdViewController") as? ThirdViewController {
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+    } else {
+        // Fallback on earlier versions
+    }
     }
 
 }
@@ -157,21 +160,35 @@ if finished {
        
        @objc func swipeAction(_ sender: UISwipeGestureRecognizer){
            if sender.direction == .right {
-               let vc = storyboard?.instantiateViewController(identifier: "FristViewController") as! FristViewController
-               vc.modalPresentationStyle = .fullScreen
-               presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
+            if #available(iOS 13.0, *) {
+                let vc = storyboard?.instantiateViewController(identifier: "FristViewController") as! FristViewController
+                vc.modalPresentationStyle = .fullScreen
+                presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
+            } else {
+                // Fallback on earlier versions
+            }
+               
            } else if sender.direction == .left {
-               let vc = storyboard?.instantiateViewController(identifier: "ThirdViewController") as! ThirdViewController
-               vc.modalPresentationStyle = .fullScreen
-               presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromLeft)
+            if #available(iOS 13.0, *) {
+                let vc = storyboard?.instantiateViewController(identifier: "ThirdViewController") as! ThirdViewController
+                vc.modalPresentationStyle = .fullScreen
+                              presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromLeft)
+            } else {
+                // Fallback on earlier versions
+            }
+              
            }
        }
     
     
     @IBAction func skipBtnPressed(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

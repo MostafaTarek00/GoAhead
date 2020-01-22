@@ -8,7 +8,6 @@
 
 import UIKit
 import NVActivityIndicatorView
-@available(iOS 13.0, *)
 class SearchCategoryViewController: UIViewController ,NVActivityIndicatorViewable {
     var searchCategories:SearchCategories?
     var failure:Failure?
@@ -67,7 +66,6 @@ class SearchCategoryViewController: UIViewController ,NVActivityIndicatorViewabl
     
 }
 
-@available(iOS 13.0, *)
 extension SearchCategoryViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,10 +82,15 @@ extension SearchCategoryViewController: UICollectionViewDelegate,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let vc = storyboard?.instantiateViewController(identifier: "StoresOfMallViewController") as! StoresOfMallViewController
-        vc.modalPresentationStyle = .fullScreen
-        vc.catIdOfMall = searchCategories?.categories[indexPath.item].id
-        navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "StoresOfMallViewController") as! StoresOfMallViewController
+            vc.modalPresentationStyle = .fullScreen
+            vc.catIdOfMall = searchCategories?.categories[indexPath.item].id
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -105,7 +108,6 @@ extension SearchCategoryViewController: UICollectionViewDelegate,UICollectionVie
 }
 
 
-@available(iOS 13.0, *)
 extension SearchCategoryViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let cellSize = CGSize(width: self.view.frame.width / 2 - 15 , height: 180)

@@ -9,7 +9,6 @@
 import UIKit
 import NVActivityIndicatorView
 import MOLH
-@available(iOS 13.0, *)
 class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     var cat:Categories?
     
@@ -62,9 +61,13 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     
     
     @IBAction func logOutBtnPressed(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     @IBAction func changeLangPressed(_ sender: UIButton) {
@@ -75,7 +78,6 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     
 }
 
-@available(iOS 13.0, *)
 extension SideMenuViewController : UITableViewDataSource , UITableViewDelegate {
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,10 +94,15 @@ extension SideMenuViewController : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        let vc = storyboard?.instantiateViewController(identifier: "CatagogryViewController") as! CatagogryViewController
-        vc.catId = cat?.categories[indexPath.item].id
-        vc.index = indexPath
-        self.navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "CatagogryViewController") as! CatagogryViewController
+            vc.catId = cat?.categories[indexPath.item].id
+            vc.index = indexPath
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        } else {
+            // Fallback on earlier versions
+        }
         
         
         

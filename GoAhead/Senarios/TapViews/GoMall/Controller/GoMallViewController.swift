@@ -8,22 +8,25 @@
 
 import UIKit
 import NVActivityIndicatorView
-@available(iOS 13.0, *)
 class GoMallViewController: UIViewController ,NVActivityIndicatorViewable{
     var categoryOfMall:CategoryOfMall?
-   
+    
     
     @IBOutlet weak var goMallCollectionView: UICollectionView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showNavigation()
+        if #available(iOS 13.0, *) {
+            showNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         getAllCategoriesOfMall()
         
         
     }
-   
+    
     
     func getAllCategoriesOfMall(){
         self.startAnimating()
@@ -52,7 +55,6 @@ class GoMallViewController: UIViewController ,NVActivityIndicatorViewable{
 }
 
 
-@available(iOS 13.0, *)
 extension GoMallViewController: UICollectionViewDelegate,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,11 +75,16 @@ extension GoMallViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let vc = storyboard?.instantiateViewController(identifier: "StoresOfMallViewController") as! StoresOfMallViewController
-        vc.modalPresentationStyle = .fullScreen
-        vc.catIdOfMall = categoryOfMall?.categories[indexPath.item].id
-        vc.title = categoryOfMall?.categories[indexPath.item].name
-        navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "StoresOfMallViewController") as! StoresOfMallViewController
+            vc.modalPresentationStyle = .fullScreen
+            vc.catIdOfMall = categoryOfMall?.categories[indexPath.item].id
+            vc.title = categoryOfMall?.categories[indexPath.item].name
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -95,7 +102,6 @@ extension GoMallViewController: UICollectionViewDelegate,UICollectionViewDataSou
 }
 
 
-@available(iOS 13.0, *)
 extension GoMallViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let cellSize = CGSize(width: self.view.frame.width / 2 - 15 , height: 180)

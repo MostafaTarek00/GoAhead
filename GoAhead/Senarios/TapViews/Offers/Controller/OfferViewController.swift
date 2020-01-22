@@ -9,7 +9,6 @@
 import UIKit
 import NVActivityIndicatorView
 
-@available(iOS 13.0, *)
 class OfferViewController: UIViewController ,NVActivityIndicatorViewable{
     var offers:Offers?
     
@@ -19,7 +18,11 @@ class OfferViewController: UIViewController ,NVActivityIndicatorViewable{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showNavigation()
+        if #available(iOS 13.0, *) {
+            showNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -52,7 +55,6 @@ class OfferViewController: UIViewController ,NVActivityIndicatorViewable{
 }
 
 
-@available(iOS 13.0, *)
 extension OfferViewController: UICollectionViewDelegate,UICollectionViewDataSource  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  offers?.offers.count ?? 0
@@ -74,10 +76,14 @@ extension OfferViewController: UICollectionViewDelegate,UICollectionViewDataSour
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
-            vc.url = offers?.offers[indexPath.item].link
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+                vc.url = offers?.offers[indexPath.item].link
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     
@@ -98,7 +104,6 @@ extension OfferViewController: UICollectionViewDelegate,UICollectionViewDataSour
 
 //MARK:-UICollectionViewDelegateFlowLayout
 
-@available(iOS 13.0, *)
 extension OfferViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         if indexPath.row % 5 == 0 {

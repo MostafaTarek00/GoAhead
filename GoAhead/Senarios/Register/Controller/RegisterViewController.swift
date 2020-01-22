@@ -11,7 +11,6 @@ import NVActivityIndicatorView
 import Alamofire
 import SwiftyJSON
 
-@available(iOS 13.0, *)
 class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     var register:Register?
     let baseRigesterUrl = NSLocalizedString("baseRigesterUrl", comment: "")
@@ -86,9 +85,13 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
                             let view = StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
                             view.play { (finished) in
                                 if finished {
-                                    if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
-                                        vc.modalPresentationStyle = .fullScreen
-                                        self.present(vc, animated: true, completion: nil)
+                                    if #available(iOS 13.0, *) {
+                                        if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
+                                            vc.modalPresentationStyle = .fullScreen
+                                            self.present(vc, animated: true, completion: nil)
+                                        }
+                                    } else {
+                                        // Fallback on earlier versions
                                     }
                                 }
                             }

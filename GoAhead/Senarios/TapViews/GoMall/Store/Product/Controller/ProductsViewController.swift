@@ -8,7 +8,6 @@
 
 import UIKit
 import NVActivityIndicatorView
-@available(iOS 13.0, *)
 class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
     var catIdOfMall : Int?
     var productStoreOfCategory:ProductStoreOfCategory?
@@ -20,7 +19,11 @@ class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        showAndBacNavigation()
+        if #available(iOS 13.0, *) {
+            showAndBacNavigation()
+        } else {
+            // Fallback on earlier versions
+        }
         if type == 1 {
             getAllProductByCategory()
         }else {
@@ -99,7 +102,6 @@ class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
 }
 
 
-@available(iOS 13.0, *)
 extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if type == 1 {
@@ -133,16 +135,21 @@ extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
-        if type == 1 {
-            vc.modalPresentationStyle = .fullScreen
-            vc.ProId = productStoreOfCategory?.offers[indexPath.item].id
-            navigationController?.pushViewController(vc, animated: true)
-        }else {
-            vc.modalPresentationStyle = .fullScreen
-            vc.ProId = allProduct?.products?[indexPath.item].id
-            navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+            if type == 1 {
+                vc.modalPresentationStyle = .fullScreen
+                vc.ProId = productStoreOfCategory?.offers[indexPath.item].id
+                navigationController?.pushViewController(vc, animated: true)
+            }else {
+                vc.modalPresentationStyle = .fullScreen
+                vc.ProId = allProduct?.products?[indexPath.item].id
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        } else {
+            // Fallback on earlier versions
         }
+        
         
         
     }
@@ -160,7 +167,6 @@ extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDa
     
 }
 
-@available(iOS 13.0, *)
 extension ProductsViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{

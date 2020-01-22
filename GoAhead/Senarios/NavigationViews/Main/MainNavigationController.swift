@@ -11,18 +11,16 @@ import SideMenu
 import CoreData
 import MOLH
 
-@available(iOS 13.0, *)
 class MainNavigationController: UINavigationController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     
 }
 
-@available(iOS 13.0, *)
 extension UIViewController {
     func showNavigation() {
         navigationItem.hidesBackButton = true
@@ -90,65 +88,94 @@ extension UIViewController {
     
     
     @objc func menuBtn(){
-        let vc = storyboard?.instantiateViewController(identifier: "SideMenuNavigationController") as! SideMenuNavigationController
-        vc.settings = SharedMenu.settings(view: self.view)
-        present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "SideMenuNavigationController") as! SideMenuNavigationController
+            vc.settings = SharedMenu.settings(view: self.view)
+            present(vc, animated: true, completion: nil)
+            
+        } else {
+            // Fallback on earlier versions
+        }
         
         
     }
     
     
     @objc func cartBtn(){
-        let vc = storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
-        navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+            navigationController?.pushViewController(vc, animated: true)
+            
+        } else {
+            // Fallback on earlier versions
+        }
         
     }
     
     
     @objc func searchBtn(){
-        let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as! SearchViewController
-        vc.modalPresentationStyle = .overFullScreen
-        vc.d = self
-        self.present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as! SearchViewController
+            vc.modalPresentationStyle = .overFullScreen
+            vc.d = self
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
-
+    
     @objc func backBtn(){
         navigationController?.popViewController(animated: true)
-
+        
     }
     
     func presentViewControllerWithTransition(viewController: UIViewController ,animated: Bool ,direction: CATransitionSubtype ){
-          let transition = CATransition()
-          transition.duration = 0.5
-          transition.type = CATransitionType.fade
-          transition.subtype = direction
-          transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
-          view.window!.layer.add(transition, forKey: kCATransition)
-          present(viewController, animated: animated, completion: nil)
-      }
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = CATransitionType.fade
+        transition.subtype = direction
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(viewController, animated: animated, completion: nil)
+    }
 }
 
 
-@available(iOS 13.0, *)
 extension UIViewController : SearchCategoryDelegate {
     func transferResultProduct(text: String) {
-        let vc = storyboard?.instantiateViewController(identifier: "SearchProductViewController") as! SearchProductViewController
-        vc.searchText = text
-        self.navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "SearchProductViewController") as! SearchProductViewController
+            vc.searchText = text
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
     
     func transferResultSeller(text: String) {
-        let vc = storyboard?.instantiateViewController(identifier: "SearchSellerViewController") as! SearchSellerViewController
-        vc.searchText = text
-        self.navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "SearchSellerViewController") as! SearchSellerViewController
+            vc.searchText = text
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
-
-
-func transferResultCat(text: String) {
-    let vc = storyboard?.instantiateViewController(identifier: "SearchCategoryViewController") as! SearchCategoryViewController
-    vc.searchText = text
-    self.navigationController?.pushViewController(vc, animated: true)
-}
-
-
+    
+    
+    func transferResultCat(text: String) {
+        if #available(iOS 13.0, *) {
+            let vc = storyboard?.instantiateViewController(identifier: "SearchCategoryViewController") as! SearchCategoryViewController
+            vc.searchText = text
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+    
+    
 }

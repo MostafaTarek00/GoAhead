@@ -8,7 +8,6 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
 class ThirdViewController: UIViewController {
     @IBOutlet weak var animationView: UIView!
     @IBOutlet weak var v1: UIView!
@@ -52,13 +51,23 @@ class ThirdViewController: UIViewController {
     
     @objc func swipeAction(_ sender: UISwipeGestureRecognizer){
         if sender.direction == .right {
-            let vc = storyboard?.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
-            vc.modalPresentationStyle = .fullScreen
-            presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
+            if #available(iOS 13.0, *) {
+                let vc = storyboard?.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
+                vc.modalPresentationStyle = .fullScreen
+                           presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
+            } else {
+                // Fallback on earlier versions
+            }
+           
         } else if sender.direction == .left {
-            let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-            vc.modalPresentationStyle = .fullScreen
-            presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromLeft)
+            if #available(iOS 13.0, *) {
+                let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                vc.modalPresentationStyle = .fullScreen
+                           presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromLeft)
+            } else {
+                // Fallback on earlier versions
+            }
+           
         }
     }
     
@@ -86,9 +95,13 @@ class ThirdViewController: UIViewController {
         
     
     @IBAction func startBtnPressed(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+        if #available(iOS 13.0, *) {
+            if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
         }
     }
     
