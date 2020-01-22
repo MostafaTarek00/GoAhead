@@ -33,7 +33,7 @@ class SearchViewController: UIViewController {
         }
         
     }
-    @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var searchBtnPress: UIButton!
     var searchType : Int?
     var d : SearchCategoryDelegate?
     var mainNavigationController: MainNavigationController?

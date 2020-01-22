@@ -3050,7 +3050,7 @@
                     <connections>
                         <outlet property="bigView" destination="qbJ-Ep-qyH" id="Q4h-db-DjV"/>
                         <outlet property="popupView" destination="E5p-az-zcY" id="mtL-hh-Yh4"/>
-                        <outlet property="searchBtn" destination="3Tu-Rx-KHP" id="aPw-q4-08i"/>
+                        <outlet property="searchBtnPress" destination="3Tu-Rx-KHP" id="nRO-bb-ymg"/>
                         <outlet property="searchTextF" destination="jzH-VY-FOw" id="48a-eM-ZE8"/>
                         <outletCollection property="search" destination="hS2-bY-QkQ" collectionClass="NSMutableArray" id="N1I-hs-Izs"/>
                         <outletCollection property="search" destination="bE0-TC-gqv" collectionClass="NSMutableArray" id="alG-ER-aGr"/>

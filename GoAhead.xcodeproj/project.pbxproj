@@ -17,7 +17,6 @@
 		3B0E590C23BD2D5F00A564D7 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B0E590B23BD2D5F00A564D7 /* Color.xcassets */; };
 		3B0E80842385FAA900ACB085 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E80832385FAA900ACB085 /* SideMenuViewController.swift */; };
 		3B0E80872385FF8200ACB085 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0E80862385FF8200ACB085 /* HomeViewController.swift */; };
-		3B0EE89B23BAABDD00D67389 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B0EE89A23BAABDC00D67389 /* Media.xcassets */; };
 		3B0F0D4323D6FAFE00F6775C /* shopping5.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B0F0D4223D6FAFE00F6775C /* shopping5.json */; };
 		3B0F0D4523D6FD9D00F6775C /* addcart.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B0F0D4423D6FD9D00F6775C /* addcart.json */; };
 		3B0F0D4923D7061000F6775C /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F0D4823D7061000F6775C /* BrowserViewController.swift */; };
@@ -140,7 +139,6 @@
 		3B0E80812385F3A700ACB085 /* GoAheadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoAheadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0E80832385FAA900ACB085 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		3B0E80862385FF8200ACB085 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		3B0EE89A23BAABDC00D67389 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		3B0F0D4223D6FAFE00F6775C /* shopping5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shopping5.json; sourceTree = "<group>"; };
 		3B0F0D4423D6FD9D00F6775C /* addcart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = addcart.json; sourceTree = "<group>"; };
 		3B0F0D4823D7061000F6775C /* BrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
@@ -894,7 +892,6 @@
 				3B17639823BDFDA500871CE9 /* Navigation.xcassets */,
 				3B196D0F23C0BE2C001F2628 /* Tab.xcassets */,
 				3B0E590B23BD2D5F00A564D7 /* Color.xcassets */,
-				3B0EE89A23BAABDC00D67389 /* Media.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1210,7 +1207,6 @@
 				3B0F784F23D3609B00374F6F /* success.json in Resources */,
 				3B2A867B23D5F3CE0060B02B /* shopping3.json in Resources */,
 				3B2A865F23D5B1C10060B02B /* pharmacies.json in Resources */,
-				3B0EE89B23BAABDD00D67389 /* Media.xcassets in Resources */,
 				3B2A867623D5EC100060B02B /* shopping1.json in Resources */,
 				3B2A866A23D5BF400060B02B /* banks.json in Resources */,
 				262E5B2221AFE578009363E7 /* Main.storyboard in Resources */,
