@@ -13,11 +13,9 @@ target 'GoAhead' do
   pod 'SwiftyJSON'
   pod 'Auk'
   pod 'BEMCheckBox'
-  pod 'SOTabBar'
   pod 'MOLH'
   pod 'SideMenu'
   pod 'lottie-ios'
-  pod 'JBTabBarAnimation'
 
 
 
