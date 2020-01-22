@@ -17,8 +17,13 @@ class MostAddedViewController: UIViewController ,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         showNavigation()
-        getMostOffersAdded()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        getMostOffersAdded()
+
     }
     
     func getMostOffersAdded(){

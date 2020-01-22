@@ -17,54 +17,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
         rootviewcontroller.rootViewController = stry.instantiateViewController(withIdentifier: "TabBar")
     }
     
-
+    
     var window: UIWindow?
-
-
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         MOLH.shared.activate(true)
+        
+        let didLunchedBefore = UserDefaults.standard.bool(forKey: "didLunchedBefore")
+        if !didLunchedBefore {
+            UserDefaults.standard.set(true, forKey: "didLunchedBefore")
+            UserDefaults.standard.synchronize()
+            let storBoared = UIStoryboard(name: "Main", bundle: nil)
+            if #available(iOS 13.0, *) {
+                let vc = storBoared.instantiateViewController(identifier: "FristViewController") as! FristViewController
+                self.window?.makeKeyAndVisible()
+                self.window?.rootViewController = vc
+                
+            }
+            
+            
+        }
         return true
     }
-
-
+    
+    
     func applicationWillTerminate(_ application: UIApplication) {
         self.saveContext()
         
     }
-
-
+    
+    
     // MARK: - Core Data stack
-
-        lazy var persistentContainer: NSPersistentContainer = {
-          
-           
-            let container = NSPersistentContainer(name: "CartDataModel")
-            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-                if let error = error as NSError? {
-                    
-                    fatalError("Unresolved error \(error), \(error.userInfo)")
-                }
-            })
-            return container
-        }()
-
-        // MARK: - Core Data Saving support
-
-        func saveContext () {
-            let context = persistentContainer.viewContext
-            if context.hasChanges {
-                do {
-                    try context.save()
-                } catch {
-                   
-                    let nserror = error as NSError
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-                }
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        
+        
+        let container = NSPersistentContainer(name: "CartDataModel")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    // MARK: - Core Data Saving support
+    
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-
     }
+    
+}
 
 
 

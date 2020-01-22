@@ -88,8 +88,9 @@ extension SellerViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-            let vc = storyboard?.instantiateViewController(identifier: "ProductsViewController") as! ProductsViewController
+            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
             vc.modalPresentationStyle = .fullScreen
+            vc.ProId = sellerDetails?.products[indexPath.item].id
             navigationController?.pushViewController(vc, animated: true)
       
         

@@ -20,11 +20,14 @@ class OfferViewController: UIViewController ,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         showNavigation()
-        getAllOffers()
         
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        getAllOffers()
+
+    }
     
     func getAllOffers(){
         self.startAnimating()

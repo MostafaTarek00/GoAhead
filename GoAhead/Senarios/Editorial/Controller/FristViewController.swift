@@ -71,3 +71,11 @@ class FristViewController: UIViewController {
     
 }
 
+
+extension UIViewController: UITextFieldDelegate{
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+          textField.resignFirstResponder()
+          return true
+      }
+}
+

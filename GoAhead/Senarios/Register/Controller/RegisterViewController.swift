@@ -16,9 +16,27 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     var register:Register?
     let baseRigesterUrl = NSLocalizedString("baseRigesterUrl", comment: "")
     let  parms : [String : String] = ["image" : "0" ]
-    @IBOutlet weak var userNameRegTf: DesignableUITextField!
-    @IBOutlet weak var emailRegTf: DesignableUITextField!
-    @IBOutlet weak var phoneRegTf: DesignableUITextField!
+    @IBOutlet weak var userNameRegTf: DesignableUITextField!{
+        didSet{
+            userNameRegTf.delegate = self
+            userNameRegTf.isSecureTextEntry = false
+        }
+        
+    }
+    @IBOutlet weak var emailRegTf: DesignableUITextField!{
+        didSet{
+            emailRegTf.delegate = self
+            emailRegTf.isSecureTextEntry = false
+        }
+        
+    }
+    @IBOutlet weak var phoneRegTf: DesignableUITextField!{
+        didSet{
+            phoneRegTf.delegate = self
+            phoneRegTf.isSecureTextEntry = false
+        }
+        
+    }
     @IBOutlet weak var passwordRegTf: DesignableUITextField!
     @IBOutlet weak var singUpBtn: UIButton!{
         didSet{
@@ -37,10 +55,7 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         goToLogin.setTitle(NSLocalizedString("Go To Login", comment: ""), for: .normal)
-        userNameRegTf.isSecureTextEntry = false
-        emailRegTf.isSecureTextEntry = false
-        phoneRegTf.isSecureTextEntry = false
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -113,19 +128,19 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
             print(finalUrl)
             return finalUrl
         }
-          return "Erorr In Url"
+        return "Erorr In Url"
     }
-        
-       
+    
+    
     @IBAction func tackImageBtnPressed(_ sender: UIButton) {
     }
     
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
-      getRegister(url: completeUrl(), parameters: parms)
-
+        getRegister(url: completeUrl(), parameters: parms)
+        
     }
     @IBAction func goToLoginBtnPressed(_ sender: UIButton) {
-      dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

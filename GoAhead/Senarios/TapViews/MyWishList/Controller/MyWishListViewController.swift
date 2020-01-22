@@ -17,10 +17,15 @@ class MyWishListViewController: UIViewController , NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         showNavigation()
-        getUserFavoriteOffers()
         
         // Do any additional setup after loading the view.
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        getUserFavoriteOffers()
+
+    }
+    
     
     
     func getUserFavoriteOffers(){

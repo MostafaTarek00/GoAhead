@@ -9,6 +9,7 @@
 import UIKit
 import SideMenu
 import CoreData
+import MOLH
 
 @available(iOS 13.0, *)
 class MainNavigationController: UINavigationController  {
@@ -28,9 +29,6 @@ extension UIViewController {
         let menu = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(menuBtn))
         menu.image = UIImage(named: "menu")
         menu.tintColor = UIColor.white
-        //        let cart = UIBarButtonItem(title: "20", style: .done,target: self, action: #selector(cartBtn))
-        //        cart.image = UIImage(named: "cart")
-        //        cart.tintColor = UIColor.white
         loadCardCount()
         let cartButton = SSBadgeButton()
         cartButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
@@ -53,9 +51,6 @@ extension UIViewController {
         let menu = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(menuBtn))
         menu.image = UIImage(named: "menu")
         menu.tintColor = UIColor.white
-        //           let cart = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(cartBtn))
-        //           cart.image = UIImage(named: "cart")
-        //           cart.tintColor = UIColor.white
         loadCardCount()
         let cartButton = SSBadgeButton()
         cartButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
@@ -71,7 +66,12 @@ extension UIViewController {
         
         
         let back = UIBarButtonItem(title: "", style: .done,target: self, action: #selector(backBtn))
-        back.image = UIImage(named: "back")
+        if MOLHLanguage.currentAppleLanguage() == "en"{
+            back.image = UIImage(named: "back")
+        }
+        else if  MOLHLanguage.currentAppleLanguage() == "ar"{
+            back.image = UIImage(named: "backAr")
+        }
         back.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = back
         

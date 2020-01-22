@@ -26,7 +26,13 @@ class SearchViewController: UIViewController {
         }
     }
     @IBOutlet  var search: [BEMCheckBox]!
-    @IBOutlet weak var searchTextF: UITextField!
+    @IBOutlet weak var searchTextF: UITextField!{
+        didSet{
+            searchTextF.delegate = self
+            searchTextF.isSecureTextEntry = false
+        }
+        
+    }
     @IBOutlet weak var searchBtn: UIButton!
     var searchType : Int?
     var d : SearchCategoryDelegate?

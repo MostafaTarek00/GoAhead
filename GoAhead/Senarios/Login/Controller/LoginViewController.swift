@@ -13,8 +13,19 @@ import NVActivityIndicatorView
 class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     var login:Login?
     var failure:Failure?
-    @IBOutlet weak var userNameTf: UITextField!
-    @IBOutlet weak var passwordTf: UITextField!
+    @IBOutlet weak var userNameTf: UITextField!{
+        didSet{
+            userNameTf.delegate = self
+            userNameTf.isSecureTextEntry = false
+        }
+        
+    }
+    @IBOutlet weak var passwordTf: UITextField!{
+        didSet{
+            passwordTf.delegate = self
+        }
+        
+    }
     @IBOutlet weak var signInBtn: UIButton!{
         didSet{
             signInBtn.layer.cornerRadius = 20
@@ -29,11 +40,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     @IBOutlet weak var animationView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        dontHaveAccount.setTitle(NSLocalizedString("Don't Have  Account", comment: ""), for: .normal)
-        forgetPassBtn.isHidden = true
-        animationView.isHidden = true
-        userNameTf.isSecureTextEntry = false
-        print(NSLocalizedString("baseURL", comment: ""))
+        updateDesign()
     }
     
     
@@ -98,7 +105,11 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     }
     
     
-    
+    func updateDesign() {
+        dontHaveAccount.setTitle(NSLocalizedString("Don't Have  Account", comment: ""), for: .normal)
+        forgetPassBtn.isHidden = true
+        animationView.isHidden = true
+    }
     
     
     func setData() {

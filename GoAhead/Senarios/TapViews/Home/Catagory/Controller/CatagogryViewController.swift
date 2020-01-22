@@ -31,11 +31,15 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
         super.viewDidLoad()
         showAndBacNavigation()
         getAllCategories()
-        getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
         
         
     }
-   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
+        
+    }
+    
     
     
     
