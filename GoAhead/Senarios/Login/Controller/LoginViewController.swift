@@ -13,6 +13,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     var login:Login?
     var failure:Failure?
     
+    
     @IBOutlet weak var stackCenterYConst: NSLayoutConstraint!
     @IBOutlet weak var userNameTf: UITextField!{
         didSet{
@@ -52,6 +53,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                 switch Result {
                 case .success(let response):
                     DispatchQueue.main.async {
+                        UserDefault.setcheckLogin(true)
                         self.stopAnimating()
                         self.login = response
                         print(response)

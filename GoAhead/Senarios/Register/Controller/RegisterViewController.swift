@@ -83,6 +83,7 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
                             self.register?.userID = JSON ["user_id"] as! Int
                             self.register?.name =  JSON ["name"] as! String
                             self.clearText()
+                            UserDefault.setcheckLogin(true)
                             self.animationView.isHidden = false
                             let view = StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
                             view.play { (finished) in

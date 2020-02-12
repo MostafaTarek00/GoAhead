@@ -50,6 +50,7 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     
     func updateDate()  {
         myNameLbl.text = UserDefault.getName()
+        print(UserDefault.getName())
         if MOLHLanguage.currentAppleLanguage() == "en"{
             langFlag.image = UIImage(named: "saudiFlag")
         }
@@ -61,6 +62,7 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     
     
     @IBAction func logOutBtnPressed(_ sender: UIButton) {
+           UserDefault.setcheckLogin(false)
             if let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)

@@ -10,7 +10,6 @@ import UIKit
 
 class CategoryHomeCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var activtiIndictor: UIActivityIndicatorView!
     @IBOutlet weak var BigView: UIView!
     
     @IBOutlet weak var secondView: UIView!
