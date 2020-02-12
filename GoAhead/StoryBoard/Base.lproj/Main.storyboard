@@ -877,6 +877,9 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeA-TW-SGf" customClass="CollectionCell" customModule="GoAhead" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="0.0" width="384" height="150"/>
                                                     <subviews>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="g0h-ZL-7Xc">
+                                                            <rect key="frame" x="182" y="65" width="20" height="20"/>
+                                                        </activityIndicatorView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gOH-6y-sWe">
                                                             <rect key="frame" x="5" y="5" width="374" height="140"/>
                                                         </imageView>
@@ -891,7 +894,9 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="gOH-6y-sWe" secondAttribute="bottom" constant="5" id="4DC-sY-Ruh"/>
+                                                        <constraint firstItem="g0h-ZL-7Xc" firstAttribute="centerX" secondItem="gOH-6y-sWe" secondAttribute="centerX" id="77F-rM-RPv"/>
                                                         <constraint firstAttribute="bottom" secondItem="Cle-Vc-QAI" secondAttribute="bottom" constant="15" id="C3g-Tk-CJy"/>
+                                                        <constraint firstItem="g0h-ZL-7Xc" firstAttribute="centerY" secondItem="gOH-6y-sWe" secondAttribute="centerY" id="GAm-Zr-deQ"/>
                                                         <constraint firstItem="gOH-6y-sWe" firstAttribute="top" secondItem="HeA-TW-SGf" secondAttribute="top" constant="5" id="GIV-ao-QGc"/>
                                                         <constraint firstItem="Cle-Vc-QAI" firstAttribute="centerX" secondItem="HeA-TW-SGf" secondAttribute="centerX" id="J4l-gT-rvL"/>
                                                         <constraint firstAttribute="trailing" secondItem="gOH-6y-sWe" secondAttribute="trailing" constant="5" id="es6-Br-UNu"/>
@@ -910,6 +915,7 @@
                                         <size key="customSize" width="404" height="150"/>
                                         <connections>
                                             <outlet property="BigView" destination="OMg-to-pbh" id="gSX-Ag-m0g"/>
+                                            <outlet property="activtiIndictor" destination="g0h-ZL-7Xc" id="FdU-pR-YRN"/>
                                             <outlet property="categoryHomeImage" destination="gOH-6y-sWe" id="Ohu-ux-zod"/>
                                             <outlet property="categoryHomeName" destination="Cle-Vc-QAI" id="gyV-IZ-0Rm"/>
                                             <outlet property="secondView" destination="HeA-TW-SGf" id="3Yj-T7-Pxs"/>

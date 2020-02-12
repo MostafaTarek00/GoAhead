@@ -56,7 +56,11 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryHomeCollectionViewCell", for: indexPath) as! CategoryHomeCollectionViewCell
-        cell.categoryHomeImage.sd_setImage(with: URL(string: cat?.categories[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+        cell.categoryHomeImage.sd_setImage(with: URL(string: cat?.categories[indexPath.item].image ?? ""), placeholderImage:  UIImage(named: "logo GoAhead"), options: .delayPlaceholder, completed: { (image, error, cach, url) in
+            if image != nil  {
+                cell.activtiIndictor.stopAnimating()
+            }
+        })
         cell.categoryHomeName.text = cat?.categories[indexPath.item].name
         return cell
         
