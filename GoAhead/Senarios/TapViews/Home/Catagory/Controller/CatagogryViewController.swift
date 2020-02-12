@@ -30,18 +30,13 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            showAndBacNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
-        getAllCategories()
-        
-        
+        showAndBacNavigation()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        showAndBacNavigation()
+        getAllCategories()
         getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
     }
     
@@ -155,15 +150,12 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
 
             }
         }else {
-            if #available(iOS 13.0, *) {
-                if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "BrowserViewController") as? BrowserViewController {
                     vc.url = offersOfCat?.offers[indexPath.item].link
                     vc.modalPresentationStyle = .fullScreen
                     present(vc, animated: true, completion: nil)
                 }
-            } else {
-                // Fallback on earlier versions
-            }
+           
             
         }
         

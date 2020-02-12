@@ -15,17 +15,14 @@ class MyWishListViewController: UIViewController , NVActivityIndicatorViewable {
     @IBOutlet weak var myWishListCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            showNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
         
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        showNavigation()
         getUserFavoriteOffers()
+
 
     }
     
@@ -75,15 +72,12 @@ extension MyWishListViewController : UICollectionViewDelegate , UICollectionView
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if #available(iOS 13.0, *) {
-            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "BrowserViewController") as? BrowserViewController {
                 vc.url = myWishList?.offers[indexPath.item].link
                 vc.modalPresentationStyle = .fullScreen
                 present(vc, animated: true, completion: nil)
             }
-        } else {
-            // Fallback on earlier versions
-        }
+       
     }
     
     

@@ -21,6 +21,10 @@ class SearchSellerViewController: UIViewController , NVActivityIndicatorViewable
         // Do any additional setup after loading the view.
     }
   
+    override func viewDidAppear(_ animated: Bool) {
+             super.viewDidAppear(true)
+             showAndBacNavigation()
+         }
  
     func getsearchSeller(){
        self.startAnimating()
@@ -90,17 +94,13 @@ extension SearchSellerViewController: UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "ProductsViewController") as! ProductsViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "ProductsViewController") as! ProductsViewController
             vc.modalPresentationStyle = .fullScreen
             vc.type = 2
             vc.sellerId = searchSellers?.sellers[indexPath.item].id
             navigationController?.pushViewController(vc, animated: true)
             
-        } else {
-            // Fallback on earlier versions
-        }
-        
+       
         
     }
     

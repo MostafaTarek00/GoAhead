@@ -14,11 +14,11 @@ class HomeViewController: UIViewController ,NVActivityIndicatorViewable{
     @IBOutlet weak var departmentCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            showNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        showNavigation()
         getAllCategories()
         
     }
@@ -63,16 +63,13 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "CatagogryViewController") as! CatagogryViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CatagogryViewController") as! CatagogryViewController
             vc.modalPresentationStyle = .fullScreen
                    vc.catId = cat?.categories[indexPath.item].id
                    vc.index = indexPath
                    vc.title = cat?.categories[indexPath.item].name
                    navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+       
        
     }
     

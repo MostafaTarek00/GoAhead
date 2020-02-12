@@ -40,13 +40,10 @@ class FristViewController: UIViewController {
     }
     
     @objc func swipeSuccessAction(){
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
             vc.modalPresentationStyle = .fullScreen
                    presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
-        } else {
-            // Fallback on earlier versions
-        }
+       
        
     }
     
@@ -54,14 +51,11 @@ class FristViewController: UIViewController {
         let view = StartAnimationView.showLottie(view: self.animationView, fileName: "loading", contentMode: .scaleAspectFill)
         view.play { (finished) in
             if finished {
-                if #available(iOS 13.0, *) {
-                    if let vc = self.storyboard?.instantiateViewController(identifier: "SecondViewController") as? SecondViewController {
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController {
                         vc.modalPresentationStyle = .fullScreen
                         self.present(vc, animated: true, completion: nil)
                     }
-                } else {
-                    // Fallback on earlier versions
-                }
+                
             }
             
         }
@@ -69,14 +63,11 @@ class FristViewController: UIViewController {
     
     
     @IBAction func skipBtnPressed(_ sender: UIButton) {
-        if #available(iOS 13.0, *) {
-            if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
                 vc.modalPresentationStyle = .fullScreen
                 present(vc, animated: true, completion: nil)
             }
-        } else {
-            // Fallback on earlier versions
-        }
+       
     }
     
     

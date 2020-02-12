@@ -20,6 +20,10 @@ class SearchCategoryViewController: UIViewController ,NVActivityIndicatorViewabl
         
         // Do any additional setup after loading the view.
     }
+    override func viewDidAppear(_ animated: Bool) {
+             super.viewDidAppear(true)
+             showAndBacNavigation()
+         }
     
     
     func getsearchCategories(){
@@ -82,14 +86,11 @@ extension SearchCategoryViewController: UICollectionViewDelegate,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "StoresOfMallViewController") as! StoresOfMallViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "StoresOfMallViewController") as! StoresOfMallViewController
             vc.modalPresentationStyle = .fullScreen
             vc.catIdOfMall = searchCategories?.categories[indexPath.item].id
             navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+      
         
     }
     

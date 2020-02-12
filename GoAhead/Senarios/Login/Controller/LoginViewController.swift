@@ -12,6 +12,8 @@ import NVActivityIndicatorView
 class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     var login:Login?
     var failure:Failure?
+    
+    @IBOutlet weak var stackCenterYConst: NSLayoutConstraint!
     @IBOutlet weak var userNameTf: UITextField!{
         didSet{
             userNameTf.delegate = self
@@ -35,7 +37,6 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
         
     }
     @IBOutlet weak var dontHaveAccount: UIButton!
-    @IBOutlet weak var forgetPassBtn: UIButton!
     @IBOutlet weak var animationView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,14 +61,11 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                         let view = StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
                         view.play { (finished) in
                             if finished {
-                                if #available(iOS 13.0, *) {
-                                    if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar"){
-                                        vc.modalPresentationStyle = .fullScreen
-                                        self.present(vc, animated: true, completion: nil)
-                                    }
-                                } else {
-                                    // Fallback on earlier versions
+                                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBar"){
+                                    vc.modalPresentationStyle = .fullScreen
+                                    self.present(vc, animated: true, completion: nil)
                                 }
+                                
                                 
                             }
                         }
@@ -88,7 +86,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
                                     view.play { (finished) in
                                         if finished {
                                             view.isHidden = true
-                                             self.animationView.isHidden = true
+                                            self.animationView.isHidden = true
                                             Alert.show(NSLocalizedString("Error", comment: ""), massege: self.failure!.message, context: self)
                                         }
                                     }
@@ -110,7 +108,6 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     
     func updateDesign() {
         dontHaveAccount.setTitle(NSLocalizedString("Don't Have  Account", comment: ""), for: .normal)
-        forgetPassBtn.isHidden = true
         animationView.isHidden = true
     }
     
@@ -128,16 +125,31 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     }
     
     
+    //TODO: Declare textFieldDidBeginEditing here:
     
-    
-    
-    @IBAction func forgetPasswordBtnPressed(_ sender: UIButton) {
-        //        if let vc = storyboard?.instantiateViewController(identifier: "ForgetPasswordViewController") as? ForgetPasswordViewController {
-        //            vc.modalPresentationStyle = .fullScreen
-        //            present(vc, animated: true, completion: nil)
-        //        }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.stackCenterYConst.constant = -80
+            self.view.layoutIfNeeded()
+        }
         
     }
+    
+    
+    //TODO: Declare textFieldDidEndEditing here:
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.stackCenterYConst.constant = 0
+            self.view.layoutIfNeeded()
+        }
+        
+    }
+    
+    
+    
     
     @IBAction func signInbtnPressed(_ sender: UIButton) {
         getLogin()
@@ -145,14 +157,11 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     }
     
     @IBAction func registerBtnPressed(_ sender: UIButton) {
-        if #available(iOS 13.0, *) {
-            if let vc = storyboard?.instantiateViewController(identifier: "RegisterViewController") as? RegisterViewController {
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true, completion: nil)
-            }
-        } else {
-            // Fallback on earlier versions
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController {
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
         }
+        
     }
     
     

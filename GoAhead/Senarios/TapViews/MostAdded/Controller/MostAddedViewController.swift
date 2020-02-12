@@ -15,16 +15,13 @@ class MostAddedViewController: UIViewController ,NVActivityIndicatorViewable{
     @IBOutlet weak var mostAddCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            showNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
+
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        showNavigation()
         getMostOffersAdded()
 
     }
@@ -73,15 +70,12 @@ extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewD
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if #available(iOS 13.0, *) {
-            if let vc = storyboard?.instantiateViewController(identifier: "BrowserViewController") as? BrowserViewController {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "BrowserViewController") as? BrowserViewController {
                 vc.url = mostAdded?.offers[indexPath.item].link
                 vc.modalPresentationStyle = .fullScreen
                 present(vc, animated: true, completion: nil)
             }
-        } else {
-            // Fallback on earlier versions
-        }
+      
       }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell

@@ -61,14 +61,11 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     
     
     @IBAction func logOutBtnPressed(_ sender: UIButton) {
-        if #available(iOS 13.0, *) {
-            if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)
             }
-        } else {
-            // Fallback on earlier versions
-        }
+      
     }
     @IBAction func changeLangPressed(_ sender: UIButton) {
         MOLH.setLanguageTo(MOLHLanguage.currentAppleLanguage() == "en" ? "ar" : "en")
@@ -94,15 +91,12 @@ extension SideMenuViewController : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "CatagogryViewController") as! CatagogryViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CatagogryViewController") as! CatagogryViewController
             vc.catId = cat?.categories[indexPath.item].id
             vc.index = indexPath
             self.navigationController?.pushViewController(vc, animated: true)
             
-        } else {
-            // Fallback on earlier versions
-        }
+       
         
         
         

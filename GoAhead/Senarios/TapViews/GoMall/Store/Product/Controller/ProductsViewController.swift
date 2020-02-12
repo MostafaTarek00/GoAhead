@@ -19,11 +19,8 @@ class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
             showAndBacNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
+       
         if type == 1 {
             getAllProductByCategory()
         }else {
@@ -32,8 +29,15 @@ class ProductsViewController: UIViewController ,NVActivityIndicatorViewable {
         
         
         
+        
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+              super.viewDidAppear(true)
+              showAndBacNavigation()
+          }
+       
     func getAllProductByCategory(){
         self.startAnimating()
         if let catStoreId = catIdOfMall {
@@ -135,8 +139,7 @@ extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
             if type == 1 {
                 vc.modalPresentationStyle = .fullScreen
                 vc.ProId = productStoreOfCategory?.offers[indexPath.item].id
@@ -146,9 +149,7 @@ extension ProductsViewController : UICollectionViewDelegate , UICollectionViewDa
                 vc.ProId = allProduct?.products?[indexPath.item].id
                 navigationController?.pushViewController(vc, animated: true)
             }
-        } else {
-            // Fallback on earlier versions
-        }
+      
         
         
         

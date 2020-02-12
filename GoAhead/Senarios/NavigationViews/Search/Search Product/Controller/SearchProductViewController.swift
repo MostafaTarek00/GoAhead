@@ -15,16 +15,15 @@ class SearchProductViewController: UIViewController ,NVActivityIndicatorViewable
     @IBOutlet weak var productCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
             showAndBacNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
         getsearchProduct()
         
         // Do any additional setup after loading the view.
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+             super.viewDidAppear(true)
+             showAndBacNavigation()
+         }
     
     func getsearchProduct(){
         self.startAnimating()
@@ -95,15 +94,11 @@ extension SearchProductViewController : UICollectionViewDelegate , UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
             vc.modalPresentationStyle = .fullScreen
             vc.ProId = searchProduct?.products[indexPath.item].id
             navigationController?.pushViewController(vc, animated: true)
             
-        } else {
-            // Fallback on earlier versions
-        }
         
         
         

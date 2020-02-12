@@ -15,6 +15,8 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     var register:Register?
     let baseRigesterUrl = NSLocalizedString("baseRigesterUrl", comment: "")
     let  parms : [String : String] = ["image" : "0" ]
+
+    @IBOutlet weak var stackCnterYConst: NSLayoutConstraint!
     @IBOutlet weak var userNameRegTf: DesignableUITextField!{
         didSet{
             userNameRegTf.delegate = self
@@ -85,14 +87,11 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
                             let view = StartAnimationView.showLottie(view: self.animationView, fileName: "success", contentMode: .scaleAspectFit)
                             view.play { (finished) in
                                 if finished {
-                                    if #available(iOS 13.0, *) {
-                                        if let vc = self.storyboard?.instantiateViewController(identifier: "TabBar") as? NewTab {
+                                        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "TabBar") as? NewTab {
                                             vc.modalPresentationStyle = .fullScreen
                                             self.present(vc, animated: true, completion: nil)
                                         }
-                                    } else {
-                                        // Fallback on earlier versions
-                                    }
+                                   
                                 }
                             }
                         }else if status == 2 {
@@ -138,6 +137,36 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
         }
         return "Erorr In Url"
     }
+    
+   
+    
+    //TODO: Declare textFieldDidBeginEditing here:
+      
+      func textFieldDidBeginEditing(_ textField: UITextField) {
+          
+        UIView.animate(withDuration: 0.5) {
+            self.stackCnterYConst.constant = -80
+            self.view.layoutIfNeeded()
+        }
+        
+    }
+      
+      
+      //TODO: Declare textFieldDidEndEditing here:
+      
+      func textFieldDidEndEditing(_ textField: UITextField) {
+          
+          UIView.animate(withDuration: 0.5) {
+              self.stackCnterYConst.constant = 0
+              self.view.layoutIfNeeded()
+          }
+          
+      }
+    
+    
+    
+    
+    
     
     
     @IBAction func tackImageBtnPressed(_ sender: UIButton) {

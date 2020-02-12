@@ -51,22 +51,16 @@ class ThirdViewController: UIViewController {
     
     @objc func swipeAction(_ sender: UISwipeGestureRecognizer){
         if sender.direction == .right {
-            if #available(iOS 13.0, *) {
-                let vc = storyboard?.instantiateViewController(identifier: "SecondViewController") as! SecondViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
                 vc.modalPresentationStyle = .fullScreen
                            presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
-            } else {
-                // Fallback on earlier versions
-            }
+            
            
         } else if sender.direction == .left {
-            if #available(iOS 13.0, *) {
-                let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
                 vc.modalPresentationStyle = .fullScreen
                            presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromLeft)
-            } else {
-                // Fallback on earlier versions
-            }
+           
            
         }
     }
@@ -95,14 +89,11 @@ class ThirdViewController: UIViewController {
         
     
     @IBAction func startBtnPressed(_ sender: UIButton) {
-        if #available(iOS 13.0, *) {
-            if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
                 vc.modalPresentationStyle = .fullScreen
                 present(vc, animated: true, completion: nil)
             }
-        } else {
-            // Fallback on earlier versions
-        }
+       
     }
     
 }

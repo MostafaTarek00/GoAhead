@@ -88,40 +88,31 @@ extension UIViewController {
     
     
     @objc func menuBtn(){
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "SideMenuNavigationController") as! SideMenuNavigationController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SideMenuNavigationController") as! SideMenuNavigationController
             vc.settings = SharedMenu.settings(view: self.view)
             present(vc, animated: true, completion: nil)
             
-        } else {
-            // Fallback on earlier versions
-        }
+       
         
         
     }
     
     
     @objc func cartBtn(){
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
             navigationController?.pushViewController(vc, animated: true)
             
-        } else {
-            // Fallback on earlier versions
-        }
+      
         
     }
     
     
     @objc func searchBtn(){
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "SearchViewController") as! SearchViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
             vc.modalPresentationStyle = .overFullScreen
             vc.d = self
             self.present(vc, animated: true, completion: nil)
-        } else {
-            // Fallback on earlier versions
-        }
+       
         
     }
     
@@ -144,36 +135,27 @@ extension UIViewController {
 
 extension UIViewController : SearchCategoryDelegate {
     func transferResultProduct(text: String) {
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "SearchProductViewController") as! SearchProductViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SearchProductViewController") as! SearchProductViewController
             vc.searchText = text
             self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+       
         
     }
     
     func transferResultSeller(text: String) {
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "SearchSellerViewController") as! SearchSellerViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SearchSellerViewController") as! SearchSellerViewController
             vc.searchText = text
             self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+      
         
     }
     
     
     func transferResultCat(text: String) {
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "SearchCategoryViewController") as! SearchCategoryViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SearchCategoryViewController") as! SearchCategoryViewController
             vc.searchText = text
             self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+       
         
     }
     

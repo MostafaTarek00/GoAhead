@@ -28,6 +28,10 @@ class SellerViewController: UIViewController ,NVActivityIndicatorViewable {
         getDateOfSeller()
         // Do any additional setup after loading the view.
     }
+    override func viewDidAppear(_ animated: Bool) {
+          showAndBacNavigation()
+
+      }
     
     func getDateOfSeller(){
         if let sellerId = sellerId {
@@ -86,15 +90,12 @@ extension SellerViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
             vc.modalPresentationStyle = .fullScreen
             vc.ProId = sellerDetails?.products[indexPath.item].id
             navigationController?.pushViewController(vc, animated: true)
             
-        } else {
-            // Fallback on earlier versions
-        }
+      
         
         
     }

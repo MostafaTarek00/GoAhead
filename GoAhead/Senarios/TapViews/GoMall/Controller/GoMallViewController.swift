@@ -17,16 +17,15 @@ class GoMallViewController: UIViewController ,NVActivityIndicatorViewable{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
-            showNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        showNavigation()
         getAllCategoriesOfMall()
         
         
     }
-    
     
     func getAllCategoriesOfMall(){
         self.startAnimating()
@@ -75,15 +74,12 @@ extension GoMallViewController: UICollectionViewDelegate,UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "StoresOfMallViewController") as! StoresOfMallViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "StoresOfMallViewController") as! StoresOfMallViewController
             vc.modalPresentationStyle = .fullScreen
             vc.catIdOfMall = categoryOfMall?.categories[indexPath.item].id
             vc.title = categoryOfMall?.categories[indexPath.item].name
             navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+      
         
     }
     

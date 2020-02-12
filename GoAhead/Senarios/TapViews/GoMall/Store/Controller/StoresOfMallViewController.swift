@@ -15,15 +15,16 @@ class StoresOfMallViewController: UIViewController ,NVActivityIndicatorViewable{
     @IBOutlet weak var storCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 13.0, *) {
             showAndBacNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
-        getAllStoresOfMall()
+           getAllStoresOfMall()
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+           super.viewDidAppear(true)
+           showAndBacNavigation()
+       }
     
     
     func getAllStoresOfMall(){
@@ -74,14 +75,11 @@ extension StoresOfMallViewController: UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "ProductsViewController") as! ProductsViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "ProductsViewController") as! ProductsViewController
             vc.modalPresentationStyle = .fullScreen
             vc.catIdOfMall = storeSeller?.sellers[indexPath.item].idCategory
             navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+       
         
         
         

@@ -31,15 +31,18 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationView.isHidden = true
-        if #available(iOS 13.0, *) {
             showAndBacNavigation()
-        } else {
-            // Fallback on earlier versions
-        }
+        
         getDetailsOfProduct()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+              super.viewDidAppear(true)
+              showAndBacNavigation()
+          }
+       
+    
     
     
     func getDetailsOfProduct(){
@@ -122,14 +125,11 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "addcart", contentMode: .scaleToFill)
                 view.play { (finished) in
                     if finished {
-                        if #available(iOS 13.0, *) {
-                            let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
                             self.navigationController?.pushViewController(vc, animated: true)
                             UserDefault.setCheckSeller(sellId)
                             print("second\( UserDefault.getCheckSeller())")
-                        } else {
-                            // Fallback on earlier versions
-                        }
+                       
                         
                     }
                 }
@@ -149,14 +149,11 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
                 let view = StartAnimationView.showLottie(view: self.animationView, fileName: "addcart", contentMode: .scaleToFill)
                 view.play { (finished) in
                     if finished {
-                        if #available(iOS 13.0, *) {
-                            let vc = self.storyboard?.instantiateViewController(identifier: "CardViewController") as! CardViewController
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "CardViewController") as! CardViewController
                             self.navigationController?.pushViewController(vc, animated: true)
                             
                             print("Third\( UserDefault.getCheckSeller())")
-                        } else {
-                            // Fallback on earlier versions
-                        }
+                        
                         
                         
                     }

@@ -30,12 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
             UserDefaults.standard.set(true, forKey: "didLunchedBefore")
             UserDefaults.standard.synchronize()
             let storBoared = UIStoryboard(name: "Main", bundle: nil)
-            if #available(iOS 13.0, *) {
-                let vc = storBoared.instantiateViewController(identifier: "FristViewController") as! FristViewController
+                let vc = storBoared.instantiateViewController(withIdentifier: "FristViewController") as! FristViewController
                 self.window?.makeKeyAndVisible()
                 self.window?.rootViewController = vc
                 
-            }
+          
             
             
         }

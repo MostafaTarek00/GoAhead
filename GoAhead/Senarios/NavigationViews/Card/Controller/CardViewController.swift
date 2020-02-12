@@ -25,9 +25,15 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         showAndBacNavigation()
-        loadItems()
         
         // Do any additional setup after loading the view.
+    }
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        showAndBacNavigation()
+        loadItems()
     }
     
     
@@ -80,8 +86,7 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
         }
         print(data)
         sendOrdes(url: completeUrl(), parameters: parameters)
-        if #available(iOS 13.0, *) {
-            if let vc = storyboard?.instantiateViewController(identifier: "SellerViewController") as? SellerViewController {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "SellerViewController") as? SellerViewController {
                 vc.modalPresentationStyle = .fullScreen
                 vc.sellerId = UserDefault.getCheckSeller()
                 deleteAll()
@@ -92,9 +97,7 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
                 navigationController?.pushViewController(vc, animated: true)
                 
             }
-        } else {
-            // Fallback on earlier versions
-        }
+       
     }
     
     func deleteAll()  {
@@ -165,15 +168,12 @@ extension CardViewController : UICollectionViewDelegate , UICollectionViewDataSo
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if #available(iOS 13.0, *) {
-            let vc = storyboard?.instantiateViewController(identifier: "DetailsViewController") as! DetailsViewController
+            let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
             vc.modalPresentationStyle = .fullScreen
                    vc.ProId = Shared.cartArray[indexPath.item].productId
                    vc.flagBtn = true
                    navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-        }
+       
        
     }
     
