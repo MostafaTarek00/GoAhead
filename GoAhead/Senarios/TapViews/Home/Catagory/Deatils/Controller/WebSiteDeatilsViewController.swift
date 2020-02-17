@@ -27,7 +27,7 @@ class WebSiteDeatilsViewController: UIViewController {
     func updateDesign()  {
         webSiteImage.sd_setImage(with: URL(string: imageLink ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
         websiteName.text = nameText
-        
+        self.title  = nameText
     }
 
     override func viewDidAppear(_ animated: Bool) {
