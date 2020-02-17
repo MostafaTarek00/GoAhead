@@ -150,10 +150,12 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
 
             }
         }else {
-                if let vc = storyboard?.instantiateViewController(withIdentifier: "BrowserViewController") as? BrowserViewController {
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "WebSiteDeatilsViewController") as? WebSiteDeatilsViewController {
+                    vc.imageLink = offersOfCat?.offers[indexPath.item].image
+                    vc.nameText =  offersOfCat?.offers[indexPath.item].name
                     vc.url = offersOfCat?.offers[indexPath.item].link
                     vc.modalPresentationStyle = .fullScreen
-                    present(vc, animated: true, completion: nil)
+                    navigationController?.pushViewController(vc, animated: true)
                 }
            
             

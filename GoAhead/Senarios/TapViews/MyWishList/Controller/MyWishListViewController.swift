@@ -72,11 +72,15 @@ extension MyWishListViewController : UICollectionViewDelegate , UICollectionView
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "BrowserViewController") as? BrowserViewController {
-                vc.url = myWishList?.offers[indexPath.item].link
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true, completion: nil)
-            }
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "WebSiteDeatilsViewController") as? WebSiteDeatilsViewController {
+                         vc.imageLink = myWishList?.offers[indexPath.item].image
+                         vc.nameText =  myWishList?.offers[indexPath.item].name
+                         vc.url = myWishList?.offers[indexPath.item].link
+                         vc.modalPresentationStyle = .fullScreen
+                         navigationController?.pushViewController(vc, animated: true)
+                     }
+           
        
     }
     

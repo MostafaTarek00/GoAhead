@@ -70,11 +70,16 @@ extension MostAddedViewController : UICollectionViewDelegate , UICollectionViewD
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "BrowserViewController") as? BrowserViewController {
-                vc.url = mostAdded?.offers[indexPath.item].link
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true, completion: nil)
-            }
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "WebSiteDeatilsViewController") as? WebSiteDeatilsViewController {
+                  vc.imageLink = mostAdded?.offers[indexPath.item].image
+                  vc.nameText =  mostAdded?.offers[indexPath.item].name
+                  vc.url = mostAdded?.offers[indexPath.item].link
+                  vc.modalPresentationStyle = .fullScreen
+                  navigationController?.pushViewController(vc, animated: true)
+              }
+        
+           
       
       }
     
