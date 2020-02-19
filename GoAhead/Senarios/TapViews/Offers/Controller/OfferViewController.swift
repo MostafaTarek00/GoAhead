@@ -73,14 +73,16 @@ extension OfferViewController: UICollectionViewDelegate,UICollectionViewDataSour
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "WebSiteDeatilsViewController") as? WebSiteDeatilsViewController {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "WebSiteDeatils2ViewController") as? WebSiteDeatils2ViewController {
             vc.imageLink = offers?.offers[indexPath.item].image
             vc.nameText =  offers?.offers[indexPath.item].name
             vc.url = offers?.offers[indexPath.item].link
+            vc.favorite =  offers?.offers[indexPath.item].favorite
+            
             vc.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(vc, animated: true)
         }
-       
+        
     }
     
     

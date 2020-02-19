@@ -18,7 +18,6 @@ class CatagogryViewController: UIViewController ,NVActivityIndicatorViewable{
     var titlebar : String?
 
     
-    
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var itemOfCatogoryCollectionView: UICollectionView!
     
@@ -153,7 +152,10 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
                 if let vc = storyboard?.instantiateViewController(withIdentifier: "WebSiteDeatilsViewController") as? WebSiteDeatilsViewController {
                     vc.imageLink = offersOfCat?.offers[indexPath.item].image
                     vc.nameText =  offersOfCat?.offers[indexPath.item].name
+                    vc.favorite =  offersOfCat?.offers[indexPath.item].favorite
                     vc.url = offersOfCat?.offers[indexPath.item].link
+                    vc.catId = catId
+                    vc.offerId = offersOfCat?.offers[indexPath.item].id
                     vc.modalPresentationStyle = .fullScreen
                     navigationController?.pushViewController(vc, animated: true)
                 }
