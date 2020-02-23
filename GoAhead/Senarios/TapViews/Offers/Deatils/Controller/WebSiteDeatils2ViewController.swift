@@ -36,7 +36,7 @@ class WebSiteDeatils2ViewController: UIViewController {
 
         
     }
-    
+    //WebSiteDeatils2
     func updateDesign()  {
         webSiteImage.sd_setImage(with: URL(string: imageLink ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
         websiteName.text = nameText
