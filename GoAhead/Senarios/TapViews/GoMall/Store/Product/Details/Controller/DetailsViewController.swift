@@ -106,7 +106,7 @@ class DetailsViewController: UIViewController , NVActivityIndicatorViewable {
         }
         
     }
-    
+    //IBAction
     @IBAction func addToCartBtnPressed(_ sender: UIButton) {
         if let proName = productDetails?.product.name , let proDes = productDetails?.product.productDescription , let proPrice = productDetails?.product.price , let proImg = productDetails?.productImages[0] , let sellId = productDetails?.product.idSeller , let proId = productDetails?.product.id{
             print("first\(UserDefault.getCheckSeller())")
