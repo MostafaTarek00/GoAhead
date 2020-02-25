@@ -18,10 +18,15 @@ class WebSiteDeatils2ViewController: UIViewController {
       
       @IBOutlet weak var itemFav: UIImageView!
     
+    @IBOutlet weak var websiteDes2: UILabel!
+    
     var url : String?
     var imageLink : String?
     var favorite : Int?
     var nameText : String?
+    let textArray = ["dice1".localized,"dice2".localized,"dice3".localized,"dice4".localized,"dice5".localized,"dice6".localized]
+    var randomDiceIndex1 : Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showAndBacNavigation()
@@ -44,6 +49,8 @@ class WebSiteDeatils2ViewController: UIViewController {
         }else if favorite == 1 {
             itemFav.image = UIImage(named: "favorite1")
         }
+        randomDiceIndex1 = Int.random(in: 0 ... 5)
+               websiteDes2.text = textArray[randomDiceIndex1]
     }
 
    

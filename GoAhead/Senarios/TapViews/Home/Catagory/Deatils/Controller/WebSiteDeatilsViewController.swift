@@ -20,6 +20,8 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
     @IBOutlet weak var itemFav: UIImageView!
     
     @IBOutlet weak var onthorWebsiteCollextionView: UICollectionView!
+    
+    @IBOutlet weak var webSiteDes: UILabel!
     var url : String?
     var imageLink : String?
     var favorite : Int?
@@ -28,7 +30,10 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
     var failure:Failure?
     var catId : String?
     var offerId : String?
-
+    let textArray = ["dice1".localized,"dice2".localized,"dice3".localized,"dice4".localized,"dice5".localized,"dice6".localized]
+    var randomDiceIndex1 : Int = 0
+    
+    
     
     
     
@@ -38,16 +43,16 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
         showAndBacNavigation()
         updateDesign()
         getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
-
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(true)
-           showAndBacNavigation()
-
-           
-       }
+        super.viewDidAppear(true)
+        showAndBacNavigation()
+        
+        
+    }
     
     func getViewCategoryWebsites(categoryID : String, userId : String ){
         self.startAnimating()
@@ -99,6 +104,10 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
         }else if favorite == 1 {
             itemFav.image = UIImage(named: "favorite1")
         }
+        randomDiceIndex1 = Int.random(in: 0 ... 5)
+        webSiteDes.text = textArray[randomDiceIndex1]
+        
+        
     }
     
     
@@ -111,7 +120,7 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
             present(vc, animated: true, completion: nil)
         }
     }
- 
+    
     
     
 }
@@ -139,11 +148,13 @@ extension WebSiteDeatilsViewController : UICollectionViewDelegate , UICollection
         url = offersOfCat?.offers[indexPath.item].link
         favorite = offersOfCat?.offers[indexPath.item].favorite
         if favorite == 0 {
-           itemFav.image = UIImage(named: "favorite2")
+            itemFav.image = UIImage(named: "favorite2")
         }else if favorite == 1 {
             itemFav.image = UIImage(named: "favorite1")
         }
         self.title  = offersOfCat?.offers[indexPath.item].name
+        randomDiceIndex1 = Int.random(in: 0 ... 5)
+        webSiteDes.text = textArray[randomDiceIndex1]
     }
     
     
