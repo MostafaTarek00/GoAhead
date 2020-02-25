@@ -14,8 +14,11 @@ target 'GoAhead' do
   pod 'Auk'
   pod 'BEMCheckBox'
   pod 'MOLH'
-  pod 'SideMenu'
   pod 'lottie-ios'
+  pod 'Cosmos'
+  pod 'SideMenu'
+
+
 
 
 

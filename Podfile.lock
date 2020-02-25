@@ -1,18 +1,19 @@
 PODS:
-  - Alamofire (5.0.0-rc.3)
+  - Alamofire (5.0.2)
   - Auk (11.0.0):
     - moa
   - BEMCheckBox (1.4.1)
+  - Cosmos (21.0.0)
   - IQKeyboardManagerSwift (6.0.4)
-  - lottie-ios (3.1.5)
+  - lottie-ios (3.1.6)
   - moa (12.0.0)
   - MOLH (1.1.2)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
-  - SDWebImage (5.5.1):
-    - SDWebImage/Core (= 5.5.1)
-  - SDWebImage/Core (5.5.1)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
   - SideMenu (6.4.7)
   - SwiftyJSON (5.0.0)
 
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.5)
   - Auk
   - BEMCheckBox
+  - Cosmos
   - IQKeyboardManagerSwift (= 6.0.4)
   - lottie-ios
   - MOLH
@@ -33,6 +35,7 @@ SPEC REPOS:
     - Alamofire
     - Auk
     - BEMCheckBox
+    - Cosmos
     - IQKeyboardManagerSwift
     - lottie-ios
     - moa
@@ -43,18 +46,19 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   Auk: 7cc533252e2caaaa36b2be19c0b799f6057c365a
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
+  Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
   IQKeyboardManagerSwift: 36dbe324b4f9793f5f41ba5227f3e7c76dfefd50
-  lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
+  lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
   moa: e2346f12de6c65bbca4d103950d45db9e46785ef
   MOLH: 79723d6938aff0ac02aebe4d89cc96b73f46fa32
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  SDWebImage: 1245d058b7b8f59adef7a6da6bbafd4f1ab67041
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SideMenu: 928a015669c3afc201e1fe3a87f1b0bc8993a664
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: cc1e08f0ae60ad2cd9a7424ed0fe699865366954
+PODFILE CHECKSUM: 435659c9c63b7d3095f5087fbb8c989475e791a1
 
 COCOAPODS: 1.8.4

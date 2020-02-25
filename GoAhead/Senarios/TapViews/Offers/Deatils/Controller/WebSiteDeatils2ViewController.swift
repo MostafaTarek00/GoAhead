@@ -15,7 +15,6 @@ class WebSiteDeatils2ViewController: UIViewController {
               webSiteImage.layer.cornerRadius = 20
           }
       }
-      @IBOutlet weak var websiteName: UILabel!
       
       @IBOutlet weak var itemFav: UIImageView!
     
@@ -39,7 +38,6 @@ class WebSiteDeatils2ViewController: UIViewController {
     //WebSiteDeatils2
     func updateDesign()  {
         webSiteImage.sd_setImage(with: URL(string: imageLink ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
-        websiteName.text = nameText
         self.title  = nameText
         if favorite == 0 {
             itemFav.image = UIImage(named: "favorite2")

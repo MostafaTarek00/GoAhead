@@ -16,7 +16,6 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
             webSiteImage.layer.cornerRadius = 20
         }
     }
-    @IBOutlet weak var websiteName: UILabel!
     
     @IBOutlet weak var itemFav: UIImageView!
     
@@ -94,7 +93,6 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
     
     func updateDesign()  {
         webSiteImage.sd_setImage(with: URL(string: imageLink ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
-        websiteName.text = nameText
         self.title  = nameText
         if favorite == 0 {
             itemFav.image = UIImage(named: "favorite2")
@@ -138,7 +136,6 @@ extension WebSiteDeatilsViewController : UICollectionViewDelegate , UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         webSiteImage.sd_setImage(with: URL(string: offersOfCat?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
-        websiteName.text = offersOfCat?.offers[indexPath.item].name
         url = offersOfCat?.offers[indexPath.item].link
         favorite = offersOfCat?.offers[indexPath.item].favorite
         if favorite == 0 {
@@ -155,7 +152,7 @@ extension WebSiteDeatilsViewController : UICollectionViewDelegate , UICollection
 
 extension WebSiteDeatilsViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        let cellSize = CGSize( width: self.view.frame.width / 2 - 15 , height:  250)
+        let cellSize = CGSize( width: self.view.frame.width / 2 - 15 , height:  120)
         
         return cellSize
     }
