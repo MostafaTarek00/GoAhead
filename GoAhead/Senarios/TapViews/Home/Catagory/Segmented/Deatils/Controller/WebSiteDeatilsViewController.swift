@@ -22,14 +22,9 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
     @IBOutlet weak var onthorWebsiteCollextionView: UICollectionView!
     
     @IBOutlet weak var webSiteDes: UILabel!
-    var url : String?
-    var imageLink : String?
-    var favorite : Int?
-    var nameText : String?
     var offersOfCat:OffersOfCategory?
     var failure:Failure?
-    var catId : String?
-    var offerId : String?
+
     let textArray = ["dice1".localized,"dice2".localized,"dice3".localized,"dice4".localized,"dice5".localized,"dice6".localized]
     var randomDiceIndex1 : Int = 0
     
@@ -42,7 +37,7 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
         super.viewDidLoad()
         showAndBacNavigation()
         updateDesign()
-        getViewCategoryWebsites(categoryID: catId!, userId: UserDefault.getId())
+        getViewCategoryWebsites(categoryID: SegmentedViewController.catId!, userId: UserDefault.getId())
         
         // Do any additional setup after loading the view.
     }
@@ -97,11 +92,11 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
     }
     
     func updateDesign()  {
-        webSiteImage.sd_setImage(with: URL(string: imageLink ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
-        self.title  = nameText
-        if favorite == 0 {
+        webSiteImage.sd_setImage(with: URL(string: SegmentedViewController.imageLink ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
+        self.title  = SegmentedViewController.nameText
+        if SegmentedViewController.favorite == 0 {
             itemFav.image = UIImage(named: "favorite2")
-        }else if favorite == 1 {
+        }else if SegmentedViewController.favorite == 1 {
             itemFav.image = UIImage(named: "favorite1")
         }
         randomDiceIndex1 = Int.random(in: 0 ... 5)
@@ -115,7 +110,7 @@ class WebSiteDeatilsViewController: UIViewController ,NVActivityIndicatorViewabl
     
     @IBAction func goToWebSiteBtnPressed(_ sender: UIButton) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "BrowserViewController") as? BrowserViewController {
-            vc.url = url
+            vc.url = SegmentedViewController.url
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)
         }
@@ -145,11 +140,11 @@ extension WebSiteDeatilsViewController : UICollectionViewDelegate , UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         webSiteImage.sd_setImage(with: URL(string: offersOfCat?.offers[indexPath.item].image ?? ""), placeholderImage: UIImage(named: "logo GoAhead"))
-        url = offersOfCat?.offers[indexPath.item].link
-        favorite = offersOfCat?.offers[indexPath.item].favorite
-        if favorite == 0 {
+        SegmentedViewController.url = offersOfCat?.offers[indexPath.item].link
+        SegmentedViewController.favorite = offersOfCat?.offers[indexPath.item].favorite
+        if SegmentedViewController.favorite == 0 {
             itemFav.image = UIImage(named: "favorite2")
-        }else if favorite == 1 {
+        }else if SegmentedViewController.favorite == 1 {
             itemFav.image = UIImage(named: "favorite1")
         }
         self.title  = offersOfCat?.offers[indexPath.item].name

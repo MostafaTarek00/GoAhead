@@ -19,6 +19,8 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
     var orders:Orders?
     let basedUrl = "http://www.goaheadho.com/goahead_en/cart/sendOrder/82984218/951735"
     var data = [[String]]()
+    var initialSetupViewController: PTFWInitialSetupViewController!
+
     
     
     @IBOutlet weak var CardCollectionView: UICollectionView!
@@ -53,8 +55,8 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
                             self.orders?.status = JSON["status"] as! Int
                             self.orders?.message = JSON ["message"] as! String
                             self.orders?.id_order = JSON ["id_order"] as! String
-                            Alert.show(NSLocalizedString("Success", comment: ""), massege: msg, context: self)
-                            
+                          //  Alert.show(NSLocalizedString("Success", comment: ""), massege: msg, context: self)
+                            self.openPayTabs()
                         }else if status == 2 {
                             self.orders?.status = JSON["status"] as! Int
                             self.orders?.message = JSON ["message"] as! String
@@ -86,17 +88,18 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
         }
         print(data)
         sendOrdes(url: completeUrl(), parameters: parameters)
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "SellerViewController") as? SellerViewController {
-                vc.modalPresentationStyle = .fullScreen
-                vc.sellerId = UserDefault.getCheckSeller()
+//            if let vc = storyboard?.instantiateViewController(withIdentifier: "SellerViewController") as? SellerViewController {
+             //   vc.modalPresentationStyle = .fullScreen
+             //   vc.sellerId = UserDefault.getCheckSeller()
                 deleteAll()
                 Shared.cartArray.removeAll()
                 UserDefault.setCheckSeller("")
                 deleteInCart()
+
                 
-                navigationController?.pushViewController(vc, animated: true)
+           //     navigationController?.pushViewController(vc, animated: true)
                 
-            }
+           // }
        
     }
     
@@ -144,6 +147,68 @@ class CardViewController: UIViewController ,NVActivityIndicatorViewable {
         }
         showAndBacNavigation()
         CardCollectionView.reloadData()
+    }
+    
+    func openPayTabs()  {
+        let bundle = Bundle(url: Bundle.main.url(forResource: "Resources", withExtension: "bundle")!)
+                    self.initialSetupViewController = PTFWInitialSetupViewController.init(
+                        bundle: bundle,
+                        andWithViewFrame: self.view.frame,
+                        andWithAmount: 5.0,
+                        andWithCustomerTitle: "PayTabs Sample App",
+                        andWithCurrencyCode: "USD",
+                        andWithTaxAmount: 0.0,
+                        andWithSDKLanguage: "en",
+                        andWithShippingAddress: "Manama",
+                        andWithShippingCity: "Manama",
+                        andWithShippingCountry: "BHR",
+                        andWithShippingState: "Manama",
+                        andWithShippingZIPCode: "123456",
+                        andWithBillingAddress: "Manama",
+                        andWithBillingCity: "Manama",
+                        andWithBillingCountry: "BHR",
+                        andWithBillingState: "Manama",
+                        andWithBillingZIPCode: "12345",
+                        andWithOrderID: "12345",
+                        andWithPhoneNumber: "0097333109781",
+                        andWithCustomerEmail: "rhegazy@paytabs.com",
+                        andIsTokenization:false,
+                        andIsPreAuth: false,
+                        andWithMerchantEmail: "mostafatarek15894@gmail.com",
+                        andWithMerchantSecretKey: "atdsKRxRmlK6Nx3QVI1vbScWQSN8j2FtvTWgKu87PSdDqhtl0uRcn38dWVmfY1IuVFKF9TNYM1Bci5xiAovXsDbozxExzn1u2Mab",
+                        andWithAssigneeCode: "SDK",
+                        andWithThemeColor:UIColor.red,
+                        andIsThemeColorLight: false)
+
+
+                    self.initialSetupViewController.didReceiveBackButtonCallback = {
+
+                    }
+
+                    self.initialSetupViewController.didStartPreparePaymentPage = {
+                        // Start Prepare Payment Page
+                        // Show loading indicator
+                    }
+                    self.initialSetupViewController.didFinishPreparePaymentPage = {
+                        // Finish Prepare Payment Page
+                        // Stop loading indicator
+                    }
+
+                    self.initialSetupViewController.didReceiveFinishTransactionCallback = {(responseCode, result, transactionID, tokenizedCustomerEmail, tokenizedCustomerPassword, token, transactionState) in
+                        print("Response Code: \(responseCode)")
+                        print("Response Result: \(result)")
+
+                        // In Case you are using tokenization
+                        print("Tokenization Cutomer Email: \(tokenizedCustomerEmail)");
+                        print("Tokenization Customer Password: \(tokenizedCustomerPassword)");
+                        print("TOkenization Token: \(token)");
+                    }
+
+                    self.view.addSubview(initialSetupViewController.view)
+                    self.addChild(initialSetupViewController)
+
+                    initialSetupViewController.didMove(toParent: self )
+
     }
     
 }

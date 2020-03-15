@@ -149,13 +149,13 @@ extension CatagogryViewController : UICollectionViewDelegate , UICollectionViewD
 
             }
         }else {
-                if let vc = storyboard?.instantiateViewController(withIdentifier: "WebSiteDeatilsViewController") as? WebSiteDeatilsViewController {
-                    vc.imageLink = offersOfCat?.offers[indexPath.item].image
-                    vc.nameText =  offersOfCat?.offers[indexPath.item].name
-                    vc.favorite =  offersOfCat?.offers[indexPath.item].favorite
-                    vc.url = offersOfCat?.offers[indexPath.item].link
-                    vc.catId = catId
-                    vc.offerId = offersOfCat?.offers[indexPath.item].id
+                if let vc = storyboard?.instantiateViewController(withIdentifier: "SegmentedViewController") as? SegmentedViewController {
+                    SegmentedViewController.imageLink = offersOfCat?.offers[indexPath.item].image
+                    SegmentedViewController.nameText =  offersOfCat?.offers[indexPath.item].name
+                    SegmentedViewController.favorite =  offersOfCat?.offers[indexPath.item].favorite
+                    SegmentedViewController.url = offersOfCat?.offers[indexPath.item].link
+                    SegmentedViewController.catId = catId
+                    SegmentedViewController.offerId = offersOfCat?.offers[indexPath.item].id
                     vc.modalPresentationStyle = .fullScreen
                     navigationController?.pushViewController(vc, animated: true)
                 }
