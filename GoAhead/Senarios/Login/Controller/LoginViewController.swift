@@ -15,14 +15,14 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     
     
     @IBOutlet weak var stackCenterYConst: NSLayoutConstraint!
-    @IBOutlet weak var userNameTf: UITextField!{
+    @IBOutlet weak var userNameTf: DesignableUITextField!{
         didSet{
             userNameTf.delegate = self
             userNameTf.isSecureTextEntry = false
         }
         
     }
-    @IBOutlet weak var passwordTf: UITextField!{
+    @IBOutlet weak var passwordTf: DesignableUITextField!{
         didSet{
             passwordTf.delegate = self
         }
@@ -30,10 +30,7 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     }
     @IBOutlet weak var signInBtn: UIButton!{
         didSet{
-            signInBtn.layer.cornerRadius = 20
-            signInBtn.layer.borderWidth = 2
-            signInBtn.layer.borderColor = UIColor.white.cgColor
-            signInBtn.clipsToBounds = true
+            signInBtn.layer.cornerRadius = 5
         }
         
     }
@@ -42,6 +39,9 @@ class LoginViewController: UIViewController ,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDesign()
+        userNameTf.addBottomBorder(width: self.view.frame.size.width - 90)
+        passwordTf.addBottomBorder(width: self.view.frame.size.width - 90)
+
     }
     
     

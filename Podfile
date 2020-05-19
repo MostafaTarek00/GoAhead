@@ -4,7 +4,7 @@
 target 'GoAhead' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for GoAhead
   pod 'Alamofire' , '~> 5.0.0-beta.5'
   pod 'IQKeyboardManagerSwift', '6.0.4'
@@ -18,21 +18,14 @@ target 'GoAhead' do
   pod 'Cosmos'
   pod 'SideMenu'
   pod 'BIObjCHelpers'
-   pod 'IQKeyboardManager', '~> 4.0.2'
-   pod 'AFNetworking'
-   pod 'Mantle'
-   pod 'Reachability'
-   pod 'Lockbox'
-   pod 'SBJson'
-   pod 'PINCache'
-   pod 'MBProgressHUD', '~> 1.1.0'
-   pod 'ActionSheetPicker-3.0'
-
-
-
-
-
-
-
-
+  pod 'IQKeyboardManager', '~> 4.0.2'
+  pod 'AFNetworking'
+  pod 'Mantle'
+  pod 'Reachability'
+  pod 'Lockbox'
+  pod 'SBJson'
+  pod 'PINCache'
+  pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'ActionSheetPicker-3.0'
+  
 end

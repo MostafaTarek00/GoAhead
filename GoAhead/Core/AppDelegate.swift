@@ -22,10 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         MOLH.shared.activate(true)
-       
-
         
         let didLunchedBefore = UserDefaults.standard.bool(forKey: "didLunchedBefore")
         if !didLunchedBefore {
@@ -35,20 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,MOLHResetable {
                 let vc = storBoared.instantiateViewController(withIdentifier: "FristViewController") as! FristViewController
                 self.window?.makeKeyAndVisible()
                 self.window?.rootViewController = vc
-                
-          
-            
-            
         }
-        
-        if  UserDefault.getcheckLogin() == true {
-                   let storBoared = UIStoryboard(name: "Main", bundle: nil)
-                       let vc = storBoared.instantiateViewController(withIdentifier: "TabBar")
-                       self.window?.makeKeyAndVisible()
-                       self.window?.rootViewController = vc
-               }
-        
-        
         
         return true
     }

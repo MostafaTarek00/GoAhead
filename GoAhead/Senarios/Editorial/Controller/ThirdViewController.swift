@@ -15,10 +15,7 @@ class ThirdViewController: UIViewController {
     @IBOutlet weak var v3: UIView!
     @IBOutlet weak var startBtn: UIButton!{
         didSet{
-            startBtn.layer.cornerRadius = 10
-            startBtn.layer.borderWidth = 2
-            startBtn.layer.borderColor = UIColor.blue.cgColor
-            startBtn.clipsToBounds = true
+            startBtn.layer.cornerRadius = 5
         }
         
     }
@@ -51,17 +48,15 @@ class ThirdViewController: UIViewController {
     
     @objc func swipeAction(_ sender: UISwipeGestureRecognizer){
         if sender.direction == .right {
-                let vc = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
-                vc.modalPresentationStyle = .fullScreen
-                           presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
+            let vc = storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
+            vc.modalPresentationStyle = .fullScreen
+            presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromRight)
             
-           
+            
         } else if sender.direction == .left {
-                let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                vc.modalPresentationStyle = .fullScreen
-                           presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromLeft)
-           
-           
+            let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            vc.modalPresentationStyle = .fullScreen
+            presentViewControllerWithTransition(viewController: vc, animated: true, direction: .fromLeft)
         }
     }
     
@@ -85,15 +80,13 @@ class ThirdViewController: UIViewController {
             }
         }
     }
-
-        
     
     @IBAction func startBtnPressed(_ sender: UIButton) {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true, completion: nil)
-            }
-       
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
+        
     }
     
 }

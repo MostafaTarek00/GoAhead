@@ -122,6 +122,8 @@
 		8192DCDE238A77C00043053A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192DCDB238A77C00043053A /* Constants.swift */; };
 		8192DCDF238A77C00043053A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192DCDC238A77C00043053A /* APIClient.swift */; };
 		8192DCE0238A77C00043053A /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192DCDD238A77C00043053A /* APIRouter.swift */; };
+		81A0E1BD2472AD79009EB58F /* Splash.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 81A0E1BC2472AD78009EB58F /* Splash.mp4 */; };
+		81A0E1C12472AE44009EB58F /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A0E1C02472AE44009EB58F /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,6 +258,8 @@
 		8192DCDB238A77C00043053A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8192DCDC238A77C00043053A /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		8192DCDD238A77C00043053A /* APIRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		81A0E1BC2472AD78009EB58F /* Splash.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Splash.mp4; sourceTree = "<group>"; };
+		81A0E1C02472AE44009EB58F /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BCC89F68BD9678F27459564E /* Pods-GoAhead.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoAhead.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoAhead/Pods-GoAhead.debug.xcconfig"; sourceTree = "<group>"; };
 		D2AA2B32F6F11C44F110F0C4 /* Pods_GoAhead.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoAhead.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9BC19824E08412DA1DA40A9 /* Pods-GoAhead.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoAhead.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoAhead/Pods-GoAhead.release.xcconfig"; sourceTree = "<group>"; };
@@ -558,6 +562,7 @@
 		3B122EE92386866C0056E7BF /* Senarios */ = {
 			isa = PBXGroup;
 			children = (
+				81A0E1BE2472AE24009EB58F /* Splash */,
 				3B2A868123D600FB0060B02B /* Editorial */,
 				3B17639023BDF16F00871CE9 /* NavigationViews */,
 				3B0EE89923BAAB8500D67389 /* TapViews */,
@@ -969,6 +974,7 @@
 		3B196D0B23C0BC1C001F2628 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81A0E1BC2472AD78009EB58F /* Splash.mp4 */,
 				262E5B2621AFE57D009363E7 /* Assets.xcassets */,
 				3B17639823BDFDA500871CE9 /* Navigation.xcassets */,
 				3B196D0F23C0BE2C001F2628 /* Tab.xcassets */,
@@ -1207,6 +1213,22 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		81A0E1BE2472AE24009EB58F /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				81A0E1BF2472AE2D009EB58F /* Controller */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		81A0E1BF2472AE2D009EB58F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				81A0E1C02472AE44009EB58F /* SplashViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		F6C5AC9ED59CACEAB0EE1471 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1307,6 +1329,7 @@
 				3B12C21B241E75C800D17BFB /* Resources.bundle in Resources */,
 				262E5B2A21AFE57D009363E7 /* LaunchScreen.storyboard in Resources */,
 				3B17639923BDFDA500871CE9 /* Navigation.xcassets in Resources */,
+				81A0E1BD2472AD79009EB58F /* Splash.mp4 in Resources */,
 				3B2A866123D5B2400060B02B /* education.json in Resources */,
 				3B15466523D475C8009A0C80 /* fail.json in Resources */,
 				3B2A866523D5BE310060B02B /* news.json in Resources */,
@@ -1437,6 +1460,7 @@
 				3B2A867323D5DFB40060B02B /* ThirdViewController.swift in Sources */,
 				3B12C1AE241E31BF00D17BFB /* CommentsViewController.swift in Sources */,
 				3B122F0C2386D4040056E7BF /* GoMallCollectionViewCell.swift in Sources */,
+				81A0E1C12472AE44009EB58F /* SplashViewController.swift in Sources */,
 				3B0F729E2385958100BBEA8C /* Alert.swift in Sources */,
 				3B17461223C8A4CD00899ADE /* ProductStoreOfCategory.swift in Sources */,
 				3B0F72A12385958100BBEA8C /* Maps.swift in Sources */,

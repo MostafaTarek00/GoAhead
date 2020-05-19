@@ -87,4 +87,13 @@ class DesignableUITextField: UITextField {
         // Placeholder text color
         attributedPlaceholder = NSAttributedString(string: placeholder != nil ?  placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: color])
     }
+    
+    
+    func addBottomBorder(color: CGColor? = UIColor.white.cgColor , height: CGFloat? = 2 , width: CGFloat){
+        let layer = CALayer()
+        layer.backgroundColor = color
+        layer.frame = CGRect(x: 0.0, y: self.frame.size.height , width: width, height: height ?? 0)
+        self.layer.addSublayer(layer)
+    }
 }
+

@@ -10,18 +10,19 @@ import UIKit
 
 class ForgetPasswordViewController: UIViewController {
     
-    @IBOutlet weak var emailTf: DesignableUITextField!
+    @IBOutlet weak var emailTf: DesignableUITextField!{
+        didSet{
+        }
+    }
     @IBOutlet weak var sendBtn: UIButton!{
         didSet{
-            sendBtn.layer.cornerRadius = 20
-            sendBtn.layer.borderWidth = 2
-            sendBtn.layer.borderColor = UIColor.white.cgColor
-            sendBtn.clipsToBounds = true
+            sendBtn.layer.cornerRadius = 5
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        emailTf.addBottomBorder(width: self.view.frame.size.width - 90)
+
         // Do any additional setup after loading the view.
     }
     

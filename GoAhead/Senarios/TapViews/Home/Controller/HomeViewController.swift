@@ -90,7 +90,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        let cellSize = CGSize(width: self.view.frame.width/1-10 , height: 150)
+        let cellSize = CGSize(width: self.view.frame.width/1-10 , height: 180)
         return cellSize
     }
     

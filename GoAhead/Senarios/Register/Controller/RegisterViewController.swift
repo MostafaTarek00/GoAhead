@@ -46,10 +46,7 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     }
     @IBOutlet weak var singUpBtn: UIButton!{
         didSet{
-            singUpBtn.layer.cornerRadius = 20
-            singUpBtn.layer.borderWidth = 2
-            singUpBtn.layer.borderColor = UIColor.white.cgColor
-            singUpBtn.clipsToBounds = true
+            singUpBtn.layer.cornerRadius = 5
         }
     }
     @IBOutlet weak var goToLogin: UIButton!
@@ -61,6 +58,12 @@ class RegisterViewController: UIViewController  ,NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         goToLogin.setTitle(NSLocalizedString("Go To Login", comment: ""), for: .normal)
+        
+        passwordRegTf.addBottomBorder(width: self.view.frame.size.width - 90)
+        phoneRegTf.addBottomBorder(width: self.view.frame.size.width - 90)
+        emailRegTf.addBottomBorder(width: self.view.frame.size.width - 90)
+        userNameRegTf.addBottomBorder(width: self.view.frame.size.width - 90)
+
         
         // Do any additional setup after loading the view.
     }
