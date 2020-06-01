@@ -10,13 +10,18 @@ import UIKit
 import NVActivityIndicatorView
 
 class MostAddedViewController: UIViewController ,NVActivityIndicatorViewable{
+    
+    @IBOutlet weak var mostAddCollectionView: UICollectionView!
+    @IBOutlet weak var imageSlider: UIScrollView!
+    @IBOutlet weak var imageSliderViewHeight: NSLayoutConstraint!
+    
     var mostAdded:MostAdded?
     var offerID : String?
-    @IBOutlet weak var mostAddCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        imageSliderViewHeight.constant = view.frame.size.height/5
+        imageSlider.auk.setupSlider(images: ["1" , "2" , "3"])
     }
     
     override func viewDidAppear(_ animated: Bool) {

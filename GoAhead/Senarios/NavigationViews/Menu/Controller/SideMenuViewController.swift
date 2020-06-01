@@ -18,7 +18,6 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
             Rounded.roundedImage(imageView: profileImage)            
         }
     }
-    @IBOutlet weak var langFlag: UIImageView!
     @IBOutlet weak var myNameLbl: UILabel!
     @IBOutlet weak var changLang: UIButton!
     @IBOutlet weak var menuTableView: UITableView!
@@ -50,13 +49,6 @@ class SideMenuViewController: UIViewController ,NVActivityIndicatorViewable{
     
     func updateDate()  {
         myNameLbl.text = UserDefault.getName()
-        print(UserDefault.getName())
-        if MOLHLanguage.currentAppleLanguage() == "en"{
-            langFlag.image = UIImage(named: "saudiFlag")
-        }
-        else if  MOLHLanguage.currentAppleLanguage() == "ar"{
-            langFlag.image = UIImage(named: "unitedStatesFlag")
-        }
     }
     
     

@@ -171,10 +171,10 @@
 "lQ1-Hr-1lQ.text" = "التاجر";
 
 /* Class = "UITabBarItem"; title = "Go Mall"; ObjectID = "mkQ-o3-V6t"; */
-"mkQ-o3-V6t.title" = "قو مول";
+"mkQ-o3-V6t.title" = "طلبي";
 
 /* Class = "UILabel"; text = "Change Language To"; ObjectID = "pQH-Vf-Pgb"; */
-"pQH-Vf-Pgb.text" = "تغير اللغه الي ";
+"pQH-Vf-Pgb.text" = "تغير اللغه الي :";
 
 /* Class = "UITextField"; placeholder = "User Name"; ObjectID = "q0P-jx-zbz"; */
 "q0P-jx-zbz.placeholder" = "اسم المستخدم";
@@ -235,3 +235,6 @@
 
 /* Class = "UILabel"; text = "Other Product"; ObjectID = "zfO-bv-iIq"; */
 "zfO-bv-iIq.text" = "منتاجات اخري";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "8aa-Y8-oXv"; */
+"8aa-Y8-oXv.normalTitle" = "EN";

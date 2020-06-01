@@ -10,14 +10,20 @@ import UIKit
 import NVActivityIndicatorView
 
 class MyWishListViewController: UIViewController , NVActivityIndicatorViewable {
-    var myWishList:MyWishList?
     
+    @IBOutlet weak var imageSliderViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var imageSlider: UIScrollView!
     @IBOutlet weak var myWishListCollectionView: UICollectionView!
+    
+    var myWishList:MyWishList?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        imageSliderViewHeight.constant = view.frame.size.height / 5
+        imageSlider.auk.setupSlider(images: ["1" , "2" , "3"])
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         showNavigation()

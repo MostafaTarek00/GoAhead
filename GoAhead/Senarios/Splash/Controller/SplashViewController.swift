@@ -34,19 +34,18 @@ class SplashViewController: UIViewController {
         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         playerLayer.zPosition = -1
         
-        self.view.layer.addSublayer(playerLayer)
-        
+        self.view.layer.addSublayer(playerLayer)	
         player?.play()
         goToLogin()
         
     }
     
     func goToLogin(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.5) {
             [weak self] in
             
             if  UserDefault.getcheckLogin() == true {
-                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "TabBar") as? LoginViewController {
+                if let vc = self?.storyboard?.instantiateViewController(withIdentifier: "TabBar") {
                     vc.modalPresentationStyle = .overFullScreen
                     self?.present(vc, animated: true)
                 }

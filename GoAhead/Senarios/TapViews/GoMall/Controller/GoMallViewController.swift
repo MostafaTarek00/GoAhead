@@ -12,11 +12,15 @@ class GoMallViewController: UIViewController ,NVActivityIndicatorViewable{
     var categoryOfMall:CategoryOfMall?
     
     
+    @IBOutlet weak var imageSliderViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var imageSlider: UIScrollView!
     @IBOutlet weak var goMallCollectionView: UICollectionView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageSliderViewHeight.constant = view.frame.size.height / 5
+        imageSlider.auk.setupSlider(images: ["3" , "2" , "1"])
     }
     
     override func viewDidAppear(_ animated: Bool) {
